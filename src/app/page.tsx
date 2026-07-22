@@ -128,6 +128,7 @@ export default function Home() {
               </h3>
 
               <p>0972 516 250</p>
+              <p>0988 242 921</p>
 
               <div className="mt-5 space-y-2">
                 <a
