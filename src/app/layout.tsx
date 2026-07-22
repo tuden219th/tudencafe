@@ -39,8 +39,53 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-      </body>
+  {children}
+
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "Từ Đến Cafe",
+        "description":
+          "Từ Đến Cafe - Một góc nhỏ cho cà phê, câu chuyện và những hành trình mới.",
+        "url": "https://tudencafe.com",
+        "telephone": "0972516250",
+
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "219 Tô Hiệu",
+          "addressLocality": "Hà Nội",
+          "addressCountry": "VN"
+        },
+
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "07:00",
+            "closes": "22:30"
+          }
+        ],
+
+        "priceRange": "25.000đ - 50.000đ",
+
+        "sameAs": [
+          "https://www.facebook.com/TudenCafe"
+        ]
+      }),
+    }}
+  />
+</body>
     </html>
   );
 }
