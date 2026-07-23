@@ -1,26 +1,718 @@
-@import "tailwindcss";
+/* =========================================================
+   TỪ ĐẾN — brand tokens + guidelines page styles
+   Nối vào cuối file app/globals.css hiện có
+   (đặt riêng để không đụng vào Tailwind hay class khác —
+   toàn bộ dưới đây chỉ dùng class bắt đầu bằng td- / gl-)
+   ========================================================= */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --td-paper: #f4eee3;
+  --td-paper-deep: #eee5d5;
+  --td-ink: #221c16;
+  --td-ink-soft: #3a322a;
+  --td-copper: #b5583a;
+  --td-copper-deep: #7e3f29;
+  --td-clay: #8c8071;
+  --td-hair: #dcd2c0;
+  --td-sage: #7c8362;
+  --td-inkblue: #435160;
+  --td-rust: #8c3b22;
+  --td-sand: #c9b896;
+
+  --td-display: var(--font-display), "Fraunces", serif;
+  --td-sans: var(--font-sans), "Be Vietnam Pro", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ===== Header / tab nav ===== */
+.td-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244, 238, 227, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 0.5px solid var(--td-hair);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.td-header-bar {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.td-logo {
+  font-family: var(--td-display);
+  font-size: 19px;
+  color: var(--td-ink);
+  text-decoration: none;
+}
+.td-accent {
+  color: var(--td-copper);
+}
+.td-nav {
+  display: flex;
+  gap: 2px;
+}
+.td-tab {
+  font-family: var(--td-sans);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--td-ink-soft);
+  text-decoration: none;
+  padding: 10px 16px;
+  position: relative;
+  transition: color 0.25s ease;
+}
+.td-tab:hover {
+  color: var(--td-ink);
+}
+.td-tab::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 6px;
+  height: 1px;
+  background: var(--td-copper);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.td-tab-active {
+  color: var(--td-copper);
+}
+.td-tab-active::after {
+  transform: scaleX(1);
+}
+.td-tab-cta {
+  border: 0.5px solid var(--td-ink);
+  border-radius: 2px;
+  margin-left: 10px;
+  color: var(--td-ink);
+}
+.td-tab-cta::after {
+  display: none;
+}
+.td-tab-cta.td-tab-active {
+  background: var(--td-ink);
+  color: var(--td-paper);
+}
+@media (max-width: 760px) {
+  .td-header-bar {
+    padding: 0 20px;
+    flex-direction: column;
+    height: auto;
+    gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+  .td-nav {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===== Page fade-in khi chuyển route ===== */
+@keyframes td-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.gl-page {
+  background: var(--td-paper);
+  color: var(--td-ink);
+  font-family: var(--td-sans);
+  animation: td-fade-up 0.5s ease both;
+}
+
+/* ===== Khối dùng chung ===== */
+.gl-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.gl-rule {
+  border: none;
+  border-top: 0.5px solid var(--td-hair);
+  margin: 0;
+}
+.gl-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--td-clay);
+  font-weight: 500;
+}
+.gl-chno {
+  font-family: var(--td-display);
+  font-size: 13px;
+  color: var(--td-copper);
+  letter-spacing: 0.04em;
+}
+.gl-head {
+  font-family: var(--td-display);
+  font-weight: 400;
+  font-size: 28px;
+  margin: 6px 0 16px;
+}
+.gl-lede {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--td-ink-soft);
+  max-width: 640px;
+  margin: 0 0 10px;
+}
+.gl-section {
+  padding: 64px 0;
+}
+.gl-section-tight {
+  padding: 36px 0;
+}
+.gl-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ===== Intro ===== */
+.gl-intro {
+  padding: 70px 0 10px;
+  text-align: center;
+}
+.gl-intro .kicker {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--td-clay);
+}
+.gl-intro .t {
+  font-family: var(--td-display);
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 54px);
+  margin-top: 14px;
+}
+
+/* ===== Mục lục ===== */
+.gl-toc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 40px;
+  margin-top: 20px;
+}
+.gl-toc a {
+  color: var(--td-ink);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid var(--td-hair);
+  padding: 10px 0;
+}
+.gl-toc a span.n {
+  color: var(--td-copper);
+  font-family: var(--td-display);
+  margin-right: 10px;
+}
+.gl-toc a:hover {
+  color: var(--td-copper);
+}
+
+/* ===== Chiến lược ===== */
+.gl-pillars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-pillars .p {
+  background: var(--td-paper);
+  padding: 20px 14px;
+  text-align: center;
+}
+.gl-pillars .p .t {
+  font-family: var(--td-display);
+  font-style: italic;
+  font-size: 15px;
+}
+.gl-pillars .p .d {
+  font-size: 11px;
+  color: var(--td-clay);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.gl-voice {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+}
+.gl-voice .col {
+  background: var(--td-paper);
+  padding: 20px 24px;
+}
+.gl-voice .h {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.gl-voice .yes .h {
+  color: var(--td-sage);
+}
+.gl-voice .no .h {
+  color: var(--td-rust);
+}
+.gl-voice .line {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--td-ink-soft);
+  margin-bottom: 8px;
+}
+.gl-quote {
+  font-family: var(--td-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--td-ink);
+  margin: 24px 0;
+  max-width: 660px;
+}
+
+/* ===== Hệ thống logo ===== */
+.gl-word-lg {
+  font-family: var(--td-display);
+  font-weight: 400;
+  font-size: 72px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.gl-word-lg .gap {
+  width: 80px;
+  display: inline-block;
+}
+.gl-construct {
+  background: var(--td-paper-deep);
+  border: 0.5px solid var(--td-hair);
+  padding: 50px 30px;
+  position: relative;
+  margin-top: 22px;
+}
+.gl-construct .guide {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  border-top: 0.5px dashed var(--td-clay);
+}
+.gl-construct .caption {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--td-clay);
+}
+.gl-clearspace {
+  background: var(--td-paper-deep);
+  border: 0.5px dashed var(--td-clay);
+  padding: 60px 90px;
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+}
+.gl-minsize {
+  display: flex;
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-minsize .m {
+  flex: 1;
+  background: var(--td-paper);
+  padding: 26px;
+  text-align: center;
+}
+.gl-minsize .m.no .word {
+  color: #b4a997;
+}
+.gl-minsize .lab {
+  margin-top: 12px;
+  font-size: 10.5px;
+  color: var(--td-clay);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.gl-dont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-dont .d {
+  background: var(--td-paper);
+  padding: 26px 18px;
+  text-align: center;
+  position: relative;
+}
+.gl-dont .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--td-rust);
+  color: var(--td-paper);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.gl-dont .word {
+  font-family: var(--td-display);
+  font-size: 26px;
+  color: var(--td-ink);
+}
+.gl-dont .cap {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--td-clay);
+}
+
+/* ===== Bảng màu ===== */
+.gl-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-sw .chip {
+  height: 100px;
+}
+.gl-sw .info {
+  padding: 14px 16px 18px;
+  background: var(--td-paper);
+}
+.gl-sw .info .name {
+  font-size: 13px;
+  font-weight: 500;
+}
+.gl-sw .info .hex {
+  font-size: 11px;
+  color: var(--td-clay);
+  margin-top: 2px;
+}
+.gl-sw .info .note {
+  font-size: 11px;
+  color: var(--td-ink-soft);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ===== Mẫu chữ ===== */
+.gl-specimen {
+  margin-top: 22px;
+  border: 0.5px solid var(--td-hair);
+}
+.gl-specimen .row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 0.5px solid var(--td-hair);
+  background: var(--td-paper);
+}
+.gl-specimen .row:last-child {
+  border-bottom: none;
+}
+.gl-specimen .sample {
+  font-family: var(--td-display);
+}
+.gl-specimen .meta {
+  font-size: 11px;
+  color: var(--td-clay);
+  text-align: right;
+  min-width: 150px;
+}
+
+/* ===== Nhịp đồ họa ===== */
+.gl-pattern {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  height: 70px;
+  margin-top: 22px;
+  padding: 24px;
+  background: var(--td-paper-deep);
+  border: 0.5px solid var(--td-hair);
+}
+.gl-pattern .bar {
+  width: 4px;
+  background: var(--td-copper);
+}
+
+/* ===== Kiến trúc thương hiệu ===== */
+.gl-arch {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-arch .a {
+  background: var(--td-paper);
+  padding: 26px 12px;
+  text-align: center;
+}
+.gl-arch .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+}
+.gl-arch .word {
+  font-family: var(--td-display);
+  font-size: 20px;
+}
+.gl-arch .sub {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--td-clay);
+  margin-top: 8px;
+}
+
+/* ===== Ứng dụng ===== */
+.gl-appgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 22px;
+}
+.gl-appcard {
+  border: 0.5px solid var(--td-hair);
+  background: var(--td-paper-deep);
+  overflow: hidden;
+}
+.gl-appcard .stage {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.gl-appcard .meta {
+  padding: 14px 18px;
+  border-top: 0.5px solid var(--td-hair);
+  background: var(--td-paper);
+}
+.gl-appcard .meta .t {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.gl-appcard .meta .d {
+  font-size: 11px;
+  color: var(--td-clay);
+  margin-top: 3px;
+}
+.gl-card-mock {
+  width: 260px;
+  height: 145px;
+  background: var(--td-ink);
+  color: var(--td-paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 22px;
+}
+.gl-card-mock .fw {
+  font-family: var(--td-display);
+  font-size: 22px;
+}
+.gl-card-mock .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a79e90;
+}
+.gl-cup-mock {
+  width: 90px;
+  height: 140px;
+  background: var(--td-paper);
+  border: 0.5px solid var(--td-ink);
+  border-radius: 6px 6px 26px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.gl-cup-mock .band {
+  position: absolute;
+  top: 48px;
+  left: -5px;
+  right: -5px;
+  height: 42px;
+  background: var(--td-copper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gl-cup-mock .band .word {
+  font-family: var(--td-display);
+  color: var(--td-paper);
+  font-size: 12.5px;
+}
+.gl-stamp-mock {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1.5px solid var(--td-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gl-stamp-mock .inner {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 0.5px solid var(--td-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--td-display);
+  font-size: 23px;
+  position: relative;
+}
+.gl-stamp-mock .bar {
+  position: absolute;
+  width: 14px;
+  height: 0.5px;
+  background: var(--td-ink);
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.gl-social-mock {
+  width: 170px;
+  height: 170px;
+  background: var(--td-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gl-social-mock .fw {
+  font-family: var(--td-display);
+  font-size: 26px;
+  color: var(--td-paper);
+  text-align: center;
+}
+
+/* ===== Nên / Không nên ===== */
+.gl-dogrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--td-hair);
+  border: 0.5px solid var(--td-hair);
+  margin-top: 22px;
+}
+.gl-dogrid .g {
+  background: var(--td-paper);
+  padding: 22px 26px;
+}
+.gl-dogrid .h {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.gl-dogrid .yes .h {
+  color: var(--td-sage);
+}
+.gl-dogrid .no .h {
+  color: var(--td-rust);
+}
+.gl-dogrid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gl-dogrid li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--td-ink-soft);
+  padding-left: 16px;
+  position: relative;
+}
+.gl-dogrid li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--td-clay);
+}
+
+/* ===== Kết ===== */
+.gl-close {
+  padding: 110px 0;
+  text-align: center;
+}
+.gl-close .stmt {
+  font-family: var(--td-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(24px, 3.4vw, 36px);
+  line-height: 1.45;
+  color: var(--td-ink);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.gl-close .en {
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--td-clay);
+  text-transform: uppercase;
+}
+.gl-to {
+  color: var(--td-copper);
+}
+
+@media (max-width: 800px) {
+  .gl-grid2,
+  .gl-pillars,
+  .gl-voice,
+  .gl-dogrid,
+  .gl-appgrid,
+  .gl-dont,
+  .gl-minsize,
+  .gl-toc,
+  .gl-arch,
+  .gl-swatches {
+    grid-template-columns: 1fr !important;
+  }
+  .gl-wrap {
+    padding: 0 20px;
+  }
 }
