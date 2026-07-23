@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Be_Vietnam_Pro } from "next/font/google";
-import Header from "@/components/Header";
+import Header from "./components/Header.tsx";
 import "./globals.css";
 
 // Display serif — dùng cho wordmark và tiêu đề toàn bộ thương hiệu
