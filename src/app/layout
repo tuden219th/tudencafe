@@ -1,32 +1,25 @@
-import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Từ Đến Coffee | From where you are, To where you want to be",
+  title: {
+    default: "TỪ ĐẾN | Cafe & Journey",
+    template: "%s | TỪ ĐẾN",
+  },
   description:
-    "Từ Đến Coffee - Không gian cà phê nơi bạn dừng lại, kết nối và đi tiếp.",
+    "TỪ ĐẾN Cafe - Không chỉ là cà phê, mà là một hành trình.",
   keywords: [
-    "Từ Đến Coffee",
-    "cà phê Hà Nội",
-    "specialty coffee",
-    "espresso",
+    "Từ Đến",
+    "Cafe",
+    "Coffee",
+    "Latte",
+    "Espresso",
+    "Coffee Shop",
+    "Vietnam Coffee",
   ],
-  authors: [{ name: "Từ Đến Coffee" }],
   openGraph: {
-    title: "Từ Đến Coffee",
-    description:
-      "From where you are, To where you want to be",
+    title: "TỪ ĐẾN Cafe",
+    description: "Không chỉ là cà phê, mà là một hành trình.",
     type: "website",
     locale: "vi_VN",
   },
@@ -38,13 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="vi"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {children}
-      </body>
+    <html lang="vi">
+      <body>{children}</body>
     </html>
   );
 }
