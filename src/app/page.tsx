@@ -1,247 +1,179 @@
 export default function Home() {
   return (
-    <main className="bg-[#F6F1E8] text-[#2A241E]">
-
-      {/* HERO */}
-      <section className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-
-        <p className="mb-6 tracking-[0.35em] uppercase text-sm text-[#B45A38]">
-          Coffee · Tea · Food
+    <main className="min-h-screen bg-stone-50 text-stone-800">
+      {/* Hero */}
+      <section className="flex min-h-[85vh] flex-col items-center justify-center px-6 text-center">
+        <p className="mb-4 text-sm uppercase tracking-[0.4em] text-orange-600">
+          Coffee • Tea • Food
         </p>
 
-        <h1
-          className="text-7xl md:text-8xl font-light"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Từ Đến
+        <h1 className="text-6xl font-bold tracking-widest text-orange-600">
+          TỪ ĐẾN
         </h1>
 
-        <div className="mt-6 h-px w-24 bg-[#B45A38]" />
-
-        <p className="mt-10 text-2xl italic leading-relaxed text-[#4C433B]">
-          From where you are.
+        <p className="mt-8 max-w-xl text-2xl font-light leading-relaxed">
+          From where you are,
           <br />
           To where you want to be.
         </p>
 
-        <p className="mt-16 max-w-2xl text-lg leading-9 text-[#5E554D]">
-
+        <p className="mt-10 max-w-2xl text-lg leading-8 text-stone-600">
           Có những ngày...
-
-          <br /><br />
-
-          Bạn không cần một cuộc nói chuyện lớn.
-
           <br />
-
-          Không cần ai phải hiểu mình.
-
+          Chúng ta chỉ cần một chiếc ghế.
           <br />
-
-          Chỉ cần một chiếc ghế.
-
-          <br />
-
           Một ly cà phê.
-
           <br />
-
           Và vài phút để nhớ mình đang đi đâu.
         </p>
 
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <a
+            href="#menu"
+            className="rounded-full bg-orange-600 px-8 py-4 font-semibold text-white transition hover:bg-orange-700"
+          >
+            Xem Menu
+          </a>
+
+          <a
+            href="#story"
+            className="rounded-full border border-orange-600 px-8 py-4 font-semibold text-orange-600 transition hover:bg-orange-50"
+          >
+            Câu chuyện
+          </a>
+        </div>
       </section>
 
-      {/* STORY */}
-
-      <section className="mx-auto max-w-4xl px-8 py-32">
-
-        <div className="mb-16 text-sm uppercase tracking-[0.3em] text-[#B45A38]">
-          Our Story
-        </div>
-
-        <h2
-          className="text-5xl font-light"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Không chỉ là
-          <br />
-          một quán cà phê.
+      {/* Story */}
+      <section
+        id="story"
+        className="mx-auto max-w-5xl px-8 py-24"
+      >
+        <h2 className="mb-10 text-4xl font-bold text-orange-600">
+          Câu chuyện
         </h2>
 
-        <div className="mt-12 space-y-8 text-lg leading-9 text-[#534A42]">
-
-          <p>
-            Từ Đến được tạo ra cho những người luôn
-            đang ở giữa một hành trình.
-          </p>
-
-          <p>
-            Giữa một công việc cũ và một giấc mơ mới.
-          </p>
-
-          <p>
-            Giữa một cuộc gặp.
-            <br />
-            Một chuyến đi.
-            <br />
-            Một quyết định.
-          </p>
-
-          <p>
-            Có thể bạn chỉ ghé đây mười lăm phút.
-          </p>
-
-          <p>
-            Nhưng chúng tôi hy vọng,
-            khi bước ra khỏi cánh cửa,
-            bạn sẽ mang theo nhiều hơn
-            một ly cà phê.
-          </p>
-
-        </div>
-
+        <p className="text-lg leading-9 text-stone-700">
+          "Từ Đến" không chỉ là một quán cà phê.
+          <br />
+          Đó là nơi để dừng lại một chút giữa cuộc sống bận rộn.
+          <br />
+          Một nơi để gặp gỡ, trò chuyện và tiếp thêm năng lượng
+          trước khi tiếp tục hành trình của mình.
+        </p>
       </section>
 
-      {/* MENU */}
-
-      <section className="bg-white py-28">
-
+      {/* Menu */}
+      <section id="menu" className="bg-white py-24">
         <div className="mx-auto max-w-5xl px-8">
-
-          <h2
-            className="mb-16 text-center text-5xl font-light"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Today's Coffee
+          <h2 className="mb-12 text-4xl font-bold text-orange-600">
+            Menu
           </h2>
 
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
 
             {[
-              ["Đen", "Đậm đà, truyền thống", "25.000đ"],
-              ["Nâu", "Cân bằng giữa cà phê và sữa", "25.000đ"],
-              ["Espresso", "Nguyên bản", "35.000đ"],
-              ["Latte", "Mềm mại và cân bằng", "35.000đ"],
+              ["☕ Đen đá", "Đậm đà - truyền thống", "25.000đ"],
+              ["🥛 Nâu đá", "Cân bằng giữa cà phê và sữa", "25.000đ"],
+              ["⚡ Espresso", "Shot espresso nguyên bản", "35.000đ"],
+              ["🤎 Latte", "Espresso kết hợp sữa tươi", "35.000đ"],
             ].map(([name, desc, price]) => (
-
               <div
                 key={name}
-                className="rounded-xl border border-[#ECE5DA] p-8 transition hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border border-stone-200 bg-stone-50 p-6 transition hover:-translate-y-1 hover:shadow-lg"
               >
+                <h3 className="text-xl font-semibold">{name}</h3>
 
-                <div
-                  className="text-3xl"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {name}
-                </div>
+                <p className="mt-2 text-stone-500">{desc}</p>
 
-                <div className="mt-3 text-[#7B6F64]">
-                  {desc}
-                </div>
-
-                <div className="mt-8 text-xl font-semibold text-[#B45A38]">
+                <div className="mt-5 text-2xl font-bold text-orange-600">
                   {price}
                 </div>
-
               </div>
-
             ))}
+          </div>
+        </div>
+      </section>
 
+      {/* Footer */}
+      <footer className="bg-stone-900 text-white">
+        <div className="mx-auto max-w-6xl px-8 py-16">
+
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-orange-500">
+              TỪ ĐẾN
+            </h2>
+
+            <p className="mt-4 text-stone-300 italic">
+              From where you are,
+              <br />
+              To where you want to be.
+            </p>
           </div>
 
-        </div>
-
-      </section>
-
-      {/* QUOTE */}
-
-      <section className="py-32">
-
-        <div className="mx-auto max-w-3xl px-8 text-center">
-
-          <p
-            className="text-4xl leading-relaxed italic"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Every destination
-            <br />
-            begins with
-            <br />
-            one small stop.
-          </p>
-
-        </div>
-
-      </section>
-
-      {/* FOOTER */}
-
-      <footer className="border-t border-[#DDD2C2] py-20">
-
-        <div className="mx-auto max-w-6xl px-8">
-
-          <div className="grid gap-12 md:grid-cols-3">
+          <div className="mt-16 grid gap-10 md:grid-cols-3">
 
             <div>
-
-              <h3
-                className="text-3xl"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Từ Đến
+              <h3 className="mb-4 text-lg font-semibold text-orange-400">
+                📍 Visit Us
               </h3>
 
-              <p className="mt-5 leading-8 text-[#6A6159]">
-                From where you are.
-                <br />
-                To where you want to be.
-              </p>
-
+              <p>219 Tô Hiệu</p>
+              <p>Nghĩa Đô, Hà Nội</p>
             </div>
 
             <div>
+              <h3 className="mb-4 text-lg font-semibold text-orange-400">
+                ☎ Contact
+              </h3>
 
-              <div className="uppercase tracking-[0.2em] text-xs text-[#B45A38]">
-                Visit
+              <p>0972 516 250</p>
+              <p>0988 242 921</p>
+
+              <div className="mt-5 space-y-2">
+                <a
+                  href="https://facebook.com/TudenCafe"
+                  target="_blank"
+                  className="block hover:text-orange-400"
+                >
+                  Facebook
+                </a>
+
+                <a
+                  href="https://instagram.com/atx171"
+                  target="_blank"
+                  className="block hover:text-orange-400"
+                >
+                  Instagram
+                </a>
+
+                <a
+                  href="https://maps.google.com/?q=219+Tô+Hiệu,+Nghĩa+Đô,+Hà+Nội"
+                  target="_blank"
+                  className="block hover:text-orange-400"
+                >
+                  Google Maps
+                </a>
               </div>
-
-              <p className="mt-4">
-                219 Tô Hiệu
-                <br />
-                Nghĩa Đô, Hà Nội
-              </p>
-
-              <p className="mt-6">
-                0972 516 250
-              </p>
-
             </div>
 
             <div>
+              <h3 className="mb-4 text-lg font-semibold text-orange-400">
+                🕘 Opening Hours
+              </h3>
 
-              <div className="uppercase tracking-[0.2em] text-xs text-[#B45A38]">
-                Open
-              </div>
-
-              <p className="mt-4">
-                Every Day
-                <br />
-                07:00 — 22:30
-              </p>
-
+              <p>Every day</p>
+              <p>07:00 – 22:00</p>
             </div>
 
           </div>
 
-          <div className="mt-20 border-t border-[#E8DED0] pt-8 text-center text-sm text-[#857B72]">
-            © 2026 Từ Đến Cafe
+          <div className="mt-16 border-t border-stone-700 pt-6 text-center text-sm text-stone-400">
+            © 2026 TỪ ĐẾN • Made with ☕ in Hà Nội
           </div>
 
         </div>
-
       </footer>
-
     </main>
   );
 }
