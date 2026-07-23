@@ -1,38 +1,94 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["vietnamese"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["vietnamese"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "TỪ ĐẾN | Cafe & Journey",
-    template: "%s | TỪ ĐẾN",
+    default: "TỪ ĐẾN Cafe | From Where You Are To Where You Want To Be",
+    template: "%s | TỪ ĐẾN Cafe",
   },
+
   description:
-    "TỪ ĐẾN Cafe - Không chỉ là cà phê, mà là một hành trình.",
+    "TỪ ĐẾN Cafe - Không chỉ là cà phê, mà là một hành trình. Nơi mỗi tách cà phê kể một câu chuyện.",
+
   keywords: [
-    "Từ Đến",
-    "Cafe",
-    "Coffee",
-    "Latte",
+    "TỪ ĐẾN Cafe",
+    "Cafe Hà Nội",
+    "Coffee Shop Vietnam",
+    "Specialty Coffee",
     "Espresso",
-    "Coffee Shop",
-    "Vietnam Coffee",
+    "Latte",
+    "Arabica",
+    "Coffee Experience",
   ],
+
+  authors: [
+    {
+      name: "TỪ ĐẾN Cafe",
+    },
+  ],
+
+  creator: "TỪ ĐẾN Cafe",
+
   openGraph: {
     title: "TỪ ĐẾN Cafe",
-    description: "Không chỉ là cà phê, mà là một hành trình.",
-    type: "website",
+    description:
+      "Không chỉ là cà phê, mà là một hành trình.",
+    url: "https://tudencafe.com",
+    siteName: "TỪ ĐẾN Cafe",
     locale: "vi_VN",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "TỪ ĐẾN Cafe",
+    description:
+      "From Where You Are To Where You Want To Be",
+  },
+
+  icons: {
+    icon: "/favicon.ico",
   },
 };
+
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ff7a00",
+};
+
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="vi">
-      <body>{children}</body>
+
+      <body
+        className={`${inter.variable} ${playfair.variable}`}
+      >
+
+        {children}
+
+      </body>
+
     </html>
   );
 }

@@ -1,70 +1,54 @@
 @import "tailwindcss";
 
-:root{
-    --background:#0f0f10;
-    --foreground:#ffffff;
+:root {
+  --background: #F5EBDD;
+  --foreground: #3B2416;
 
-    --primary:#ff7a00;
-    --secondary:#242424;
+  --primary: #C96A2B;
+  --secondary: #294A3A;
 
-    --text:#ececec;
-
-    --max-width:1280px;
+  --text: #3B2416;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-    background:var(--background);
-    color:var(--text);
 
-    font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
+body {
+  background: var(--background);
+  color: var(--text);
 
-    overflow-x:hidden;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-img{
-    max-width:100%;
-    display:block;
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
-section{
-    width:100%;
-}
 
-.container{
-    width:min(var(--max-width),92%);
-    margin:auto;
-}
-
-.title{
-    font-size:48px;
-    font-weight:700;
-    color:white;
-}
-
-.subtitle{
-    color:#9d9d9d;
-    line-height:1.8;
-}
-
-.orange{
-    color:var(--primary);
+.container {
+  width: min(1280px, 92%);
+  margin: auto;
 }
