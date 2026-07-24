@@ -9,8 +9,10 @@ export default function Navbar() {
         left-0
         w-full
         z-50
-        bg-[#F5EBDD]/80
-        backdrop-blur-md
+        bg-[#F5EBDD]/85
+        backdrop-blur-lg
+        border-b
+        border-[#3B2416]/10
       "
     >
 
@@ -19,7 +21,7 @@ export default function Navbar() {
           max-w-7xl
           mx-auto
           px-6
-          h-20
+          h-24
           flex
           items-center
           justify-between
@@ -27,24 +29,54 @@ export default function Navbar() {
       >
 
         {/* LOGO */}
-        <a href="/">
-          <Image
-            src="/images/logo.png"
-            width={120}
-            height={60}
-            alt="Từ Đến Cafe"
-            className="h-14 w-auto"
-          />
+        <a
+          href="/"
+          className="
+            flex
+            items-center
+            group
+          "
+        >
+
+          <div
+            className="
+              bg-[#F5EBDD]
+              rounded-full
+              p-2
+              shadow-sm
+              group-hover:scale-105
+              transition
+              duration-300
+            "
+          >
+
+            <Image
+              src="/images/logo.png"
+              width={90}
+              height={90}
+              alt="Từ Đến Cafe"
+              className="
+                h-16
+                w-16
+                md:h-20
+                md:w-20
+                rounded-full
+                object-cover
+              "
+            />
+
+          </div>
+
         </a>
 
 
-        {/* MENU DESKTOP */}
+        {/* MENU */}
         <nav
           className="
             hidden
             md:flex
             items-center
-            gap-8
+            gap-9
             text-sm
             uppercase
             tracking-[0.18em]
@@ -54,7 +86,10 @@ export default function Navbar() {
 
           <a
             href="#story"
-            className="hover:text-[#6B8E23] transition"
+            className="
+              hover:text-[#6B8E23]
+              transition
+            "
           >
             Câu chuyện
           </a>
@@ -62,7 +97,10 @@ export default function Navbar() {
 
           <a
             href="#coffee"
-            className="hover:text-[#6B8E23] transition"
+            className="
+              hover:text-[#6B8E23]
+              transition
+            "
           >
             Cà phê
           </a>
@@ -70,7 +108,10 @@ export default function Navbar() {
 
           <a
             href="#menu"
-            className="hover:text-[#6B8E23] transition"
+            className="
+              hover:text-[#6B8E23]
+              transition
+            "
           >
             Menu
           </a>
@@ -78,7 +119,10 @@ export default function Navbar() {
 
           <a
             href="#journal"
-            className="hover:text-[#6B8E23] transition"
+            className="
+              hover:text-[#6B8E23]
+              transition
+            "
           >
             Nhật ký
           </a>
@@ -87,13 +131,12 @@ export default function Navbar() {
           <a
             href="#footer"
             className="
-              border
-              border-[#3B2416]
-              px-5
-              py-2
               rounded-full
-              hover:bg-[#3B2416]
-              hover:text-white
+              bg-[#3B2416]
+              text-[#F5EBDD]
+              px-6
+              py-3
+              hover:bg-[#6B8E23]
               transition
             "
           >
@@ -102,7 +145,6 @@ export default function Navbar() {
 
 
         </nav>
-
 
       </div>
 
