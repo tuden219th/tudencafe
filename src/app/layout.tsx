@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+
 
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
 });
+
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -31,7 +34,6 @@ export const metadata: Metadata = {
     "Từ Đến Coffee - Một góc nhỏ cho những hành trình lớn. Cà phê, không gian và những câu chuyện kết nối tại Hà Nội.",
 
 
-
   keywords: [
     "Từ Đến Coffee",
     "Từ Đến",
@@ -44,7 +46,6 @@ export const metadata: Metadata = {
   ],
 
 
-
   authors: [
     {
       name: "Từ Đến Coffee",
@@ -52,11 +53,8 @@ export const metadata: Metadata = {
   ],
 
 
-
   creator:
     "Từ Đến Coffee",
-
-
 
 
   openGraph: {
@@ -64,27 +62,20 @@ export const metadata: Metadata = {
     title:
       "Từ Đến Coffee | From where you are, To where you want to be",
 
-
     description:
       "Một góc nhỏ cho những hành trình lớn.",
-
 
     url:
       "https://tudencafe.com",
 
-
     siteName:
       "Từ Đến Coffee",
-
 
     locale:
       "vi_VN",
 
-
     type:
       "website",
-
-
 
     images: [
       {
@@ -105,21 +96,16 @@ export const metadata: Metadata = {
   },
 
 
-
-
   twitter: {
 
     card:
       "summary_large_image",
 
-
     title:
       "Từ Đến Coffee",
 
-
     description:
       "Một góc nhỏ cho những hành trình lớn.",
-
 
     images:
       [
@@ -127,9 +113,6 @@ export const metadata: Metadata = {
       ],
 
   },
-
-
-
 
 
   robots: {
@@ -141,8 +124,6 @@ export const metadata: Metadata = {
       true,
 
   },
-
-
 
 
   icons: {
@@ -157,13 +138,12 @@ export const metadata: Metadata = {
 
 
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
 
   return (
 
@@ -173,7 +153,12 @@ export default function RootLayout({
         className={`${geist.variable} ${playfair.variable}`}
       >
 
-        {children}
+        <CartProvider>
+
+          {children}
+
+        </CartProvider>
+
 
       </body>
 
