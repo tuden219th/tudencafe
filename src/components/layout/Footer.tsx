@@ -22,15 +22,17 @@ export default function Footer() {
 
         {/* BRAND */}
 
-        <img
-        src="/images/logo.png"
-        alt="Từ Đến Coffee"
-        loading="lazy"
-        className="
-            h-20
-            mb-8
-        "
-        />
+        <div>
+
+          <img
+            src="/images/logo.png"
+            alt="Từ Đến Coffee"
+            loading="lazy"
+            className="
+              h-20
+              mb-8
+            "
+          />
 
 
           <p
@@ -62,7 +64,6 @@ export default function Footer() {
 
 
 
-
         {/* CONTACT */}
 
         <div>
@@ -87,7 +88,8 @@ export default function Footer() {
             <br />
             (Trước đây thuộc Quận Cầu Giấy)
 
-            </p>
+          </p>
+
 
 
           <div className="mt-5 space-y-3">
@@ -132,22 +134,25 @@ export default function Footer() {
             07:00 - 22:00
           </p>
 
-        <a
-        href="tel:0972516250"
-        className="
-            inline-block
-            mt-6
-            rounded-full
-            bg-[#C98955]
-            px-6
-            py-3
-            text-white
-            transition
-            hover:scale-105
-        "
-        >
-        Đặt bàn ngay
-        </a>
+
+
+          <a
+            href="tel:0972516250"
+            className="
+              inline-block
+              mt-6
+              rounded-full
+              bg-[#C98955]
+              px-6
+              py-3
+              text-white
+              transition
+              hover:scale-105
+            "
+          >
+            Đặt bàn ngay
+          </a>
+
 
         </div>
 
@@ -158,90 +163,92 @@ export default function Footer() {
 
         {/* SOCIAL */}
 
-<div>
+        <div>
 
-  <h3
-    className="
-      uppercase
-      tracking-[0.3em]
-      text-sm
-      mb-8
-    "
-  >
-    Kết nối
-  </h3>
-
-
-  <div className="space-y-4">
-
-
-    <a
-      href="https://www.facebook.com/TudenCafe"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        block
-        hover:text-[#C98955]
-        transition
-      "
-    >
-      Facebook
-    </a>
+          <h3
+            className="
+              uppercase
+              tracking-[0.3em]
+              text-sm
+              mb-8
+            "
+          >
+            Kết nối
+          </h3>
 
 
 
-    <a
-      href="https://www.instagram.com/atx171"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        block
-        hover:text-[#C98955]
-        transition
-      "
-    >
-      Instagram
-    </a>
+          <div className="space-y-4">
+
+
+            <a
+              href="https://www.facebook.com/TudenCafe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                block
+                hover:text-[#C98955]
+                transition
+              "
+            >
+              Facebook
+            </a>
 
 
 
-
-    <a
-      href="https://zalo.me/0972516250"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        block
-        hover:text-[#C98955]
-        transition
-      "
-    >
-      Zalo
-    </a>
-
+            <a
+              href="https://www.instagram.com/atx171"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                block
+                hover:text-[#C98955]
+                transition
+              "
+            >
+              Instagram
+            </a>
 
 
 
-    <a
-      href="https://maps.app.goo.gl/QMD2MBb9AGcSVPUx9"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        block
-        hover:text-[#C98955]
-        transition
-      "
-    >
-      Google Maps
-    </a>
+            <a
+              href="https://zalo.me/0972516250"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                block
+                hover:text-[#C98955]
+                transition
+              "
+            >
+              Zalo
+            </a>
 
 
-  </div>
+
+            <a
+              href="https://maps.app.goo.gl/QMD2MBb9AGcSVPUx9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                block
+                hover:text-[#C98955]
+                transition
+              "
+            >
+              Google Maps
+            </a>
 
 
-</div>
+          </div>
+
+
+        </div>
+
 
       </div>
+
+
 
 
 
