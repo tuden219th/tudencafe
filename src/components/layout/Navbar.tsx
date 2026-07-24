@@ -1,153 +1,128 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
+const menu = [
+  { name: "Câu chuyện", href: "#story" },
+  { name: "Cà phê", href: "#coffee" },
+  { name: "Menu", href: "#menu" },
+  { name: "Nhật ký", href: "#journal" },
+];
+
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+
+    onScroll();
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header
-      className="
-        fixed
-        top-0
-        left-0
-        w-full
-        z-50
-        bg-[#F5EBDD]/85
-        backdrop-blur-lg
-        border-b
-        border-[#3B2416]/10
-      "
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
+        scrolled
+          ? "bg-[#F5EBDD]/90 backdrop-blur-xl shadow-md border-b border-[#3B2416]/10"
+          : "bg-transparent"
+      }`}
     >
-
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-          px-6
-          h-24
-          flex
-          items-center
-          justify-between
-        "
-      >
-
-        {/* LOGO */}
-        <a
+      <div className="max-w-7xl mx-auto h-24 px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link
           href="/"
-          className="
-            flex
-            items-center
-            group
-          "
+          className="flex items-center gap-4 group"
+          aria-label="Từ Đến Coffee"
         >
+          <Image
+            src="/images/logo.png"
+            alt="Từ Đến Coffee"
+            width={82}
+            height={82}
+            priority
+            className="rounded-full transition-all duration-500 group-hover:scale-105 group-hover:rotate-2"
+          />
 
-          <div
-            className="
-              bg-[#F5EBDD]
-              rounded-full
-              p-2
-              shadow-sm
-              group-hover:scale-105
-              transition
-              duration-300
-            "
-          >
+          <div className="hidden md:block">
+            <h2 className="font-[var(--font-playfair)] text-2xl text-[#3B2416] leading-none">
+              TỪ ĐẾN
+            </h2>
 
-            <Image
-              src="/images/logo.png"
-              width={90}
-              height={90}
-              alt="Từ Đến Cafe"
-              className="
-                h-16
-                w-16
-                md:h-20
-                md:w-20
-                rounded-full
-                object-cover
-              "
-            />
-
+            <p className="text-xs tracking-[0.18em] uppercase text-[#7A6857] mt-1">
+              From where you are.
+            </p>
           </div>
+        </Link>
 
-        </a>
+        {/* Menu */}
+        <nav className="hidden md:flex items-center gap-10">
+          {menu.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="
+                relative
+                text-sm
+                uppercase
+                tracking-widest
+                text-[#3B2416]
+                after:absolute
+                after:left-0
+                after:-bottom-2
+                after:h-[2px]
+                after:w-0
+                after:bg-[#6B8E23]
+                after:transition-all
+                after:duration-300
+                hover:after:w-full
+              "
+            >
+              {item.name}
+            </Link>
+          ))}
 
-
-        {/* MENU */}
-        <nav
-          className="
-            hidden
-            md:flex
-            items-center
-            gap-9
-            text-sm
-            uppercase
-            tracking-[0.18em]
-            text-[#3B2416]
-          "
-        >
-
-          <a
-            href="#story"
-            className="
-              hover:text-[#6B8E23]
-              transition
-            "
-          >
-            Câu chuyện
-          </a>
-
-
-          <a
-            href="#coffee"
-            className="
-              hover:text-[#6B8E23]
-              transition
-            "
-          >
-            Cà phê
-          </a>
-
-
-          <a
-            href="#menu"
-            className="
-              hover:text-[#6B8E23]
-              transition
-            "
-          >
-            Menu
-          </a>
-
-
-          <a
-            href="#journal"
-            className="
-              hover:text-[#6B8E23]
-              transition
-            "
-          >
-            Nhật ký
-          </a>
-
-
-          <a
+          <Link
             href="#footer"
             className="
+              ml-4
               rounded-full
               bg-[#3B2416]
-              text-[#F5EBDD]
               px-6
               py-3
+              text-[#F5EBDD]
+              transition-all
+              duration-300
               hover:bg-[#6B8E23]
-              transition
+              hover:scale-105
             "
           >
-            Ghé thăm
-          </a>
-
-
+            Ghé quán →
+          </Link>
         </nav>
 
+        {/* Mobile */}
+        <button
+          className="md:hidden text-[#3B2416]"
+          aria-label="Open Menu"
+        >
+          <svg
+            width="30"
+            height="30"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M4 8h22M4 15h22M4 22h22" />
+          </svg>
+        </button>
       </div>
-
     </header>
   );
 }

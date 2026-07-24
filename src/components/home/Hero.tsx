@@ -93,21 +93,30 @@ export default function Hero() {
             <div className="mt-12 flex gap-5">
 
 
-              <a
-                href="#menu"
-                className="
-                  rounded-full
-                  bg-[var(--primary)]
-                  px-8
-                  py-4
-                  text-white
-                  transition
-                  hover:scale-105
-                "
-              >
-                Khám phá menu →
-              </a>
-
+            <a
+              href="#menu"
+              className="
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+                rounded-full
+                bg-[#6B8E23]
+                px-8
+                py-4
+                font-medium
+                text-white
+                shadow-lg
+                transition-all
+                duration-300
+                hover:bg-[#5F7F1F]
+                hover:scale-105
+                hover:shadow-xl
+              "
+            >
+              <span>Chọn một ly cà phê</span>
+              <span aria-hidden="true">→</span>
+            </a>
 
 
               <a
