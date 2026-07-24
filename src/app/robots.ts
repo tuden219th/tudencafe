@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://tudencafe.com/sitemap.xml",
+
+    sitemap:
+      "https://tudencafe.com/sitemap.xml",
   };
 }
