@@ -105,7 +105,6 @@ export default function Hero() {
                 px-8
                 py-4
                 font-medium
-                text-white
                 shadow-lg
                 transition-all
                 duration-300
@@ -113,27 +112,11 @@ export default function Hero() {
                 hover:scale-105
                 hover:shadow-xl
               "
+              style={{ color: "#ffffff" }}
             >
               <span>Chọn một ly cà phê</span>
               <span aria-hidden="true">→</span>
             </a>
-
-
-              <a
-                href="tel:0972516250"
-                className="
-                  rounded-full
-                  border
-                  border-[var(--text)]
-                  px-8
-                  py-4
-                  transition
-                  hover:bg-[var(--text)]
-                  hover:text-white
-                "
-              >
-                0972 516 250
-              </a>
 
 
             </div>
