@@ -1,6 +1,8 @@
 import { supabase } from "@/lib/supabase";
 import KitchenClient from "@/components/kitchen/KitchenClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function KitchenPage() {
 
