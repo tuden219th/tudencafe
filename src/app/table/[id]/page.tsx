@@ -1,13 +1,63 @@
+import type { Metadata } from "next";
+
 import Header from "@/components/order/Header";
 import MenuCard from "@/components/order/MenuCard";
 import Category from "@/components/order/Category";
 import Cart from "@/components/order/Cart";
+
 
 type Props = {
   params: Promise<{
     id: string;
   }>;
 };
+
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+
+  const { id } = await params;
+
+  return {
+    title: `Bàn ${id} | Từ Đến Coffee`,
+
+    description:
+      "Quét QR - Chọn món - Gọi nước tại Từ Đến Coffee | From where you are, To where you want to be",
+
+    openGraph: {
+      title: `Bàn ${id} | Từ Đến Coffee`,
+
+      description:
+        "Menu điện tử Từ Đến Coffee - Quét QR để đặt món nhanh chóng",
+
+      siteName: "Từ Đến Coffee",
+
+      locale: "vi_VN",
+
+      type: "website",
+
+      images: [
+        {
+          url: "https://tudencafe.com/images/logo.png",
+          width: 800,
+          height: 800,
+          alt: "Từ Đến Coffee",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary",
+      title: `Bàn ${id} | Từ Đến Coffee`,
+      description:
+        "Quét QR - Chọn món - Gọi nước tại Từ Đến Coffee",
+      images: [
+        "https://tudencafe.com/images/logo.png",
+      ],
+    },
+  };
+}
 
 
 const menu = [
@@ -58,44 +108,34 @@ export default async function TablePage({ params }: Props) {
   return (
     <main className="min-h-screen bg-[#F5EBDD] text-[#3B2416]">
 
-
       <div className="mx-auto w-full max-w-md px-5 py-8 md:px-8">
 
-
         <Header tableId={id} />
-
 
         <Category />
 
 
         <div className="mt-8 space-y-5 pb-28">
 
-
           {menu.map((item) => (
 
             <MenuCard
-
               key={item.id}
-
               id={item.id}
-
               name={item.name}
-
               description={item.description}
-
               price={item.price}
-
             />
 
           ))}
 
-
         </div>
-
 
       </div>
 
-          <Cart />
+
+      <Cart />
+
     </main>
   );
 }
