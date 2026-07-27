@@ -1,84 +1,130 @@
-type CartProps = {
-  count?: number;
-  total?: number;
-};
+"use client";
 
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
-export default function Cart({
-  count = 0,
-  total = 0,
-}: CartProps) {
+export default function Cart() {
+  const { items } = useCart();
+  const [open, setOpen] = useState(false);
 
+  const count = items.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
-  if (count === 0) {
-    return null;
-  }
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
+  if (count === 0) return null;
 
   return (
-
     <div
       className="
         fixed
-        bottom-0
+        bottom-4
         left-0
         right-0
         z-50
-        px-5
-        pb-5
+        px-4
       "
     >
-
       <div
         className="
           mx-auto
-          flex
           max-w-md
-          items-center
-          justify-between
-          rounded-[28px]
+          overflow-hidden
+          rounded-3xl
           bg-[#294A3A]
-          px-6
-          py-5
           text-white
           shadow-2xl
         "
       >
-
-        <div>
-
-          <p className="text-sm opacity-80">
-            🛒 {count} món
-          </p>
-
-
-          <p className="mt-1 text-xl font-bold">
-            {total.toLocaleString("vi-VN")}đ
-          </p>
-
-        </div>
-
-
-
+        {/* Thanh thu gọn */}
         <button
+          onClick={() => setOpen(!open)}
           className="
-            rounded-full
-            bg-[#F5EBDD]
-            px-6
-            py-3
-            font-semibold
-            text-[#294A3A]
-            transition
-            hover:scale-105
+            flex
+            w-full
+            items-center
+            justify-between
+            px-5
+            py-4
           "
         >
-          Đặt hàng
+          <div>
+            <p className="text-sm opacity-80">
+              🛒 {count} món đã chọn
+            </p>
+
+            <h3 className="text-2xl font-bold">
+              {total.toLocaleString("vi-VN")}đ
+            </h3>
+          </div>
+
+          <div
+            className="
+              text-2xl
+              transition-transform
+              duration-300
+            "
+            style={{
+              transform: open
+                ? "rotate(180deg)"
+                : "rotate(0deg)",
+            }}
+          >
+            ▲
+          </div>
         </button>
 
+        {/* Nội dung mở rộng */}
+        {open && (
+          <div className="border-t border-white/10 px-5 pb-5">
 
+            <div className="mt-4 space-y-3">
+
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    text-sm
+                  "
+                >
+                  <span>{item.name}</span>
+
+                  <span>
+                    x{item.quantity}
+                  </span>
+                </div>
+              ))}
+
+            </div>
+
+            <button
+              className="
+                mt-5
+                w-full
+                rounded-full
+                bg-[#C96A2B]
+                py-3
+                text-lg
+                font-semibold
+                text-white
+                transition
+                hover:bg-[#B45D23]
+              "
+            >
+              Gửi đến quầy
+            </button>
+
+          </div>
+        )}
       </div>
-
     </div>
-
   );
 }

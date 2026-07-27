@@ -1,7 +1,7 @@
 import Header from "@/components/order/Header";
 import MenuCard from "@/components/order/MenuCard";
 import Category from "@/components/order/Category";
-
+import Cart from "@/components/order/Cart";
 
 type Props = {
   params: Promise<{
@@ -95,7 +95,7 @@ export default async function TablePage({ params }: Props) {
 
       </div>
 
-
+          <Cart />
     </main>
   );
 }
