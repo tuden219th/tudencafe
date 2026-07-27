@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
-export default function Cart() {
+type Props = {
+  tableNumber: string;
+};
+
+
+export default function Cart({
+  tableNumber,
+}: Props) {
   const {
     items,
     clearCart,
@@ -35,10 +42,10 @@ export default function Cart() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          tableNumber: "1",
-          items,
-          total,
-        }),
+        tableNumber,
+        items,
+        total,
+      }),
       });
 
       const result = await response.json();

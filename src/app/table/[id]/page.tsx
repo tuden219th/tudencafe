@@ -131,10 +131,10 @@ export default async function TablePage({ params }: Props) {
 
         </div>
 
-      </div>
+            </div>
 
 
-      <Cart />
+      <Cart tableNumber={id} />
 
     </main>
   );

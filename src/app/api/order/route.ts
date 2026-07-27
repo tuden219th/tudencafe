@@ -12,6 +12,7 @@ export async function POST(request: Request) {
       .insert({
         table_number: tableNumber,
         total,
+        status: "NEW",
       })
       .select()
       .single();
