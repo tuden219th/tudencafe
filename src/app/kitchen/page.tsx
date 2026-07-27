@@ -5,9 +5,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function KitchenPage() {
-
-
-  const { data: orders } = await supabase
+  const { data: orders, error } = await supabase
     .from("orders")
     .select(`
       id,
@@ -25,41 +23,25 @@ export default async function KitchenPage() {
       ascending: false,
     });
 
+  if (error) {
+    console.error("SUPABASE ERROR:", error);
+  }
 
+  console.log("SERVER ORDERS:", orders);
 
   return (
-
     <main className="min-h-screen bg-[#F5EBDD] p-6 text-[#3B2416]">
-
-
       <div className="mx-auto max-w-3xl">
-
-
-        <h1
-          className="
-          font-[var(--font-playfair)]
-          text-4xl
-          "
-        >
+        <h1 className="font-[var(--font-playfair)] text-4xl">
           ☕ Kitchen Từ Đến
         </h1>
-
 
         <p className="mt-2 text-[#7B6B60]">
           Danh sách đơn hàng đang chờ pha chế
         </p>
 
-
-
-        <KitchenClient
-          initialOrders={orders ?? []}
-        />
-
-
+        <KitchenClient initialOrders={orders ?? []} />
       </div>
-
-
     </main>
-
   );
 }

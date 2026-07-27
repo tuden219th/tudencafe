@@ -47,11 +47,11 @@ export default function OrderActions({
   }
 
   // NEW
-  if (status === "new") {
+  if (status === "NEW") {
     return (
       <button
         disabled={loading}
-        onClick={() => updateStatus("preparing")}
+        onClick={() => updateStatus("PREPARING")}
         className="
           mt-5
           w-full
@@ -71,11 +71,11 @@ export default function OrderActions({
   }
 
   // PREPARING
-  if (status === "preparing") {
+  if (status === "PREPARING") {
     return (
       <button
         disabled={loading}
-        onClick={() => updateStatus("ready")}
+        onClick={() => updateStatus("READY")}
         className="
           mt-5
           w-full
@@ -95,11 +95,11 @@ export default function OrderActions({
   }
 
   // READY
-  if (status === "ready") {
+  if (status === "READY") {
     return (
       <button
         disabled={loading}
-        onClick={() => updateStatus("completed")}
+        onClick={() => updateStatus("COMPLETED")}
         className="
           mt-5
           w-full

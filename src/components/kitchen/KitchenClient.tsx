@@ -27,7 +27,6 @@ export default function KitchenClient({
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Khởi tạo âm thanh
     audioRef.current = new Audio("/sounds/new-order.mp3");
 
     const channel = supabase
@@ -44,7 +43,6 @@ export default function KitchenClient({
 
           const newOrderId = payload.new.id;
 
-          // Chờ order_items insert xong
           setTimeout(async () => {
             const { data, error } = await supabase
               .from("orders")
@@ -64,7 +62,7 @@ export default function KitchenClient({
               .single();
 
             if (error) {
-              console.error("LOAD ORDER ERROR:", error);
+              console.error(error);
               return;
             }
 
@@ -72,12 +70,11 @@ export default function KitchenClient({
 
             setOrders((prev) => {
               const exists = prev.some(
-                (order) => order.id === data.id
+                (o) => o.id === data.id
               );
 
               if (exists) return prev;
 
-              // 🔔 Ting
               if (audioRef.current) {
                 audioRef.current.pause();
                 audioRef.current.currentTime = 0;
@@ -92,9 +89,7 @@ export default function KitchenClient({
           }, 500);
         }
       )
-      .subscribe((status) => {
-        console.log("REALTIME:", status);
-      });
+      .subscribe();
 
     return () => {
       supabase.removeChannel(channel);
@@ -103,31 +98,38 @@ export default function KitchenClient({
 
   function renderStatus(status: string) {
     switch (status) {
-      case "pending":
+      case "NEW":
         return (
           <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
-            🟡 Chờ pha
+            🟡 Đơn mới
           </span>
         );
 
-      case "preparing":
+      case "PREPARING":
         return (
           <span className="rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
             🟠 Đang pha
           </span>
         );
 
-      case "ready":
+      case "READY":
         return (
           <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
             🟢 Chờ khách nhận
           </span>
         );
 
-      default:
+      case "COMPLETED":
         return (
           <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-600">
             ✅ Hoàn thành
+          </span>
+        );
+
+      default:
+        return (
+          <span className="rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-600">
+            ❓ {status}
           </span>
         );
     }
@@ -136,16 +138,11 @@ export default function KitchenClient({
   return (
     <div className="mt-8 space-y-5">
       {orders
-        .filter((order) => order.status !== "completed")
+        .filter((order) => order.status !== "COMPLETED")
         .map((order) => (
           <div
             key={order.id}
-            className="
-              rounded-3xl
-              bg-white
-              p-6
-              shadow
-            "
+            className="rounded-3xl bg-white p-6 shadow"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -153,9 +150,7 @@ export default function KitchenClient({
                   Đơn #{order.id}
                 </h2>
 
-                <p>
-                  Bàn {order.table_number}
-                </p>
+                <p>Bàn {order.table_number}</p>
               </div>
 
               {renderStatus(order.status)}
@@ -174,13 +169,7 @@ export default function KitchenClient({
               ))}
             </div>
 
-            <div
-              className="
-                mt-5
-                font-bold
-                text-[#C96A2B]
-              "
-            >
+            <div className="mt-5 font-bold text-[#C96A2B]">
               {order.total.toLocaleString("vi-VN")}đ
             </div>
 
