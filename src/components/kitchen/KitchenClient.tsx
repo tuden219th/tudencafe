@@ -25,9 +25,11 @@ export default function KitchenClient({
   initialOrders: Order[];
 }) {
 
+
   const [orders, setOrders] = useState<Order[]>(
     initialOrders
   );
+
 
 
   useEffect(() => {
@@ -45,55 +47,120 @@ export default function KitchenClient({
           table: "orders",
         },
 
+
         async (payload) => {
+
+
+          console.log(
+            "NEW ORDER EVENT:",
+            payload
+          );
+
 
           const newOrderId = payload.new.id;
 
 
-          const { data } = await supabase
-            .from("orders")
-            .select(`
-              id,
-              table_number,
-              total,
-              status,
-              created_at,
-              order_items (
-                product_name,
-                quantity,
-                price
-              )
-            `)
-            .eq("id", newOrderId)
-            .single();
+
+          // tránh thêm trùng đơn
+          const exists = orders.some(
+            (order) => order.id === newOrderId
+          );
 
 
-          if (data) {
+          if (exists) return;
 
-            setOrders((prev)=>[
-              data as Order,
-              ...prev,
-            ]);
 
-          }
+
+          // đợi order_items insert xong
+          setTimeout(async () => {
+
+
+            const { data, error } =
+              await supabase
+                .from("orders")
+                .select(`
+                  id,
+                  table_number,
+                  total,
+                  status,
+                  created_at,
+                  order_items (
+                    product_name,
+                    quantity,
+                    price
+                  )
+                `)
+                .eq("id", newOrderId)
+                .single();
+
+
+
+            if (error) {
+
+              console.error(
+                "LOAD ORDER ERROR:",
+                error
+              );
+
+              return;
+
+            }
+
+
+
+            if (data) {
+
+
+              setOrders((prev) => [
+
+                data as Order,
+
+                ...prev,
+
+              ]);
+
+
+            }
+
+
+
+          }, 1000);
+
+
 
         }
 
       )
 
 
-      .subscribe();
+
+      .subscribe((status) => {
+
+
+        console.log(
+          "REALTIME STATUS:",
+          status
+        );
+
+
+      });
 
 
 
     return () => {
 
-      supabase.removeChannel(channel);
+
+      supabase.removeChannel(
+        channel
+      );
+
 
     };
 
 
-  }, []);
+  }, [orders]);
+
+
 
 
 
@@ -102,7 +169,8 @@ export default function KitchenClient({
     <div className="mt-8 space-y-5">
 
 
-      {orders.map((order)=>(
+      {orders.map((order) => (
+
 
         <div
           key={order.id}
@@ -115,20 +183,31 @@ export default function KitchenClient({
         >
 
 
+
           <div className="flex justify-between">
+
 
             <div>
 
+
               <h2 className="text-xl font-bold">
+
                 Đơn #{order.id}
+
               </h2>
 
 
+
               <p>
+
                 Bàn {order.table_number}
+
               </p>
 
+
             </div>
+
+
 
 
             <span
@@ -140,11 +219,16 @@ export default function KitchenClient({
               text-sm
               "
             >
+
               {order.status}
+
             </span>
 
 
+
           </div>
+
+
 
 
 
@@ -152,8 +236,9 @@ export default function KitchenClient({
 
 
             {order.order_items?.map(
-              (item)=>(
-                
+              (item) => (
+
+
               <div
                 key={item.product_name}
                 className="
@@ -162,17 +247,25 @@ export default function KitchenClient({
                 "
               >
 
+
                 <span>
+
                   {item.product_name}
+
                 </span>
+
 
 
                 <span>
+
                   x{item.quantity}
+
                 </span>
+
 
 
               </div>
+
 
             ))}
 
@@ -181,15 +274,22 @@ export default function KitchenClient({
 
 
 
-          <div className="
+
+
+          <div
+            className="
             mt-5
             font-bold
             text-[#C96A2B]
-          ">
+            "
+          >
 
             {order.total.toLocaleString("vi-VN")}đ
 
+
           </div>
+
+
 
 
 
@@ -199,13 +299,16 @@ export default function KitchenClient({
           />
 
 
+
         </div>
 
 
       ))}
 
 
+
     </div>
 
   );
+
 }
