@@ -11,59 +11,43 @@ export default function OrderActions({
   id,
   status,
 }: Props) {
-
   const [loading, setLoading] = useState(false);
 
-  async function updateStatus(
-    newStatus: string
-  ) {
-
+  async function updateStatus(newStatus: string) {
     setLoading(true);
 
     try {
-
-      const response = await fetch(
-        "/api/order/status",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-            status: newStatus,
-          }),
-        }
-      );
+      const response = await fetch("/api/order/status", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          status: newStatus,
+        }),
+      });
 
       const result = await response.json();
 
       if (!result.success) {
-
         alert("❌ Không thể cập nhật trạng thái.");
-
         return;
-
       }
 
+      // Tạm thời vẫn reload.
+      // Bước sau mình sẽ bỏ hẳn reload và chuyển sang realtime.
       window.location.reload();
-
     } catch (error) {
-
       console.error(error);
-
       alert("❌ Có lỗi khi cập nhật trạng thái.");
-
     } finally {
-
       setLoading(false);
-
     }
-
   }
 
-  if (status === "pending") {
-
+  // NEW
+  if (status === "new") {
     return (
       <button
         disabled={loading}
@@ -81,16 +65,13 @@ export default function OrderActions({
           disabled:opacity-60
         "
       >
-        {loading
-          ? "Đang cập nhật..."
-          : "🧑‍🍳 Bắt đầu pha"}
+        {loading ? "Đang cập nhật..." : "🧑‍🍳 Nhận đơn"}
       </button>
     );
-
   }
 
+  // PREPARING
   if (status === "preparing") {
-
     return (
       <button
         disabled={loading}
@@ -108,16 +89,13 @@ export default function OrderActions({
           disabled:opacity-60
         "
       >
-        {loading
-          ? "Đang cập nhật..."
-          : "☕ Pha xong"}
+        {loading ? "Đang cập nhật..." : "☕ Pha xong"}
       </button>
     );
-
   }
 
+  // READY
   if (status === "ready") {
-
     return (
       <button
         disabled={loading}
@@ -135,14 +113,12 @@ export default function OrderActions({
           disabled:opacity-60
         "
       >
-        {loading
-          ? "Đang cập nhật..."
-          : "✅ Đã giao khách"}
+        {loading ? "Đang cập nhật..." : "✅ Đã giao khách"}
       </button>
     );
-
   }
 
+  // COMPLETED
   return (
     <div
       className="
@@ -160,5 +136,4 @@ export default function OrderActions({
       ✅ Hoàn thành
     </div>
   );
-
 }
