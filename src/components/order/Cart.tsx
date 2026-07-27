@@ -4,8 +4,13 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 export default function Cart() {
-  const { items } = useCart();
+  const {
+    items,
+    clearCart,
+  } = useCart();
+
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const count = items.reduce(
     (sum, item) => sum + item.quantity,
@@ -18,6 +23,49 @@ export default function Cart() {
   );
 
   if (count === 0) return null;
+
+  async function handleSendOrder() {
+    setLoading(true);
+
+    try {
+
+      const response = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tableNumber: "1",
+          items,
+          total,
+        }),
+      });
+
+      const result = await response.json();
+
+        if (!result.success) {
+          console.error("API Response:", result);
+          alert(result.message || "Không thể gửi đơn");
+          return;
+        }
+
+        alert(`✅ Đơn #${result.orderId} đã được gửi!`);
+
+        clearCart();
+        setOpen(false);
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("❌ Gửi đơn thất bại.");
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  }
 
   return (
     <div
@@ -41,7 +89,7 @@ export default function Cart() {
           shadow-2xl
         "
       >
-        {/* Thanh thu gọn */}
+        {/* Header */}
         <button
           onClick={() => setOpen(!open)}
           className="
@@ -54,6 +102,7 @@ export default function Cart() {
           "
         >
           <div>
+
             <p className="text-sm opacity-80">
               🛒 {count} món đã chọn
             </p>
@@ -61,14 +110,11 @@ export default function Cart() {
             <h3 className="text-2xl font-bold">
               {total.toLocaleString("vi-VN")}đ
             </h3>
+
           </div>
 
           <div
-            className="
-              text-2xl
-              transition-transform
-              duration-300
-            "
+            className="text-2xl transition-transform duration-300"
             style={{
               transform: open
                 ? "rotate(180deg)"
@@ -79,33 +125,35 @@ export default function Cart() {
           </div>
         </button>
 
-        {/* Nội dung mở rộng */}
+        {/* Detail */}
         {open && (
           <div className="border-t border-white/10 px-5 pb-5">
 
             <div className="mt-4 space-y-3">
 
               {items.map((item) => (
+
                 <div
                   key={item.id}
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    text-sm
-                  "
+                  className="flex items-center justify-between text-sm"
                 >
-                  <span>{item.name}</span>
+                  <span>
+                    {item.name}
+                  </span>
 
                   <span>
                     x{item.quantity}
                   </span>
+
                 </div>
+
               ))}
 
             </div>
 
             <button
+              disabled={loading}
+              onClick={handleSendOrder}
               className="
                 mt-5
                 w-full
@@ -117,13 +165,17 @@ export default function Cart() {
                 text-white
                 transition
                 hover:bg-[#B45D23]
+                disabled:opacity-60
               "
             >
-              Gửi đến quầy
+              {loading
+                ? "Đang gửi..."
+                : "Gửi đến quầy"}
             </button>
 
           </div>
         )}
+
       </div>
     </div>
   );
