@@ -16,11 +16,11 @@ export default function AdminGuard({
   function checkPassword() {
 
     if (
-      password ===
-      process.env.NEXT_PUBLIC_ADMIN_PASSWORD
+    password === "tuden2026"
     ) {
       setAllow(true);
-    } else {
+    }
+    else {
       alert("Sai mật khẩu");
     }
 
