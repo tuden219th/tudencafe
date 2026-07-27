@@ -82,12 +82,11 @@ export default function QuantityButton({
       <button
 
         onClick={() =>
-          addItem({
-            id,
-            name,
-            price,
-            quantity: 1,
-          })
+        addItem({
+        id,
+        name,
+        price,
+        })
         }
 
         className="
