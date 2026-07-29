@@ -3,16 +3,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const menu = [
   { name: "Câu chuyện", href: "#story" },
-  { name: "Cà phê", href: "#coffee" },
   { name: "Menu", href: "#menu" },
-  { name: "Nhật ký", href: "#journal" },
+  { name: "Kiến thức", href: "/coffee" },
+  { name: "Về chúng tôi", href: "/about" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -34,11 +36,11 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto h-24 px-6 flex items-center justify-between">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-4 group"
+          className="group flex items-center gap-4"
           aria-label="Từ Đến Coffee"
         >
           <Image
@@ -51,42 +53,50 @@ export default function Navbar() {
           />
 
           <div className="hidden md:block">
-            <h2 className="font-[var(--font-playfair)] text-2xl text-[#3B2416] leading-none">
-              TỪ ĐẾN
-            </h2>
+            <h1 className="font-[var(--font-playfair)] text-2xl leading-none text-[#3B2416]">
+              TỪ ĐẾN COFFEE
+            </h1>
 
-            <p className="text-xs tracking-[0.18em] uppercase text-[#7A6857] mt-1">
-              From where you are.
+            <p className="mt-1 text-[11px] text-[#7A6857]">
+              From where you are,
+              <br />
+              To where you want to be.
             </p>
           </div>
         </Link>
 
-        {/* Menu */}
-        <nav className="hidden md:flex items-center gap-10">
-          {menu.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="
-                relative
-                text-sm
-                uppercase
-                tracking-widest
-                text-[#3B2416]
-                after:absolute
-                after:left-0
-                after:-bottom-2
-                after:h-[2px]
-                after:w-0
-                after:bg-[#6B8E23]
-                after:transition-all
-                after:duration-300
-                hover:after:w-full
-              "
-            >
-              {item.name}
-            </Link>
-          ))}
+        {/* Desktop Menu */}
+        <nav className="hidden items-center gap-10 md:flex">
+          {menu.map((item) => {
+            const isActive =
+              item.href.startsWith("/") && pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className="
+                  relative
+                  text-sm
+                  uppercase
+                  tracking-widest
+                  text-[#3B2416]
+                  after:absolute
+                  after:left-0
+                  after:-bottom-2
+                  after:h-[2px]
+                  after:w-0
+                  after:bg-[#6B8E23]
+                  after:transition-all
+                  after:duration-300
+                  hover:after:w-full
+                "
+              >
+                {item.name}
+              </Link>
+            );
+          })}
 
           <Link
             href="#footer"
@@ -99,8 +109,8 @@ export default function Navbar() {
               text-[#F5EBDD]
               transition-all
               duration-300
-              hover:bg-[#6B8E23]
               hover:scale-105
+              hover:bg-[#6B8E23]
             "
           >
             Ghé quán →
@@ -109,8 +119,8 @@ export default function Navbar() {
 
         {/* Mobile */}
         <button
-          className="md:hidden text-[#3B2416]"
-          aria-label="Open Menu"
+          className="text-[#3B2416] md:hidden"
+          aria-label="Open menu"
         >
           <svg
             width="30"
