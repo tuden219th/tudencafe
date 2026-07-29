@@ -212,7 +212,7 @@ export default function Hero() {
             "
           >
             <Image
-              src="/images/hero.png"
+              src="/images/hero_temp.png"
               alt="Không gian Từ Đến Coffee"
               fill
               priority
