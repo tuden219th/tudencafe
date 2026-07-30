@@ -1,81 +1,91 @@
+const values = [
+  {
+    number: "01",
+    title: "Chân thành, từ lời chào đầu tiên",
+    description:
+      "Pha một ly cà phê tử tế, lắng nghe đủ lâu và nói điều mình thực sự có thể làm cho khách.",
+  },
+  {
+    number: "02",
+    title: "Đơn giản để bạn thấy dễ chịu",
+    description:
+      "Từ menu, không gian đến cách phục vụ — mọi thứ đều rõ ràng, vừa đủ và không làm bạn phải nghĩ nhiều.",
+  },
+  {
+    number: "03",
+    title: "Tử tế với từng chi tiết nhỏ",
+    description:
+      "Một chiếc bàn sạch, một góc ngồi yên, một ly nước đúng gu: những điều nhỏ làm nên cảm giác được quan tâm.",
+  },
+  {
+    number: "04",
+    title: "Luôn học từ mỗi cuộc gặp",
+    description:
+      "Chúng tôi lắng nghe góp ý, học thêm về cà phê và điều chỉnh từng ngày để phục vụ tốt hơn.",
+  },
+  {
+    number: "05",
+    title: "Không ngại làm tốt hơn",
+    description:
+      "Một công thức, một quy trình hay cả website đều có thể được cải thiện khi có cách làm hữu ích hơn.",
+  },
+  {
+    number: "06",
+    title: "Chất lượng là một thói quen",
+    description:
+      "Không chỉ ở hạt cà phê, mà trong mọi lần chuẩn bị, mọi cuộc trò chuyện và mọi trải nghiệm tại Từ Đến.",
+  },
+];
+
 export default function CoreValues() {
-  const values = [
-    {
-      title: "Chân thành",
-      description:
-        "Mỗi ly cà phê và mỗi cuộc trò chuyện đều bắt đầu từ sự chân thành.",
-      icon: "🤝",
-    },
-    {
-      title: "Đơn giản",
-      description:
-        "Đơn giản trong cách phục vụ, thiết kế và trải nghiệm để khách hàng luôn cảm thấy dễ chịu.",
-      icon: "☕",
-    },
-    {
-      title: "Tử tế",
-      description:
-        "Quan tâm đến từng chi tiết nhỏ, từ chất lượng đồ uống đến cách chào đón mỗi vị khách.",
-      icon: "🌿",
-    },
-    {
-      title: "Không ngừng học hỏi",
-      description:
-        "Mỗi ngày là một cơ hội để học hỏi, cải thiện và phát triển cùng khách hàng.",
-      icon: "📚",
-    },
-    {
-      title: "Luôn cải tiến",
-      description:
-        "Không ngừng đổi mới sản phẩm, dịch vụ và công nghệ để mang lại trải nghiệm tốt hơn.",
-      icon: "🚀",
-    },
-    {
-      title: "Chất lượng trong từng chi tiết",
-      description:
-        "Từ hạt cà phê, công thức pha chế đến không gian và website đều được chăm chút cẩn thận.",
-      icon: "✨",
-    },
-  ];
-
   return (
-    <section className="py-24 bg-white">
-      <div className="container">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="uppercase tracking-[0.35em] text-sm text-[var(--primary)]">
-            Giá trị cốt lõi
-          </p>
+    <section className="overflow-hidden bg-[#294A3A] py-20 text-[#F9F3E9] md:py-28">
+      <div className="mx-auto max-w-6xl px-5 md:px-6">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#E8B27B]">
+              Điều chúng tôi giữ
+            </p>
 
-          <h2 className="mt-4 font-[var(--font-playfair)] text-4xl md:text-5xl">
-            Điều tạo nên
-            <br />
-            Từ Đến Cafe
-          </h2>
+            <h2 className="mt-5 max-w-lg font-[var(--font-playfair)] text-4xl leading-[1.04] md:text-6xl">
+              Không chỉ là điều chúng tôi tin.
+            </h2>
 
-          <p className="mt-6 text-lg leading-8 opacity-75">
-            Chúng tôi tin rằng một thương hiệu không chỉ được tạo nên bởi đồ
-            uống, mà còn bởi những giá trị được gìn giữ mỗi ngày.
-          </p>
+            <p className="mt-6 max-w-md text-base leading-8 text-[#F9F3E9]/75">
+              Đây là cách Từ Đến chọn phục vụ mỗi ngày — để một lần ghé quán cũng để lại cảm giác đáng nhớ.
+            </p>
+
+            <p className="mt-10 hidden font-[var(--font-playfair)] text-2xl italic text-[#E8B27B] lg:block">
+              Nhỏ thôi, nhưng làm đến nơi.
+            </p>
+          </div>
+
+          <ol className="border-t border-[#F9F3E9]/20">
+            {values.map((value) => (
+              <li
+                key={value.number}
+                className="group grid grid-cols-[3rem_1fr] gap-3 border-b border-[#F9F3E9]/20 py-6 transition-colors duration-300 md:grid-cols-[4.5rem_1fr] md:gap-6 md:py-8 lg:hover:bg-white/[0.04]"
+              >
+                <span className="pt-1 font-[var(--font-playfair)] text-lg text-[#E8B27B] md:text-xl">
+                  {value.number}
+                </span>
+
+                <div>
+                  <h3 className="font-[var(--font-playfair)] text-2xl leading-tight md:text-3xl">
+                    {value.title}
+                  </h3>
+                  <p className="mt-3 max-w-xl text-[15px] leading-7 text-[#F9F3E9]/70 md:text-base">
+                    {value.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="rounded-3xl border border-black/5 bg-[#FDFBF8] p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <div className="text-4xl">{value.icon}</div>
-
-              <h3 className="mt-6 text-2xl font-semibold">
-                {value.title}
-              </h3>
-
-              <p className="mt-4 leading-7 opacity-75">
-                {value.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <p className="mt-12 font-[var(--font-playfair)] text-xl italic text-[#E8B27B] lg:hidden">
+          Nhỏ thôi, nhưng làm đến nơi.
+        </p>
       </div>
     </section>
   );
