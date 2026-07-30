@@ -5,10 +5,12 @@ export default function Hero() {
     <section
       id="home"
       className="
-        min-h-screen
+        min-h-0
         flex
         items-center
-        pt-24
+        py-32
+        md:min-h-screen
+        md:py-24
       "
     >
       <div className="container">
@@ -16,7 +18,8 @@ export default function Hero() {
           className="
             grid
             lg:grid-cols-2
-            gap-16
+            gap-10
+            lg:gap-16
             items-center
           "
         >
@@ -55,9 +58,10 @@ export default function Hero() {
 
             <h1
               className="
-                text-5xl
+                text-[3.35rem]
+                sm:text-6xl
                 md:text-7xl
-                leading-[0.95]
+                leading-[0.9]
                 font-[var(--font-playfair)]
               "
             >
@@ -80,11 +84,14 @@ export default function Hero() {
 
             <p
               className="
-                mt-10
-                text-lg
-                leading-9
+                mt-7
+                text-base
+                leading-8
                 max-w-xl
                 opacity-75
+                md:mt-10
+                md:text-lg
+                md:leading-9
               "
             >
               Có những ngày,
@@ -108,21 +115,23 @@ export default function Hero() {
 
             <div
               className="
-                mt-12
+                mt-9
                 flex
                 flex-wrap
                 gap-4
+                md:mt-12
               "
             >
               <a
                 href="#menu"
                 className="
-                  inline-flex
+                  flex
                   items-center
+                  justify-center
                   gap-2
                   rounded-full
                   bg-[#6B8E23]
-                  px-8
+                  px-6
                   py-4
                   text-white
                   font-medium
@@ -131,6 +140,8 @@ export default function Hero() {
                   duration-300
                   hover:scale-105
                   hover:bg-[#5F7F1F]
+                  sm:inline-flex
+                  sm:px-8
                 "
               >
                 Chọn một ly cà phê →
@@ -139,17 +150,20 @@ export default function Hero() {
               <a
                 href="#story"
                 className="
-                  inline-flex
+                  flex
                   items-center
+                  justify-center
                   rounded-full
                   border
                   border-[rgba(0,0,0,0.1)]
                   bg-white
-                  px-8
+                  px-6
                   py-4
                   transition-all
                   duration-300
                   hover:shadow-lg
+                  sm:inline-flex
+                  sm:px-8
                 "
               >
                 Câu chuyện Từ Đến
@@ -160,15 +174,17 @@ export default function Hero() {
 
             <div
               className="
-                mt-16
+                mt-10
                 grid
                 grid-cols-3
-                gap-8
+                gap-3
                 max-w-xl
+                md:mt-16
+                md:gap-8
               "
             >
               <div>
-                <h3 className="text-3xl font-bold text-[var(--primary)]">
+                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
                   4.9★
                 </h3>
 
@@ -178,7 +194,7 @@ export default function Hero() {
               </div>
 
               <div>
-                <h3 className="text-3xl font-bold text-[var(--primary)]">
+                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
                   219
                 </h3>
 
@@ -188,7 +204,7 @@ export default function Hero() {
               </div>
 
               <div>
-                <h3 className="text-3xl font-bold text-[var(--primary)]">
+                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
                   Every Day
                 </h3>
 
@@ -204,7 +220,9 @@ export default function Hero() {
           <div
             className="
               relative
-              h-[680px]
+              h-[360px]
+              md:h-[520px]
+              lg:h-[680px]
               rounded-[40px]
               overflow-hidden
               shadow-[0_30px_60px_rgba(0,0,0,0.18)]
