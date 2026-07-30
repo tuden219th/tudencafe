@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   description:
     "Từ Đến Coffee - Một góc nhỏ cho những hành trình lớn. Cà phê, không gian và những câu chuyện kết nối tại Hà Nội.",
 
+  alternates: {
+    canonical: "/",
+  },
+
   keywords: [
     "Từ Đến Coffee",
     "Từ Đến",
@@ -80,7 +84,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+
+  category: "Coffee shop",
 
   icons: {
     icon: "/favicon.ico",

@@ -7,14 +7,14 @@ export const organizationSchema = {
 
   url: "https://tudencafe.com",
 
-  logo: "https://tudencafe.com/images/logo.png",
+  logo: "https://tudencafe.com/images/Logo.png",
 
   image: "https://tudencafe.com/og-image.jpg",
 
   description:
     "Từ Đến Cafe là quán cà phê tại 219 Tô Hiệu, Cầu Giấy, Hà Nội. Không gian dành cho học tập, làm việc và kết nối.",
 
-  telephone: "+84981815219",
+  telephone: "+84972516250",
 
   email: "hello@tudencafe.com",
 
@@ -28,10 +28,10 @@ export const organizationSchema = {
   },
 
   sameAs: [
-    // Thêm sau
-    // "https://facebook.com/...",
-    // "https://instagram.com/...",
-    // "https://maps.google.com/...",
+    "https://www.facebook.com/TudenCafe",
+    "https://www.instagram.com/atx171",
+    "https://zalo.me/0972516250",
+    "https://maps.app.goo.gl/QMD2MBb9AGcSVPUx9",
   ],
 };
 
@@ -63,11 +63,18 @@ export const cafeSchema = {
 
   url: "https://tudencafe.com",
 
-  telephone: "+84981815219",
+  telephone: "+84972516250",
 
   servesCuisine: "Coffee",
 
   priceRange: "$",
+
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "07:00",
+    closes: "22:00",
+  },
 
   address: {
     "@type": "PostalAddress",

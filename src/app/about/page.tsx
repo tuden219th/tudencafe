@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Về Từ Đến Coffee",
   description:
     "Câu chuyện về Từ Đến Coffee - nơi mỗi ly cà phê là điểm bắt đầu cho một hành trình mới.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "Về Từ Đến Coffee",
+    description:
+      "Từ Đến Coffee tại 219 Tô Hiệu, Nghĩa Đô, Hà Nội — không gian để học tập, làm việc và kết nối.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {

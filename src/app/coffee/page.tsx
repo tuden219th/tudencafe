@@ -4,6 +4,13 @@ export const metadata: Metadata = {
   title: "Kiến thức Cà phê",
   description:
     "Khám phá thế giới cà phê cùng Từ Đến Cafe. Tìm hiểu về hạt cà phê, phương pháp pha, espresso, latte, cold brew và nhiều kiến thức thú vị khác.",
+  alternates: { canonical: "/coffee" },
+  openGraph: {
+    title: "Kiến thức Cà phê | Từ Đến Coffee",
+    description:
+      "Khám phá hạt cà phê, phương pháp pha và văn hóa thưởng thức cà phê cùng Từ Đến.",
+    url: "/coffee",
+  },
 };
 
 const categories = [

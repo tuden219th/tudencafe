@@ -25,6 +25,11 @@ export async function generateMetadata(
     description:
       "Quét QR - Chọn món - Gọi nước tại Từ Đến Coffee | From where you are, To where you want to be",
 
+    robots: {
+      index: false,
+      follow: false,
+    },
+
     openGraph: {
       title: `Bàn ${id} | Từ Đến Coffee`,
 
@@ -39,7 +44,7 @@ export async function generateMetadata(
 
       images: [
         {
-          url: "https://tudencafe.com/images/logo.png",
+          url: "https://tudencafe.com/images/Logo.png",
           width: 800,
           height: 800,
           alt: "Từ Đến Coffee",
@@ -53,7 +58,7 @@ export async function generateMetadata(
       description:
         "Quét QR - Chọn món - Gọi nước tại Từ Đến Coffee",
       images: [
-        "https://tudencafe.com/images/logo.png",
+        "https://tudencafe.com/images/Logo.png",
       ],
     },
   };
