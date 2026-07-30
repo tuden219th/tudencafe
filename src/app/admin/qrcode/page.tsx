@@ -184,7 +184,7 @@ export default function QRCodePage() {
 
 
                   <img
-                    src="/images/Logo.png"
+                    src="/images/logo.png"
                     alt="Từ Đến"
                     className="
                     absolute

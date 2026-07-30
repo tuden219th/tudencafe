@@ -7,7 +7,7 @@ export const organizationSchema = {
 
   url: "https://tudencafe.com",
 
-  logo: "https://tudencafe.com/images/Logo.png",
+  logo: "https://tudencafe.com/images/logo.png",
 
   image: "https://tudencafe.com/og-image.jpg",
 

@@ -44,7 +44,7 @@ export async function generateMetadata(
 
       images: [
         {
-          url: "https://tudencafe.com/images/Logo.png",
+          url: "https://tudencafe.com/images/logo.png",
           width: 800,
           height: 800,
           alt: "Từ Đến Coffee",
@@ -58,7 +58,7 @@ export async function generateMetadata(
       description:
         "Quét QR - Chọn món - Gọi nước tại Từ Đến Coffee",
       images: [
-        "https://tudencafe.com/images/Logo.png",
+        "https://tudencafe.com/images/logo.png",
       ],
     },
   };

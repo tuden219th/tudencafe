@@ -44,7 +44,7 @@ export default function Navbar() {
           aria-label="Từ Đến Coffee"
         >
           <Image
-            src="/images/Logo.png"
+            src="/images/logo.png"
             alt="Từ Đến Coffee"
             width={82}
             height={82}

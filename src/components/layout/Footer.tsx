@@ -25,7 +25,7 @@ export default function Footer() {
         <div>
 
           <img
-            src="/images/Logo.png"
+            src="/images/logo.png"
             alt="Từ Đến Coffee"
             loading="lazy"
             className="
