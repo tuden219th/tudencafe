@@ -6,20 +6,18 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const menu = [
-  { name: "Câu chuyện", href: "#story" },
+  { name: "Hành trình", href: "#journey" },
   { name: "Menu", href: "#menu" },
-  { name: "Kiến thức", href: "/coffee" },
+  { name: "Blog", href: "/coffee" },
   { name: "Về chúng tôi", href: "/about" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 30);
 
     onScroll();
 
@@ -30,106 +28,163 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
-        scrolled
-          ? "bg-[#F5EBDD]/90 backdrop-blur-xl shadow-md border-b border-[#3B2416]/10"
-          : "bg-transparent"
-      }`}
+      className={`
+        fixed
+        inset-x-0
+        top-0
+        z-50
+        transition-all
+        duration-500
+        ${
+          scrolled
+            ? "bg-[#F8F5F1]/90 backdrop-blur-xl shadow-lg border-b border-[#3B2416]/10"
+            : "bg-transparent"
+        }
+      `}
     >
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
+      <div
+        className={`
+          mx-auto
+          max-w-7xl
+          px-6
+          flex
+          items-center
+          justify-between
+          transition-all
+          duration-500
+          ${scrolled ? "h-[76px]" : "h-24"}
+        `}
+      >
         {/* Logo */}
+
         <Link
           href="/"
           className="group flex items-center gap-4"
-          aria-label="Từ Đến Coffee"
+          aria-label="Từ Đến"
         >
           <Image
             src="/images/logo.png"
-            alt="Từ Đến Coffee"
-            width={82}
-            height={82}
+            alt="Từ Đến"
+            width={scrolled ? 58 : 68}
+            height={scrolled ? 58 : 68}
             priority
-            className="rounded-full transition-all duration-500 group-hover:scale-105 group-hover:rotate-2"
+            className="
+              rounded-full
+              transition-all
+              duration-500
+              group-hover:scale-105
+            "
           />
 
           <div className="hidden md:block">
-            <h1 className="font-[var(--font-playfair)] text-2xl leading-none text-[#3B2416]">
-              TỪ ĐẾN COFFEE
+            <h1
+              className="
+                font-[var(--font-playfair)]
+                text-[28px]
+                leading-none
+                text-[#2E2018]
+              "
+            >
+              TỪ ĐẾN
             </h1>
 
-            <p className="mt-1 text-[11px] text-[#7A6857]">
-              From where you are,
-              <br />
-              To where you want to be.
+            <p
+              className={`
+                mt-1
+                text-[11px]
+                tracking-[0.22em]
+                uppercase
+                text-[#8B7765]
+                transition-all
+                duration-300
+                ${scrolled ? "opacity-0 h-0 overflow-hidden" : ""}
+              `}
+            >
+              Coffee • AI • Journey
             </p>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <nav className="hidden items-center gap-10 md:flex">
+        {/* Desktop */}
+
+        <nav className="hidden md:flex items-center gap-10">
           {menu.map((item) => {
-            const isActive =
+            const active =
               item.href.startsWith("/") && pathname === item.href;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={active ? "page" : undefined}
                 className="
+                  group
                   relative
-                  text-sm
+                  text-[13px]
                   uppercase
-                  tracking-widest
+                  tracking-[0.22em]
                   text-[#3B2416]
-                  after:absolute
-                  after:left-0
-                  after:-bottom-2
-                  after:h-[2px]
-                  after:w-0
-                  after:bg-[#6B8E23]
-                  after:transition-all
-                  after:duration-300
-                  hover:after:w-full
+                  transition-colors
+                  duration-300
+                  hover:text-[#C96A2B]
                 "
               >
                 {item.name}
+
+                <span
+                  className="
+                    absolute
+                    left-1/2
+                    -bottom-4
+                    h-1.5
+                    w-1.5
+                    rounded-full
+                    bg-[#C96A2B]
+                    opacity-0
+                    -translate-x-1/2
+                    transition-all
+                    duration-300
+                    group-hover:opacity-100
+                  "
+                />
               </Link>
             );
           })}
 
           <Link
-            href="#footer"
+            href="#assistant"
             className="
-              ml-4
+              ml-2
               rounded-full
-              bg-[#3B2416]
+              bg-[#2E2018]
               px-6
               py-3
-              text-[#F5EBDD]
+              text-sm
+              text-white
               transition-all
               duration-300
-              hover:scale-105
-              hover:bg-[#6B8E23]
+              hover:-translate-y-0.5
+              hover:bg-[#C96A2B]
             "
           >
-            Ghé quán →
+            Trò chuyện AI
           </Link>
         </nav>
 
         {/* Mobile */}
+
         <button
-          className="text-[#3B2416] md:hidden"
+          className="md:hidden text-[#2E2018]"
           aria-label="Open menu"
         >
           <svg
-            width="30"
-            height="30"
+            width="28"
+            height="28"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path d="M4 8h22M4 15h22M4 22h22" />
+            <path d="M4 7h20M4 14h20M4 21h20" />
           </svg>
         </button>
       </div>

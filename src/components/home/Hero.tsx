@@ -1,218 +1,264 @@
 import Image from "next/image";
 
+const features = [
+  {
+    icon: "☕",
+    title: "Specialty Coffee",
+  },
+  {
+    icon: "🤖",
+    title: "AI Assistant",
+  },
+  {
+    icon: "📚",
+    title: "Coffee Knowledge",
+  },
+];
+
 export default function Hero() {
   return (
     <section
       id="home"
       className="
-        min-h-0
+        relative
         flex
         items-center
-        py-32
+        overflow-hidden
+        py-28
         md:min-h-screen
         md:py-24
       "
     >
+      {/* Background */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          -z-10
+          bg-[radial-gradient(circle_at_top_left,rgba(201,106,43,0.10),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(107,142,35,0.08),transparent_30%)]
+        "
+      />
+
       <div className="container">
+
         <div
           className="
             grid
-            lg:grid-cols-2
-            gap-10
-            lg:gap-16
             items-center
+            gap-14
+            lg:grid-cols-2
+            lg:gap-20
           "
         >
+
           {/* LEFT */}
 
           <div>
+
+            {/* Badge */}
+
             <div
               className="
                 inline-flex
                 items-center
-                gap-2
+                gap-3
                 rounded-full
                 border
-                border-[rgba(201,106,43,0.2)]
-                bg-white/70
-                backdrop-blur
+                border-[rgba(201,106,43,0.18)]
+                bg-white/80
                 px-5
-                py-2
-                mb-8
+                py-2.5
+                backdrop-blur
               "
             >
-              <span className="text-lg">☕</span>
+              <span className="text-lg">
+                ☕
+              </span>
 
               <span
                 className="
+                  text-xs
                   uppercase
                   tracking-[0.35em]
-                  text-xs
                   text-[var(--primary)]
                   font-medium
                 "
               >
-                Từ Đến Coffee
+                Coffee • AI • Journey
               </span>
             </div>
 
+            {/* Heading */}
+
             <h1
               className="
-                text-[3.35rem]
-                sm:text-6xl
-                md:text-7xl
-                leading-[0.9]
+                mt-8
+                max-w-xl
                 font-[var(--font-playfair)]
+                text-[3.4rem]
+                leading-[0.92]
+                sm:text-6xl
+                lg:text-7xl
               "
             >
-              From where
-              <br />
-              you are,
-
+              Từ nơi
               <br />
 
               <span className="text-[var(--primary)]">
-                To where
+                bạn đang đứng,
               </span>
 
               <br />
 
-              you want
+              đến nơi
+
               <br />
-              to be.
+
+              bạn muốn đến.
             </h1>
+
+            {/* Description */}
 
             <p
               className="
-                mt-7
-                text-base
-                leading-8
+                mt-8
                 max-w-xl
-                opacity-75
-                md:mt-10
-                md:text-lg
-                md:leading-9
+                text-lg
+                leading-9
+                text-[#5C5146]
               "
             >
-              Có những ngày,
-              chúng ta không cần đi đâu xa.
+              Một không gian dành cho
+              <strong className="font-semibold text-[#2E2018]">
+                {" "}
+                cà phê,
+              </strong>
+
+              <strong className="font-semibold text-[#2E2018]">
+                {" "}
+                tri thức
+              </strong>
+
+              {" "}và những cuộc trò chuyện.
 
               <br />
               <br />
 
-              Chỉ cần một góc nhỏ.
-
-              <br />
-
-              Một ly cà phê.
-
-              <br />
-
-              Một khoảng lặng để bước tiếp.
+              Nơi mỗi hành trình đều có thể bắt đầu
+              chỉ từ một ly cà phê.
             </p>
 
-            {/* BUTTONS */}
+            {/* CTA */}
 
             <div
               className="
-                mt-9
+                mt-10
                 flex
                 flex-wrap
                 gap-4
-                md:mt-12
               "
             >
               <a
                 href="#menu"
                 className="
-                  flex
+                  inline-flex
                   items-center
                   justify-center
-                  gap-2
                   rounded-full
-                  bg-[#6B8E23]
-                  px-6
+                  bg-[#C96A2B]
+                  px-8
                   py-4
                   text-white
                   font-medium
-                  shadow-xl
+                  shadow-lg
                   transition-all
                   duration-300
-                  hover:scale-105
-                  hover:bg-[#5F7F1F]
-                  sm:inline-flex
-                  sm:px-8
+                  hover:-translate-y-1
+                  hover:shadow-xl
                 "
               >
-                Chọn một ly cà phê →
+                Khám phá Menu
+            ```
+---
+
+                <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </a>
 
               <a
-                href="#story"
+                href="#assistant"
                 className="
-                  flex
+                  inline-flex
                   items-center
                   justify-center
                   rounded-full
                   border
-                  border-[rgba(0,0,0,0.1)]
+                  border-[#D9D1C8]
                   bg-white
-                  px-6
+                  px-8
                   py-4
+                  font-medium
+                  text-[#2E2018]
                   transition-all
                   duration-300
+                  hover:-translate-y-1
+                  hover:border-[#C96A2B]
                   hover:shadow-lg
-                  sm:inline-flex
-                  sm:px-8
                 "
               >
-                Câu chuyện Từ Đến
+                Trò chuyện với AI
               </a>
             </div>
 
-            {/* STATS */}
+            {/* Feature Pills */}
 
             <div
               className="
-                mt-10
-                grid
-                grid-cols-3
-                gap-3
-                max-w-xl
-                md:mt-16
-                md:gap-8
+                mt-12
+                flex
+                flex-wrap
+                gap-4
               "
             >
-              <div>
-                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
-                  4.9★
-                </h3>
+              {features.map((item) => (
+                <div
+                  key={item.title}
+                  className="
+                    flex
+                    items-center
+                    gap-3
+                    rounded-full
+                    border
+                    border-[#ECE5DD]
+                    bg-white
+                    px-5
+                    py-3
+                    shadow-sm
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-md
+                  "
+                >
+                  <span className="text-xl">
+                    {item.icon}
+                  </span>
 
-                <p className="mt-2 text-sm opacity-70">
-                  Google Reviews
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
-                  219
-                </h3>
-
-                <p className="mt-2 text-sm opacity-70">
-                  Tô Hiệu
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold text-[var(--primary)] md:text-3xl">
-                  Every Day
-                </h3>
-
-                <p className="mt-2 text-sm opacity-70">
-                  Open
-                </p>
-              </div>
+                  <span
+                    className="
+                      text-sm
+                      font-medium
+                      text-[#4B4037]
+                    "
+                  >
+                    {item.title}
+                  </span>
+                </div>
+              ))}
             </div>
+
           </div>
 
           {/* RIGHT */}
@@ -220,12 +266,12 @@ export default function Hero() {
           <div
             className="
               relative
-              h-[360px]
-              md:h-[520px]
-              lg:h-[680px]
-              rounded-[40px]
+              h-[380px]
               overflow-hidden
-              shadow-[0_30px_60px_rgba(0,0,0,0.18)]
+              rounded-[40px]
+              shadow-[0_35px_70px_rgba(0,0,0,.18)]
+              md:h-[560px]
+              lg:h-[700px]
               group
             "
           >
@@ -243,36 +289,93 @@ export default function Hero() {
               "
             />
 
+            {/* Overlay */}
+
             <div
               className="
                 absolute
                 inset-0
                 bg-gradient-to-t
-                from-black/70
+                from-black/75
                 via-black/15
                 to-transparent
               "
             />
 
-            {/* BADGE */}
+            {/* Location Badge */}
 
             <div
               className="
                 absolute
-                top-8
                 left-8
+                top-8
                 rounded-full
                 bg-white/90
-                backdrop-blur
                 px-5
                 py-2
+                text-sm
+                font-medium
+                backdrop-blur
                 shadow-lg
               "
             >
-              ☕ Since 2026
+              📍 Tô Hiệu • Hà Nội
             </div>
 
-            {/* TEXT */}
+            {/* Floating Card */}
+
+            <div
+              className="
+                absolute
+                right-8
+                top-8
+                hidden
+                rounded-3xl
+                bg-white/90
+                p-5
+                backdrop-blur
+                shadow-xl
+                lg:block
+              "
+            >
+              <p
+                className="
+                  text-xs
+                  uppercase
+                  tracking-[0.25em]
+                  text-[#8A7868]
+                "
+              >
+                TODAY
+              </p>
+
+              <h3
+                className="
+                  mt-2
+                  text-2xl
+                  font-semibold
+                  text-[#2E2018]
+                "
+              >
+                Brew.
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  max-w-[180px]
+                  text-sm
+                  leading-6
+                  text-[#6B5D52]
+                "
+              >
+                Một ly cà phê ngon
+                có thể mở đầu
+                cho một ngày tuyệt vời.
+              </p>
+            </div>
+
+            {/* Bottom Content */}
 
             <div
               className="
@@ -285,9 +388,9 @@ export default function Hero() {
             >
               <p
                 className="
+                  text-xs
                   uppercase
                   tracking-[0.45em]
-                  text-xs
                   opacity-80
                 "
               >
@@ -297,9 +400,10 @@ export default function Hero() {
               <h2
                 className="
                   mt-4
+                  max-w-md
+                  font-[var(--font-playfair)]
                   text-4xl
                   leading-tight
-                  font-[var(--font-playfair)]
                 "
               >
                 Một điểm dừng,
@@ -308,19 +412,87 @@ export default function Hero() {
               </h2>
 
               <p
-                className="
-                  mt-5
-                  max-w-sm
-                  text-white/80
-                "
-              >
-                Mỗi ly cà phê là một khoảng lặng,
-                để bạn tiếp tục hành trình của mình.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  className="
+    mt-6
+    max-w-sm
+    text-base
+    leading-7
+    text-white/85
+  "
+>
+  Không chỉ là nơi thưởng thức cà phê.
+
+  <br />
+  <br />
+
+  Đây là nơi để học hỏi,
+  kết nối và tiếp tục hành trình
+  của chính bạn.
+</p>
+
+{/* Decorative Journey Line */}
+
+<div
+  className="
+    mt-8
+    flex
+    items-center
+    gap-3
+  "
+>
+  <span className="h-2 w-2 rounded-full bg-[#C96A2B]" />
+
+  <div className="h-px flex-1 bg-white/40" />
+
+  <span
+    className="
+      text-[11px]
+      uppercase
+      tracking-[0.35em]
+      text-white/70
+    "
+  >
+    Journey Starts Here
+  </span>
+</div>
+
+</div>
+
+{/* Soft Light */}
+
+<div
+  className="
+    absolute
+    -bottom-20
+    -right-20
+    h-72
+    w-72
+    rounded-full
+    bg-[#C96A2B]/20
+    blur-3xl
+  "
+/>
+
+<div
+  className="
+    absolute
+    -top-20
+    -left-20
+    h-64
+    w-64
+    rounded-full
+    bg-white/20
+    blur-3xl
+  "
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+);
 }
