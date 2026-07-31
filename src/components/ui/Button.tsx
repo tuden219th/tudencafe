@@ -25,20 +25,22 @@ export default function Button({
     items-center
     justify-center
 
-    h-14
-    px-8
+    h-12
+    px-6
 
     rounded-full
 
-    text-[15px]
+    text-sm
     font-medium
-    tracking-[0.01em]
 
-    transition
+    transition-all
     duration-300
+    ease-out
 
     whitespace-nowrap
-    cursor-pointer
+    select-none
+
+    active:scale-[0.97]
   `;
 
   const variants = {
@@ -49,16 +51,21 @@ export default function Button({
       border
       border-[var(--primary)]
 
-      hover:bg-[#B85E22]
+      hover:-translate-y-0.5
+      hover:shadow-xl
+      hover:shadow-[rgba(201,106,43,0.25)]
+
+      active:translate-y-0
     `,
 
     secondary: `
-      bg-transparent
+      bg-white
       text-[var(--foreground)]
 
       border
-      border-[#D8CCBF]
+      border-neutral-300
 
+      hover:bg-neutral-50
       hover:border-[var(--primary)]
       hover:text-[var(--primary)]
     `,
@@ -71,11 +78,7 @@ export default function Button({
     `,
   };
 
-  const classes = `
-    ${base}
-    ${variants[variant]}
-    ${className}
-  `;
+  const classes = `${base} ${variants[variant]} ${className}`;
 
   if (href) {
     return (
@@ -88,8 +91,8 @@ export default function Button({
   return (
     <button
       type={type}
-      className={classes}
       onClick={onClick}
+      className={classes}
     >
       {children}
     </button>
