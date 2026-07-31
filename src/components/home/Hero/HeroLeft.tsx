@@ -29,7 +29,7 @@ export default function HeroLeft() {
           lg:text-[92px]
         "
       >
-        Cà phê
+        To
 
         <span
           className="
@@ -37,7 +37,7 @@ export default function HeroLeft() {
             text-[var(--primary)]
           "
         >
-          Từ Đến
+          Where you want to be
         </span>
       </h1>
 
