@@ -39,7 +39,7 @@ body {
   background: var(--background);
   color: var(--text);
 
-  font-family: var(--font-geist), sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
 
   overflow-x: hidden;
 
@@ -47,25 +47,45 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
+/* Logo font */
+.logo-font {
+  font-family: var(--font-logo), cursive;
+}
+
+
+/* Headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-playfair), serif;
-  font-weight: 600;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
 }
+
+
+h1 {
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  letter-spacing: -0.03em;
+}
+
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
+
 img {
   display: block;
   max-width: 100%;
 }
+
 
 button,
 input,
@@ -73,28 +93,24 @@ textarea {
   font: inherit;
 }
 
+
 ::selection {
   background: var(--primary);
   color: white;
 }
+
 
 .container {
   width: min(var(--container), 92%);
   margin-inline: auto;
 }
 
-section{
-    padding:120px 0;
+
+section {
+  padding: 120px 0;
 }
 
-h1{
-    letter-spacing:-0.04em;
-}
 
-h2{
-    letter-spacing:-0.03em;
-}
-
-p{
-    line-height:1.8;
+p {
+  line-height: 1.8;
 }

@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Playfair_Display } from "next/font/google";
+import { Montserrat, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { schemas } from "@/lib/schema";
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
+
+const montserrat = Montserrat({
+  subsets: ["vietnamese"],
+  variable: "--font-montserrat",
+  weight: [
+    "400",
+    "500",
+    "600",
+    "700",
+  ],
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+
+const dancing = Dancing_Script({
+  subsets: ["vietnamese"],
+  variable: "--font-logo",
+  weight: [
+    "600",
+    "700",
+  ],
 });
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tudencafe.com"),
@@ -51,7 +64,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Từ Đến Coffee | From where you are, To where you want to be",
 
-    description: "Một góc nhỏ cho những hành trình lớn.",
+    description:
+      "Một góc nhỏ cho những hành trình lớn.",
 
     url: "https://tudencafe.com",
 
@@ -76,7 +90,8 @@ export const metadata: Metadata = {
 
     title: "Từ Đến Coffee",
 
-    description: "Một góc nhỏ cho những hành trình lớn.",
+    description:
+      "Một góc nhỏ cho những hành trình lớn.",
 
     images: ["/og-image.jpg"],
   },
@@ -84,6 +99,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
@@ -100,14 +116,23 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="vi">
-      <body className={`${geist.variable} ${playfair.variable}`}>
+
+      <body
+        className={`
+          ${montserrat.variable}
+          ${dancing.variable}
+        `}
+      >
+
         {schemas.map((schema, index) => (
           <script
             key={index}
@@ -118,8 +143,12 @@ export default function RootLayout({
           />
         ))}
 
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+        </CartProvider>
+
       </body>
+
     </html>
   );
 }
