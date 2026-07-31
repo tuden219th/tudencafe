@@ -1,4 +1,5 @@
 import HeroCTA from "./HeroCTA";
+import { TextFlippingBoardDemo } from "./TextFlippingBoardDemo";
 
 export default function HeroLeft() {
   return (
@@ -16,17 +17,20 @@ export default function HeroLeft() {
         FROM WHERE YOU ARE
       </p>
 
+
       <h1
         className="
           mt-5
 
-          text-[64px]
+          text-[60px]
           leading-[0.95]
           font-semibold
 
+          tracking-tight
+
           text-[var(--foreground)]
 
-          lg:text-[92px]
+          lg:text-[88px]
         "
       >
         To
@@ -41,6 +45,7 @@ export default function HeroLeft() {
         </span>
       </h1>
 
+
       <p
         className="
           mt-10
@@ -49,6 +54,8 @@ export default function HeroLeft() {
           leading-10
 
           text-[#5F554B]
+
+          font-medium
         "
       >
         Một ly cà phê
@@ -56,12 +63,13 @@ export default function HeroLeft() {
         cho một hành trình mới.
       </p>
 
+
       <p
         className="
-          mt-8
+          mt-6
 
-          text-lg
-          leading-9
+          text-base
+          leading-8
 
           text-neutral-500
         "
@@ -72,9 +80,35 @@ export default function HeroLeft() {
         những ý tưởng và những khởi đầu mới được mở ra.
       </p>
 
-      <div className="mt-12">
+
+      <div
+        className="
+          mt-8
+          rounded-xl
+
+          border
+          border-black/5
+
+          bg-white/40
+
+          px-5
+          py-4
+
+          backdrop-blur-sm
+        "
+      >
+        <TextFlippingBoardDemo />
+      </div>
+
+
+      <div
+        className="
+          mt-10
+        "
+      >
         <HeroCTA />
       </div>
+
 
     </div>
   );
