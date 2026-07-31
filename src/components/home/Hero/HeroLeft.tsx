@@ -1,58 +1,32 @@
 import HeroCTA from "./HeroCTA";
-import HeroFeatures from "./HeroFeatures";
 
 export default function HeroLeft() {
   return (
-    <div className="max-w-2xl">
-      {/* Tagline */}
+    <div className="max-w-lg">
 
-      <div
+      <p
         className="
-          inline-flex
-          items-center
-          gap-2
-
-          rounded-full
-          border
-          border-[var(--primary)]/15
-
-          bg-[var(--primary)]/5
-
-          px-5
-          py-2
+          text-xs
+          font-semibold
+          uppercase
+          tracking-[0.35em]
+          text-[var(--primary)]
         "
       >
-        <span className="h-2 w-2 rounded-full bg-[var(--primary)]" />
-
-        <span
-          className="
-            text-xs
-            font-semibold
-            uppercase
-            tracking-[0.28em]
-
-            text-[var(--primary)]
-          "
-        >
-          FROM WHERE YOU ARE
-        </span>
-      </div>
-
-      {/* Heading */}
+        FROM WHERE YOU ARE
+      </p>
 
       <h1
         className="
-          mt-8
+          mt-5
 
-          text-6xl
-          font-medium
-          leading-[1.05]
-
-          tracking-[-0.04em]
+          text-[64px]
+          leading-[0.95]
+          font-semibold
 
           text-[var(--foreground)]
 
-          lg:text-8xl
+          lg:text-[92px]
         "
       >
         Cà phê
@@ -60,7 +34,6 @@ export default function HeroLeft() {
         <span
           className="
             block
-
             text-[var(--primary)]
           "
         >
@@ -68,46 +41,41 @@ export default function HeroLeft() {
         </span>
       </h1>
 
-      {/* Quote */}
-
       <p
         className="
-          mt-4
+          mt-10
 
           text-2xl
-          italic
+          leading-10
 
-          text-[#7A6A5B]
+          text-[#5F554B]
         "
       >
-        Every journey begins with one cup.
+        Một ly cà phê
+        <br />
+        cho một hành trình mới.
       </p>
-
-      {/* Description */}
 
       <p
         className="
           mt-8
 
-          max-w-xl
-
           text-lg
           leading-9
 
-          text-neutral-600
+          text-neutral-500
         "
       >
-        Không chỉ là một ly cà phê.
+        Không chỉ để tỉnh táo.
         <br />
-        Đó là nơi những ý tưởng bắt đầu, những cuộc trò chuyện được mở ra,
-        và mỗi người có thêm một khoảng lặng để đi tiếp hành trình của mình.
+        Đây là nơi những cuộc trò chuyện,
+        những ý tưởng và những khởi đầu mới được mở ra.
       </p>
 
-      <HeroCTA />
-
       <div className="mt-12">
-        <HeroFeatures />
+        <HeroCTA />
       </div>
+
     </div>
   );
 }
