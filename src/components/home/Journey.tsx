@@ -71,8 +71,16 @@ export default function Journey() {
           ))}
         </ol>
 
-        <p className="text-center font-[var(--font-playfair)] text-xl italic text-[var(--primary)] md:mt-6">
-          From where you are, to where you want to be.
+        <p className="mt-6 flex flex-col italic text-[var(--primary)] text-xl">
+          <span className="text-center">
+            From where you are,
+          </span>
+
+          <span className="self-end md:pr-10">
+            To where you want to be.
+          </span>
+        </p>
+          </span>
         </p>
       </div>
     </section>
