@@ -1,15 +1,18 @@
 const features = [
   {
     icon: "☕",
-    title: "Specialty Coffee",
+    title: "Cà phê thủ công",
+    subtitle: "Pha bằng sự tỉ mỉ",
   },
   {
-    icon: "🤖",
-    title: "AI Assistant",
+    icon: "🌿",
+    title: "Không gian chữa lành",
+    subtitle: "Để nghỉ ngơi và suy ngẫm",
   },
   {
-    icon: "📚",
-    title: "Coffee Knowledge",
+    icon: "🪶",
+    title: "Mỗi ly là một hành trình",
+    subtitle: "From where you are → To where you want to be",
   },
 ];
 

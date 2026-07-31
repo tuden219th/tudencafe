@@ -3,60 +3,111 @@ import HeroFeatures from "./HeroFeatures";
 
 export default function HeroLeft() {
   return (
-    <div>
-      <span
+    <div className="max-w-2xl">
+      {/* Tagline */}
+
+      <div
         className="
           inline-flex
+          items-center
+          gap-2
+
           rounded-full
-          bg-[#F5EBDD]
-          px-4
+          border
+          border-[var(--primary)]/15
+
+          bg-[var(--primary)]/5
+
+          px-5
           py-2
-
-          text-sm
-          font-semibold
-
-          text-[var(--primary)]
         "
       >
-        From where you are → To where you want to be
-      </span>
+        <span className="h-2 w-2 rounded-full bg-[var(--primary)]" />
+
+        <span
+          className="
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.28em]
+
+            text-[var(--primary)]
+          "
+        >
+          FROM WHERE YOU ARE
+        </span>
+      </div>
+
+      {/* Heading */}
 
       <h1
         className="
-          mt-6
+          mt-8
 
-          text-5xl
-          font-bold
-          leading-tight
+          text-6xl
+          font-medium
+          leading-[1.05]
 
-          lg:text-7xl
+          tracking-[-0.04em]
+
+          text-[var(--foreground)]
+
+          lg:text-8xl
         "
       >
         Cà phê
-        <br />
-        Từ Đến
+
+        <span
+          className="
+            block
+
+            text-[var(--primary)]
+          "
+        >
+          Từ Đến
+        </span>
       </h1>
+
+      {/* Quote */}
 
       <p
         className="
-          mt-6
+          mt-4
+
+          text-2xl
+          italic
+
+          text-[#7A6A5B]
+        "
+      >
+        Every journey begins with one cup.
+      </p>
+
+      {/* Description */}
+
+      <p
+        className="
+          mt-8
+
           max-w-xl
 
           text-lg
-          leading-8
+          leading-9
 
           text-neutral-600
         "
       >
-        Một ly cà phê không chỉ để tỉnh táo.
-        Đó là nơi bắt đầu cho một hành trình mới,
-        một cuộc trò chuyện mới,
-        một ý tưởng mới.
+        Không chỉ là một ly cà phê.
+        <br />
+        Đó là nơi những ý tưởng bắt đầu, những cuộc trò chuyện được mở ra,
+        và mỗi người có thêm một khoảng lặng để đi tiếp hành trình của mình.
       </p>
 
       <HeroCTA />
 
-      <HeroFeatures />
+      <div className="mt-12">
+        <HeroFeatures />
+      </div>
     </div>
   );
 }

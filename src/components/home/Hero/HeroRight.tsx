@@ -1,93 +1,172 @@
+import Image from "next/image";
+
 export default function HeroRight() {
   return (
-    <div
-      className="
-        relative
-        flex
-        items-center
-        justify-center
-
-        min-h-[520px]
-      "
-    >
-      {/* Glow */}
+    <div className="relative flex justify-center lg:justify-end">
+      {/* Background Glow */}
       <div
         className="
           absolute
-          h-96
-          w-96
+          top-10
+          right-8
+
+          h-72
+          w-72
 
           rounded-full
 
-          bg-[var(--primary)]/15
+          bg-[var(--primary)]/10
 
           blur-3xl
         "
       />
 
-      {/* Coffee Card */}
+      {/* Coffee Image */}
       <div
         className="
           relative
 
           w-full
-          max-w-md
+          max-w-[520px]
 
           overflow-hidden
+
           rounded-[32px]
 
-          border
-          border-white/40
-
-          bg-white/70
-
-          p-8
-
-          shadow-2xl
-          backdrop-blur
+          shadow-[0_30px_80px_rgba(0,0,0,.18)]
         "
       >
-        <div
+        <Image
+          src="/images/hero-coffee.jpg"
+          alt="Từ Đến Coffee"
+          width={900}
+          height={1100}
+          priority
           className="
-            aspect-[4/5]
+            h-auto
+            w-full
 
-            rounded-3xl
+            object-cover
 
-            bg-gradient-to-br
-            from-[#C96A2B]
-            via-[#9A5930]
-            to-[#294A3A]
+            transition-transform
+            duration-700
+
+            hover:scale-105
           "
         />
 
-        <div className="mt-6">
-          <p
+        {/* Overlay */}
+        <div
+          className="
+            absolute
+            inset-0
+
+            bg-gradient-to-t
+            from-black/55
+            via-black/5
+            to-transparent
+          "
+        />
+
+        {/* Text */}
+        <div
+          className="
+            absolute
+            bottom-0
+            left-0
+
+            w-full
+
+            p-8
+          "
+        >
+          <span
             className="
               text-xs
               uppercase
-              tracking-[0.3em]
 
-              text-neutral-500
+              tracking-[0.35em]
+
+              text-white/70
             "
           >
-            TODAY'S BREW
-          </p>
+            Journey Starts Here
+          </span>
 
           <h3
             className="
-              mt-2
+              mt-3
 
-              text-2xl
-              font-bold
+              text-3xl
+              font-semibold
+
+              text-white
             "
           >
             From where you are
           </h3>
 
-          <p className="mt-2 text-neutral-600">
+          <p
+            className="
+              mt-2
+
+              text-white/80
+            "
+          >
             To where you want to be.
           </p>
         </div>
+      </div>
+
+      {/* Floating Card */}
+      <div
+        className="
+          absolute
+
+          -bottom-8
+          -left-6
+
+          hidden
+          lg:block
+
+          rounded-2xl
+
+          bg-white/95
+
+          px-6
+          py-5
+
+          shadow-xl
+          backdrop-blur
+        "
+      >
+        <p
+          className="
+            text-xs
+            uppercase
+
+            tracking-[0.25em]
+
+            text-neutral-500
+          "
+        >
+          TODAY'S BREW
+        </p>
+
+        <p
+          className="
+            mt-2
+
+            text-xl
+            font-semibold
+          "
+        >
+          Một ly cà phê.
+        </p>
+
+        <p className="text-neutral-600">
+          Một hành trình mới.
+        </p>
       </div>
     </div>
   );
