@@ -26,13 +26,12 @@ export default function Button({
     justify-center
 
     h-12
-    px-8
+    px-10
 
-    rounded-xl
+    rounded-2xl
 
     text-[15px]
     font-medium
-    tracking-wide
 
     transition-all
     duration-300
@@ -47,15 +46,16 @@ export default function Button({
   const variants = {
     primary: `
       bg-[var(--primary)]
-      text-[#F5EBDD]
+      text-white
 
       border
-      border-[#D9874B]
+      border-[var(--primary)]
 
-      shadow-sm
+      shadow-md
+      shadow-black/10
 
       hover:-translate-y-0.5
-      hover:shadow-md
+      hover:shadow-lg
       hover:shadow-black/20
 
       active:translate-y-0
