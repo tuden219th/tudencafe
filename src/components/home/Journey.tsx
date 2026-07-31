@@ -58,7 +58,7 @@ export default function Journey() {
 
               <div className="pt-1 md:mt-8 md:text-center">
                 <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-[#3B2416]/45 md:hidden">
-                  Một điểm dừng
+                  ---------------------
                 </p>
                 <h3 className="font-[var(--font-playfair)] text-[1.7rem] leading-tight md:text-2xl">
                   {step.title}
