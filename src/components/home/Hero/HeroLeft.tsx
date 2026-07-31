@@ -1,5 +1,5 @@
 import HeroCTA from "./HeroCTA";
-import { TextFlippingBoardDemo } from "./TextFlippingBoardDemo";
+import { TextFlippingBoardDemo } from "../../ui/TextFlippingBoardDemo";
 
 export default function HeroLeft() {
   return (
