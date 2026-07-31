@@ -35,18 +35,22 @@ export default function Journey() {
       <div
         className="
           mx-auto
+          w-full
           max-w-6xl
           px-5
           md:px-6
         "
       >
-
         {/* Header */}
 
         <div
           className="
             mx-auto
+            flex
+            w-full
             max-w-2xl
+            flex-col
+            items-center
             text-center
           "
         >
@@ -109,12 +113,11 @@ export default function Journey() {
             mx-auto
             mt-12
 
+            grid
             w-full
-            max-w-6xl
 
             md:mt-16
 
-            md:grid
             md:grid-cols-4
             md:gap-8
           "
@@ -151,18 +154,15 @@ export default function Journey() {
               className="
                 relative
 
-                grid
-                grid-cols-[4.5rem_1fr]
-
-                gap-4
+                flex
+                flex-col
+                items-center
 
                 py-6
 
-                last:pb-20
+                text-center
 
-                md:block
                 md:p-0
-                md:text-center
               "
             >
 
@@ -175,33 +175,21 @@ export default function Journey() {
 
                   flex
 
-                  h-[4.5rem]
-                  w-[4.5rem]
+                  h-14
+                  w-14
 
                   items-center
                   justify-center
 
                   rounded-full
 
-                  border
-                  border-[#C96A2B]/25
-
-                  bg-[#FFFCF8]
+                  bg-[#C96A2B]
 
                   font-[var(--font-playfair)]
 
                   text-xl
 
-                  text-[var(--primary)]
-
-                  md:mx-auto
-
-                  md:h-14
-                  md:w-14
-
-                  md:bg-[#C96A2B]
-
-                  md:text-white
+                  text-white
                 "
               >
                 {step.number}
@@ -212,42 +200,17 @@ export default function Journey() {
 
               <div
                 className="
-                  pt-1
-
-                  md:mt-8
+                  mt-8
                 "
               >
-
-                <p
-                  className="
-                    mb-2
-
-                    text-[11px]
-
-                    font-medium
-
-                    uppercase
-
-                    tracking-[0.22em]
-
-                    text-[#3B2416]/45
-
-                    md:hidden
-                  "
-                >
-                  Một điểm dừng
-                </p>
-
 
                 <h3
                   className="
                     font-[var(--font-playfair)]
 
-                    text-[1.7rem]
+                    text-2xl
 
                     leading-tight
-
-                    md:text-2xl
                   "
                 >
                   {step.title}
@@ -256,17 +219,17 @@ export default function Journey() {
 
                 <p
                   className="
-                    mt-2
+                    mx-auto
 
-                    max-w-sm
+                    mt-3
+
+                    max-w-xs
 
                     text-[15px]
 
                     leading-7
 
                     text-[#3B2416]/70
-
-                    md:mx-auto
                   "
                 >
                   {step.text}
@@ -284,7 +247,7 @@ export default function Journey() {
 
         <p
           className="
-            mt-6
+            mt-10
 
             text-center
 
