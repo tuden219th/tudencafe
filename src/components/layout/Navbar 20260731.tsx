@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Button from "@/components/ui/Button";
 
 const menu = [
   { name: "Hành trình", href: "#journey" },
@@ -34,13 +33,11 @@ export default function Navbar() {
         inset-x-0
         top-0
         z-50
-
         transition-all
         duration-500
-
         ${
           scrolled
-            ? "bg-[#F8F5F1]/90 backdrop-blur-xl border-b border-[#3B2416]/10 shadow-lg"
+            ? "bg-[#F8F5F1]/90 backdrop-blur-xl shadow-lg border-b border-[#3B2416]/10"
             : "bg-transparent"
         }
       `}
@@ -48,16 +45,13 @@ export default function Navbar() {
       <div
         className={`
           mx-auto
-          flex
           max-w-7xl
+          px-6
+          flex
           items-center
           justify-between
-
-          px-6
-
           transition-all
           duration-500
-
           ${scrolled ? "h-[76px]" : "h-24"}
         `}
       >
@@ -65,194 +59,135 @@ export default function Navbar() {
 
         <Link
           href="/"
-          className="
-            group
-            flex
-            items-center
-            gap-4
-          "
-          aria-label="Từ Đến Coffee"
+          className="group flex items-center gap-4"
+          aria-label="Từ Đến"
         >
           <Image
             src="/images/logo.png"
-            alt="Từ Đến Coffee"
+            alt="Từ Đến"
             width={scrolled ? 58 : 68}
             height={scrolled ? 58 : 68}
             priority
             className="
               rounded-full
-
               transition-all
               duration-500
-
               group-hover:scale-105
             "
           />
 
           <div className="hidden md:block">
-
             <h1
               className="
-                logo-font
-
-                text-[34px]
+                font-[var(--font-playfair)]
+                text-[28px]
                 leading-none
-
-                text-[var(--primary)]
+                text-[#2E2018]
               "
             >
-              Từ đến
+              TỪ ĐẾN
             </h1>
 
             <p
               className={`
                 mt-1
-
                 text-[11px]
-
-                font-medium
+                tracking-[0.22em]
                 uppercase
-
-                tracking-[0.24em]
-
                 text-[#8B7765]
-
                 transition-all
                 duration-300
-
-                ${
-                  scrolled
-                    ? "opacity-0 h-0 overflow-hidden"
-                    : ""
-                }
+                ${scrolled ? "opacity-0 h-0 overflow-hidden" : ""}
               `}
             >
-              FROM WHERE YOU ARE
+              Coffee • AI • Journey
             </p>
-
           </div>
-
         </Link>
-                {/* Desktop */}
 
-        <nav
-          className="
-            hidden
-            items-center
-            gap-8
+        {/* Desktop */}
 
-            lg:flex
-          "
-        >
+        <nav className="hidden md:flex items-center gap-10">
           {menu.map((item) => {
             const active =
-              item.href.startsWith("/") &&
-              pathname === item.href;
+              item.href.startsWith("/") && pathname === item.href;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`
+                className="
                   group
                   relative
-
-                  text-sm
-                  font-medium
-
-                  tracking-[0.08em]
-
+                  text-[13px]
+                  uppercase
+                  tracking-[0.22em]
+                  text-[#3B2416]
                   transition-colors
                   duration-300
-
-                  ${
-                    active
-                      ? "text-[var(--primary)]"
-                      : "text-[#3B2416] hover:text-[var(--primary)]"
-                  }
-                `}
+                  hover:text-[#C96A2B]
+                "
               >
                 {item.name}
 
                 <span
-                  className={`
+                  className="
                     absolute
-                    -bottom-2
                     left-1/2
-
-                    h-0.5
-
-                    bg-[var(--primary)]
-
+                    -bottom-4
+                    h-1.5
+                    w-1.5
+                    rounded-full
+                    bg-[#C96A2B]
+                    opacity-0
+                    -translate-x-1/2
                     transition-all
                     duration-300
-
-                    ${
-                      active
-                        ? "w-full -translate-x-1/2"
-                        : "w-0 group-hover:w-full -translate-x-1/2"
-                    }
-                  `}
+                    group-hover:opacity-100
+                  "
                 />
               </Link>
             );
           })}
 
-          <Button
+          <Link
             href="#assistant"
-            className="ml-3"
+            className="
+              ml-2
+              rounded-full
+              bg-[#2E2018]
+              px-6
+              py-3
+              text-sm
+              text-white
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-[#C96A2B]
+            "
           >
             Trò chuyện AI
-          </Button>
+          </Link>
         </nav>
 
         {/* Mobile */}
 
         <button
-          className="
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-
-            rounded-full
-
-            border
-            border-[#DED4C8]
-
-            bg-white/80
-
-            backdrop-blur
-
-            transition-all
-            duration-300
-
-            hover:border-[var(--primary)]
-            hover:bg-white
-
-            lg:hidden
-          "
+          className="md:hidden text-[#2E2018]"
           aria-label="Open menu"
         >
           <svg
-            width="22"
-            height="22"
+            width="28"
+            height="28"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
           >
-            <path d="M3 6h18" />
-            <path d="M3 12h18" />
-            <path d="M3 18h18" />
+            <path d="M4 7h20M4 14h20M4 21h20" />
           </svg>
         </button>
-
       </div>
-
     </header>
   );
 }
