@@ -26,12 +26,13 @@ export default function Button({
     justify-center
 
     h-12
-    px-6
+    px-8
 
-    rounded-full
+    rounded-xl
 
-    text-sm
+    text-[15px]
     font-medium
+    tracking-wide
 
     transition-all
     duration-300
@@ -40,34 +41,41 @@ export default function Button({
     whitespace-nowrap
     select-none
 
-    active:scale-[0.97]
+    active:scale-[0.98]
   `;
 
   const variants = {
     primary: `
       bg-[var(--primary)]
-      text-white
+      text-[#F5EBDD]
 
       border
-      border-[var(--primary)]
+      border-[#D9874B]
+
+      shadow-sm
 
       hover:-translate-y-0.5
-      hover:shadow-xl
-      hover:shadow-[rgba(201,106,43,0.25)]
+      hover:shadow-md
+      hover:shadow-black/20
 
       active:translate-y-0
     `,
 
     secondary: `
-      bg-white
+      bg-[#F5EBDD]
       text-[var(--foreground)]
 
       border
-      border-neutral-300
+      border-black/10
 
-      hover:bg-neutral-50
+      shadow-sm
+
+      hover:bg-white
       hover:border-[var(--primary)]
       hover:text-[var(--primary)]
+
+      hover:-translate-y-0.5
+      hover:shadow-md
     `,
 
     ghost: `
@@ -78,11 +86,18 @@ export default function Button({
     `,
   };
 
-  const classes = `${base} ${variants[variant]} ${className}`;
+  const classes = `
+    ${base}
+    ${variants[variant]}
+    ${className}
+  `;
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link
+        href={href}
+        className={classes}
+      >
         {children}
       </Link>
     );
