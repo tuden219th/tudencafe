@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { TextFlippingBoard } from "@/components/ui/text-flipping-board";
+import { TextFlippingBoard } from "@/components/ui/TextFlippingBoard";
 
 const MESSAGES: string[] = [
   "TỪ NƠI BẠN ĐANG ĐỨNG\nĐẾN NƠI BẠN MUỐN ĐI",
