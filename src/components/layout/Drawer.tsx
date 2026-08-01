@@ -1,0 +1,407 @@
+"use client";
+
+import { useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+type Props = {
+  open: boolean;
+  onClose: () => void;
+};
+
+const menu = [
+  { icon: "🏠", title: "Trang chủ", href: "/" },
+  { icon: "🧭", title: "Hành trình", href: "#journey" },
+  { icon: "☕", title: "Menu", href: "#menu" },
+  { icon: "📚", title: "Coffee Knowledge", href: "/coffee" },
+  { icon: "🤖", title: "AI Assistant", href: "#assistant" },
+  { icon: "📰", title: "Blog", href: "/blog" },
+  { icon: "👤", title: "Về chúng tôi", href: "/about" },
+  { icon: "📍", title: "Liên hệ", href: "/contact" },
+];
+
+export default function Drawer({
+  open,
+  onClose,
+}: Props) {
+  /* Lock Body Scroll */
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  /* ESC Close */
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (open) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [open, onClose]);
+
+  return (
+    <>
+      {/* Overlay */}
+
+      <div
+        onClick={onClose}
+        className={`
+          fixed
+          inset-0
+          z-[90]
+
+          bg-black/30
+          backdrop-blur-sm
+
+          transition-all
+          duration-300
+
+          ${
+            open
+              ? "opacity-100 visible"
+              : "opacity-0 invisible"
+          }
+        `}
+      />
+
+      {/* Drawer */}
+
+      <aside
+        className={`
+          fixed
+          left-0
+          top-0
+          z-[100]
+
+          flex
+          h-screen
+          w-[360px]
+          flex-col
+
+          bg-[#F8F5F1]
+
+          shadow-2xl
+
+          transition-transform
+          duration-500
+          ease-out
+
+          ${
+            open
+              ? "translate-x-0"
+              : "-translate-x-full"
+          }
+        `}
+      >
+        {/* Header */}
+
+        <div
+          className="
+            relative
+
+            border-b
+            border-[#E8DDD2]
+
+            bg-gradient-to-b
+            from-white
+            to-[#F8F5F1]
+
+            px-8
+            py-8
+          "
+        >
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            className="
+              absolute
+              right-5
+              top-5
+
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+
+              rounded-full
+
+              transition-all
+              duration-300
+
+              hover:bg-[#EFE5DA]
+              hover:rotate-90
+            "
+          >
+            ×
+          </button>
+
+          <div className="flex items-center gap-5">
+            <Image
+              src="/images/logo.png"
+              alt="Từ Đến Coffee"
+              width={72}
+              height={72}
+              className="rounded-full shadow-lg"
+              priority
+            />
+
+            <div>
+              <h2
+                className="
+                  logo-font
+                  text-[34px]
+                  leading-none
+                  text-[var(--primary)]
+                "
+              >
+                Từ đến
+              </h2>
+
+              <p
+                className="
+                  mt-2
+
+                  text-[11px]
+                  uppercase
+
+                  tracking-[0.25em]
+
+                  text-[#8B7765]
+                "
+              >
+                COFFEE • AI • JOURNEY
+              </p>
+
+              <p
+                className="
+                  mt-4
+
+                  text-sm
+                  italic
+                  leading-7
+
+                  text-[#6B5D52]
+                "
+              >
+                From where you are,
+                <br />
+                To where you want to be.
+              </p>
+            </div>
+          </div>
+        </div>
+                {/* Menu */}
+
+        <nav className="flex-1 overflow-y-auto px-6 py-8">
+          <div className="space-y-2">
+            {menu.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onClose}
+                style={{
+                  transitionDelay: `${index * 40}ms`,
+                }}
+                className="
+                  group
+
+                  flex
+                  items-center
+                  justify-between
+
+                  rounded-2xl
+
+                  px-5
+                  py-4
+
+                  text-base
+                  font-medium
+
+                  text-[#3B2416]
+
+                  transition-all
+                  duration-300
+
+                  hover:bg-[#EFE5DA]
+                  hover:text-[var(--primary)]
+                  hover:translate-x-1
+                  hover:shadow-md
+                  hover:scale-[1.02]
+                "
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-xl">
+                    {item.icon}
+                  </span>
+
+                  <span>{item.title}</span>
+                </div>
+
+                <span
+                  className="
+                    opacity-0
+
+                    transition-all
+                    duration-300
+
+                    group-hover:translate-x-1
+                    group-hover:opacity-100
+                  "
+                >
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </nav>
+
+        {/* Footer */}
+
+        <div
+          className="
+            border-t
+            border-[#E8DDD2]
+
+            px-8
+            py-8
+          "
+        >
+          <div
+            className="
+              rounded-2xl
+              bg-white
+              p-5
+              shadow-sm
+            "
+          >
+            <p
+              className="
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-[#9B8A79]
+              "
+            >
+              TỪ ĐẾN COFFEE
+            </p>
+
+            <p
+              className="
+                mt-4
+                text-base
+                font-semibold
+                text-[#3B2416]
+              "
+            >
+              219 Tô Hiệu, Hà Nội
+            </p>
+
+            <p
+              className="
+                mt-2
+                text-sm
+                leading-7
+                text-[#6B5D52]
+              "
+            >
+              📞 0981 815 219
+              <br />
+              🌐 tudencafe.com
+            </p>
+          </div>
+
+          <div
+            className="
+              mt-6
+              flex
+              gap-3
+            "
+          >
+            <a
+              href="https://facebook.com/cafetuden"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                flex-1
+
+                rounded-xl
+                border
+                border-[#DED4C8]
+
+                py-3
+
+                text-center
+                text-sm
+                font-medium
+
+                transition-all
+                duration-300
+
+                hover:border-[var(--primary)]
+                hover:text-[var(--primary)]
+              "
+            >
+              Facebook
+            </a>
+
+            <a
+              href="https://tudencafe.com"
+              className="
+                flex-1
+
+                rounded-xl
+                border
+                border-[#DED4C8]
+
+                py-3
+
+                text-center
+                text-sm
+                font-medium
+
+                transition-all
+                duration-300
+
+                hover:border-[var(--primary)]
+                hover:text-[var(--primary)]
+              "
+            >
+              Website
+            </a>
+          </div>
+
+          <p
+          className="
+            mt-6
+            text-center
+            text-xs
+            tracking-[0.15em]
+            text-[#9B8A79]
+          "
+        >
+
+            © 2026 Từ Đến Coffee
+          </p>
+        </div>
+      </aside>
+    </>
+  );
+}

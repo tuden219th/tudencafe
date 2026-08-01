@@ -23,21 +23,26 @@ const steps = [
 
 export default function Journey() {
   return (
-    <section id="journey" className="overflow-hidden bg-[#FFFCF8] py-20 md:py-28">
+    <section
+      id="journey"
+      className="overflow-hidden bg-[#FFFCF8] py-20 md:py-28"
+    >
       <div className="mx-auto max-w-6xl px-5 md:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="uppercase tracking-[0.35em] text-xs font-medium text-[var(--primary)]">
+          <p className="text-xs font-medium uppercase tracking-[0.35em] text-[var(--primary)]">
             Bốn nhịp ở Từ Đến
           </p>
 
           <h2 className="mt-4 font-[var(--font-playfair)] text-4xl leading-[1.05] md:text-5xl">
             Một ly cà phê,
-            <br className="hidden md:block" /> một hành trình nhỏ.
+            <br className="hidden md:block" />
+            {" "}
+            một hành trình nhỏ.
           </h2>
 
           <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-[#3B2416]/70 md:text-base">
-            Có những ngày ta không cần một điều gì quá lớn — chỉ cần một nơi để dừng,
-            nạp lại năng lượng và đi tiếp.
+            Có những ngày ta không cần một điều gì quá lớn — chỉ cần một nơi để
+            dừng, nạp lại năng lượng và đi tiếp.
           </p>
         </div>
 
@@ -60,9 +65,11 @@ export default function Journey() {
                 <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-[#3B2416]/45 md:hidden">
                   ---------------------
                 </p>
+
                 <h3 className="font-[var(--font-playfair)] text-[1.7rem] leading-tight md:text-2xl">
                   {step.title}
                 </h3>
+
                 <p className="mt-2 max-w-sm text-[15px] leading-7 text-[#3B2416]/70 md:mx-auto">
                   {step.text}
                 </p>
@@ -71,15 +78,13 @@ export default function Journey() {
           ))}
         </ol>
 
-        <p className="mt-6 flex flex-col italic text-[var(--primary)] text-xl">
+        <p className="mt-6 flex flex-col text-xl italic text-[var(--primary)]">
           <span className="text-center">
             From where you are,
           </span>
 
           <span className="self-end md:pr-10">
             To where you want to be.
-          </span>
-        </p>
           </span>
         </p>
       </div>
