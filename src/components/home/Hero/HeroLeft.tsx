@@ -1,5 +1,5 @@
 import Heading from "@/components/ui/Heading";
-import { TextFlippingBoardDemo } from "@/components/ui/TextFlippingBoardDemo";
+import TextFlippingBoardDemo from "@/components/ui/TextFlippingBoardDemo";
 
 import HeroCTA from "./HeroCTA";
 
