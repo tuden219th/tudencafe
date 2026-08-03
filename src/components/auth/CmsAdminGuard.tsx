@@ -1,85 +1,92 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect,useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { supabase } from "@/lib/supabase/client";
 
 
 export default function CmsAdminGuard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
-  const [password, setPassword] = useState("");
-  const [allow, setAllow] = useState(false);
+ children,
+}:{
+ children:React.ReactNode;
+}){
 
 
-  function login() {
+const router = useRouter();
 
-    if (password === "tudencms2026") {
-      setAllow(true);
-    } else {
-      alert("Sai mật khẩu");
-    }
-
-  }
+const [loading,setLoading]=useState(true);
 
 
-  if (allow) {
-    return children;
-  }
+
+useEffect(()=>{
 
 
-  return (
-    <div className="
-      flex
-      min-h-screen
-      items-center
-      justify-center
-      bg-[#f7f8fa]
-    ">
-
-      <div className="
-        rounded-2xl
-        bg-white
-        p-8
-        shadow
-      ">
-
-        <h1 className="mb-5 text-xl font-bold">
-          Từ Đến CMS Admin
-        </h1>
+async function check(){
 
 
-        <input
-          type="password"
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
-          placeholder="Mật khẩu CMS"
-          className="
-            mb-4
-            rounded-lg
-            border
-            p-3
-          "
-        />
+const {
+data:{
+user
+}
+}=await supabase.auth.getUser();
 
 
-        <button
-          onClick={login}
-          className="
-            rounded-full
-            bg-[#294A3A]
-            px-6
-            py-2
-            text-white
-          "
-        >
-          Đăng nhập
-        </button>
+
+if(!user){
+
+router.push("/admin/cms/login");
+return;
+
+}
 
 
-      </div>
 
-    </div>
-  );
+const {
+data:profile
+}=await supabase
+.from("profiles")
+.select("role")
+.eq("id",user.id)
+.single();
+
+
+
+if(profile?.role !== "admin"){
+
+router.push("/admin/cms/login");
+return;
+
+}
+
+
+
+setLoading(false);
+
+
+}
+
+
+check();
+
+
+},[]);
+
+
+
+if(loading){
+
+return (
+<div className="p-10">
+Loading...
+</div>
+)
+
+}
+
+
+
+return children;
+
+
 }
