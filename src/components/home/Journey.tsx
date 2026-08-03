@@ -92,7 +92,7 @@ export default function Journey() {
           "
         >
 
-          {/* Timeline line */}
+          {/* Mobile timeline line */}
           <motion.span
             aria-hidden="true"
             initial={{ scaleY: 0 }}
@@ -111,13 +111,32 @@ export default function Journey() {
               origin-top
               bg-[#C96A2B]/25
 
-              md:
-              bottom-auto
-              md:left-[12.5%]
-              md:right-[12.5%]
-              md:top-7
-              md:h-px
-              md:w-auto
+              md:hidden
+            "
+          />
+
+
+          {/* Desktop timeline line */}
+          <motion.span
+            aria-hidden="true"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
+            className="
+              absolute
+              left-[12.5%]
+              right-[12.5%]
+              top-7
+              hidden
+              h-px
+              origin-left
+              bg-[#C96A2B]/25
+
+              md:block
             "
           />
 
@@ -201,7 +220,7 @@ export default function Journey() {
                 className="
                   pt-1
 
-                  md:mt-8
+                  md:mt-10
                   md:text-center
                 "
               >
