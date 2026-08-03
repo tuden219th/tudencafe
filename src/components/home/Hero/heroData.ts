@@ -1,18 +1,21 @@
 const features = [
   {
     icon: "☕",
-    title: "Cà phê thủ công",
-    subtitle: "Pha bằng sự tỉ mỉ",
+    title: "Một ly cà phê",
+    subtitle:
+      "Được chọn lọc và pha chế cẩn thận để bắt đầu một ngày mới.",
   },
   {
-    icon: "🌿",
-    title: "Không gian chữa lành",
-    subtitle: "Để nghỉ ngơi và suy ngẫm",
+    icon: "💬",
+    title: "Một cuộc trò chuyện",
+    subtitle:
+      "Nơi những ý tưởng, câu chuyện và kết nối được bắt đầu.",
   },
   {
-    icon: "🪶",
-    title: "Mỗi ly là một hành trình",
-    subtitle: "From where you are → To where you want to be",
+    icon: "🚶",
+    title: "Một hành trình",
+    subtitle:
+      "Từ nơi bạn đang đứng đến nơi bạn muốn đến.",
   },
 ];
 

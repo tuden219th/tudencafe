@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import Drawer from "@/components/layout/Drawer";
 
 const menu = [
@@ -22,13 +23,18 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
 
     onScroll();
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () =>
+      window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -45,20 +51,16 @@ export default function Navbar() {
 
           ${
             scrolled
-              ? "bg-[#F8F5F1]/90 backdrop-blur-xl border-b border-[#3B2416]/10 shadow-lg"
+              ? "bg-[var(--surface-glass)] backdrop-blur-xl border-b border-[var(--border)] shadow-[var(--shadow)]"
               : "bg-transparent"
           }
         `}
       >
-        <div
+        <Container
           className={`
-            mx-auto
             flex
-            max-w-7xl
             items-center
             justify-between
-
-            px-6
 
             transition-all
             duration-500
@@ -69,7 +71,6 @@ export default function Navbar() {
           {/* Left */}
 
           <div className="flex items-center gap-4">
-
             {/* Drawer Button */}
 
             <button
@@ -85,17 +86,16 @@ export default function Navbar() {
                 rounded-full
 
                 border
-                border-[#DED4C8]
+                border-[var(--border)]
 
-                bg-white/80
+                bg-[var(--surface)]
 
                 backdrop-blur
 
-                transition-all
+                transition-colors
                 duration-300
 
                 hover:border-[var(--primary)]
-                hover:bg-white
               "
             >
               <svg
@@ -117,13 +117,13 @@ export default function Navbar() {
 
             <Link
               href="/"
+              aria-label="Từ Đến Coffee"
               className="
                 group
                 flex
                 items-center
                 gap-4
               "
-              aria-label="Từ Đến Coffee"
             >
               <Image
                 src="/images/logo.png"
@@ -133,7 +133,7 @@ export default function Navbar() {
                 priority
                 className="
                   rounded-full
-                  transition-all
+                  transition-transform
                   duration-500
                   group-hover:scale-105
                 "
@@ -158,13 +158,14 @@ export default function Navbar() {
                     font-medium
                     uppercase
                     tracking-[0.24em]
-                    text-[#8B7765]
+                    text-[var(--text-light)]
+
                     transition-all
                     duration-300
 
                     ${
                       scrolled
-                        ? "opacity-0 h-0 overflow-hidden"
+                        ? "h-0 overflow-hidden opacity-0"
                         : ""
                     }
                   `}
@@ -173,89 +174,88 @@ export default function Navbar() {
                 </p>
               </div>
             </Link>
-
           </div>
-                  {/* Desktop */}
 
-        <nav
-          className="
-            hidden
-            items-center
-            gap-8
+          {/* Desktop */}
 
-            lg:flex
-          "
-        >
-          {menu.map((item) => {
-            const active =
-              item.href.startsWith("/") &&
-              pathname === item.href;
+          <nav
+            className="
+              hidden
+              items-center
+              gap-8
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`
-                  group
-                  relative
+              lg:flex
+            "
+          >
+            {menu.map((item) => {
+              const active =
+                item.href.startsWith("/") &&
+                pathname === item.href;
 
-                  text-sm
-                  font-medium
-
-                  tracking-[0.08em]
-
-                  transition-colors
-                  duration-300
-
-                  ${
-                    active
-                      ? "text-[var(--primary)]"
-                      : "text-[#3B2416] hover:text-[var(--primary)]"
-                  }
-                `}
-              >
-                {item.name}
-
-                <span
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={`
-                    absolute
-                    -bottom-2
-                    left-1/2
+                    group
+                    relative
 
-                    h-0.5
+                    text-sm
+                    font-medium
 
-                    bg-[var(--primary)]
+                    tracking-[0.08em]
 
-                    transition-all
+                    transition-colors
                     duration-300
 
                     ${
                       active
-                        ? "w-full -translate-x-1/2"
-                        : "w-0 group-hover:w-full -translate-x-1/2"
+                        ? "text-[var(--primary)]"
+                        : "text-[var(--foreground)] hover:text-[var(--primary)]"
                     }
                   `}
-                />
-              </Link>
-            );
-          })}
+                >
+                  {item.name}
 
-          <Button
-            href="#assistant"
-            className="ml-3"
-          >
-            Trò chuyện AI
-          </Button>
-        </nav>
+                  <span
+                    className={`
+                      absolute
+                      -bottom-2
+                      left-1/2
 
-      </div>
-    </header>
+                      h-0.5
 
-    <Drawer
-      open={drawerOpen}
-      onClose={() => setDrawerOpen(false)}
-    />
+                      bg-[var(--primary)]
+
+                      transition-all
+                      duration-300
+
+                      ${
+                        active
+                          ? "w-full -translate-x-1/2"
+                          : "w-0 -translate-x-1/2 group-hover:w-full"
+                      }
+                    `}
+                  />
+                </Link>
+              );
+            })}
+
+            <Button
+              href="#assistant"
+              className="ml-3"
+            >
+              Trò chuyện AI
+            </Button>
+          </nav>
+        </Container>
+      </header>
+
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      />
     </>
   );
 }

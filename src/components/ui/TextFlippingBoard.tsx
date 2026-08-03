@@ -1,36 +1,106 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 type TextFlippingBoardProps = {
   text: string;
+  className?: string;
 };
 
-export function TextFlippingBoard({
+const CHARSET =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+export default function TextFlippingBoard({
   text,
+  className = "",
 }: TextFlippingBoardProps) {
+  const [display, setDisplay] = useState(text);
+
+  const frame = useRef(0);
+  const animationRef = useRef<number | null>(null);
+  const lastTime = useRef(0);
+
+  useEffect(() => {
+    frame.current = 0;
+    setDisplay(text);
+
+    const speed = 40; // ms
+
+    const animate = (time: number) => {
+      if (time - lastTime.current >= speed) {
+        lastTime.current = time;
+
+        frame.current++;
+
+        setDisplay(() => {
+          return text
+            .split("")
+            .map((char, index) => {
+              if (char === " " || char === "\n") {
+                return char;
+              }
+
+              if (index < frame.current) {
+                return char;
+              }
+
+              return CHARSET[
+                Math.floor(Math.random() * CHARSET.length)
+              ];
+            })
+            .join("");
+        });
+
+        if (frame.current <= text.length) {
+          animationRef.current =
+            requestAnimationFrame(animate);
+        } else {
+          setDisplay(text);
+        }
+      } else {
+        animationRef.current =
+          requestAnimationFrame(animate);
+      }
+    };
+
+    animationRef.current =
+      requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [text]);
+
   return (
     <div
-      className="
-        rounded-xl
+      className={`
+        rounded-[var(--radius)]
         border
-        border-black/10
+        border-[var(--border)]
+        bg-[var(--surface)]
+        shadow-[var(--shadow)]
 
-        bg-white/60
+        p-6
 
-        px-6
-        py-4
-
+        font-mono
         text-sm
         font-medium
         leading-7
+        tracking-wider
 
-        tracking-wide
+        whitespace-pre-line
 
         text-[var(--foreground)]
 
-        whitespace-pre-line
-      "
+        transition-all
+        duration-300
+
+        ${className}
+      `}
     >
-      {text}
+      {display}
     </div>
   );
 }

@@ -9,6 +9,15 @@
   --secondary: #294A3A;
 
   --text: #3B2416;
+  --text-light: #8B7765;
+
+  /* Surface */
+  --surface: #FFFFFF;
+  --surface-soft: #F8F5F1;
+  --surface-glass: rgba(248, 245, 241, 0.9);
+
+  /* Border */
+  --border: rgba(59, 36, 22, 0.12);
 
   /* Layout */
   --container: 1280px;
@@ -47,12 +56,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-
 /* Logo font */
 .logo-font {
   font-family: var(--font-logo), cursive;
 }
-
 
 /* Headings */
 h1,
@@ -65,7 +72,6 @@ h6 {
   font-weight: 700;
 }
 
-
 h1 {
   letter-spacing: -0.04em;
 }
@@ -74,18 +80,16 @@ h2 {
   letter-spacing: -0.03em;
 }
 
-
 a {
   color: inherit;
   text-decoration: none;
 }
 
-
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
-
 
 button,
 input,
@@ -93,23 +97,23 @@ textarea {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
 
 ::selection {
   background: var(--primary);
   color: white;
 }
 
-
 .container {
   width: min(var(--container), 92%);
   margin-inline: auto;
 }
 
-
 section {
   padding: 120px 0;
 }
-
 
 p {
   line-height: 1.8;

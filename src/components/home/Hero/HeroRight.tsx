@@ -4,8 +4,12 @@ export default function HeroRight() {
   return (
     <div
       className="
+        mt-12
         flex
-        justify-end
+        justify-center
+
+        lg:mt-0
+        lg:justify-end
       "
     >
       <Image
@@ -15,12 +19,23 @@ export default function HeroRight() {
         height={920}
         priority
         className="
-          h-[720px]
-          w-auto
+          h-auto
+          w-[92%]
+          max-w-[420px]
 
-          rounded-xl
+          lg:w-full
+          lg:max-w-[620px]
 
-          object-cover
+          rounded-[var(--radius)]
+
+          object-contain
+
+          shadow-[var(--shadow)]
+
+          transition-transform
+          duration-500
+
+          hover:scale-[1.01]
         "
       />
     </div>

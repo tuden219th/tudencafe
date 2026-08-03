@@ -1,3 +1,4 @@
+import Card from "@/components/ui/Card";
 import features from "./heroData";
 
 export default function HeroFeatures() {
@@ -5,42 +6,73 @@ export default function HeroFeatures() {
     <div
       className="
         mt-10
-        flex
-        flex-wrap
-        gap-3
+        grid
+        gap-4
+
+        sm:grid-cols-2
+        lg:grid-cols-3
       "
     >
       {features.map((item) => (
-        <div
+        <Card
           key={item.title}
           className="
             flex
-            items-center
-            gap-2
+            items-start
+            gap-4
 
-            rounded-full
-            border
-            border-[#DED4C8]
+            p-5
 
-            bg-white/70
+            transition-transform
+            duration-300
 
-            px-4
-            py-2
-
-            backdrop-blur
+            hover:-translate-y-1
           "
         >
-          <span>{item.icon}</span>
-
-          <span
+          <div
             className="
-              text-sm
-              font-medium
+              flex
+              h-12
+              w-12
+              shrink-0
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[var(--surface-soft)]
+
+              text-2xl
             "
           >
-            {item.title}
-          </span>
-        </div>
+            {item.icon}
+          </div>
+
+          <div>
+            <h3
+              className="
+                text-base
+                font-semibold
+                text-[var(--foreground)]
+              "
+            >
+              {item.title}
+            </h3>
+
+            <p
+              className="
+                mt-2
+
+                text-sm
+                leading-6
+
+                text-[var(--text-light)]
+              "
+            >
+              {item.subtitle}
+            </p>
+          </div>
+        </Card>
       ))}
     </div>
   );

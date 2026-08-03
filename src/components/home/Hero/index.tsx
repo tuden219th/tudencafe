@@ -1,9 +1,12 @@
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+
 import HeroLeft from "./HeroLeft";
 import HeroRight from "./HeroRight";
 
 export default function Hero() {
   return (
-    <section
+    <Section
       id="home"
       className="
         relative
@@ -34,7 +37,7 @@ export default function Hero() {
         "
       />
 
-      <div className="container">
+      <Container>
         <div
           className="
             grid
@@ -47,7 +50,7 @@ export default function Hero() {
 
           <HeroRight />
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

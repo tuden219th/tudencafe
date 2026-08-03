@@ -1,28 +1,41 @@
 import Link from "next/link";
+
 import Button from "@/components/ui/Button";
 
 export default function HeroCTA() {
   return (
     <div
       className="
-        mt-12
+        mt-10
+
         flex
-        items-center
-        gap-5
+        flex-col
+        items-start
+        gap-4
+
+        sm:flex-row
+        sm:items-center
+        sm:gap-5
       "
     >
       <Button href="/coffee">
-        Chọn một ly cà phê →
+        Chọn một ly cà phê
       </Button>
 
       <Link
         href="#story"
         className="
+          inline-flex
+          items-center
+
+          py-2
+
           text-[15px]
           font-medium
+
           text-[var(--foreground)]
 
-          transition-all
+          transition-colors
           duration-300
 
           hover:text-[var(--primary)]
@@ -30,7 +43,7 @@ export default function HeroCTA() {
           underline-offset-8
         "
       >
-        Câu chuyện
+        Câu chuyện của Từ Đến
       </Link>
     </div>
   );

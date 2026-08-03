@@ -1,39 +1,44 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { TextFlippingBoard } from "@/components/ui/TextFlippingBoard";
+import { useEffect, useState } from "react";
+import TextFlippingBoard from "@/components/ui/TextFlippingBoard";
 
-const MESSAGES: string[] = [
+const INTERVAL = 6000;
+
+const MESSAGES = [
   "TỪ NƠI BẠN ĐANG ĐỨNG\nĐẾN NƠI BẠN MUỐN ĐI",
+
   "MỘT LY CÀ PHÊ\nMỘT CÂU CHUYỆN",
+
   "CHẬM LẠI MỘT CHÚT\nĐỂ CẢM NHẬN NHIỀU HƠN",
+
   "MỖI NGÀY MỘT BƯỚC NHỎ\nMỖI HÀNH TRÌNH MỘT Ý NGHĨA",
+
   "HÔM NAY BẠN Ở ĐÂU?\nNGÀY MAI BẠN MUỐN ĐẾN ĐÂU?",
 ];
 
-export function TextFlippingBoardDemo() {
-  const [msgIdx, setMsgIdx] = useState(0);
+type TextFlippingBoardDemoProps = {
+  className?: string;
+  interval?: number;
+};
 
-  const next = useCallback(() => {
-    setMsgIdx((i) => (i + 1) % MESSAGES.length);
-  }, []);
+export default function TextFlippingBoardDemo({
+  className = "",
+  interval = INTERVAL,
+}: TextFlippingBoardDemoProps) {
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(next, 6000);
+    const id = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % MESSAGES.length);
+    }, interval);
 
-    return () => clearInterval(id);
-  }, [next]);
+    return () => window.clearInterval(id);
+  }, [interval]);
 
   return (
-    <div
-      className="
-        mt-8
-        flex
-        w-full
-        justify-start
-      "
-    >
-      <TextFlippingBoard text={MESSAGES[msgIdx]} />
+    <div className={className}>
+      <TextFlippingBoard text={MESSAGES[index]} />
     </div>
   );
 }
