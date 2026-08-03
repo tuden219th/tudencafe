@@ -7,20 +7,43 @@ import TechnologyFooter from "@/components/technology/TechnologyFooter";
 
 export default function CongNghePage() {
   return (
-    <main className="min-h-screen bg-[#f7f8fa]">
+    <main
+      className="
+        min-h-screen
+        w-full
+        overflow-x-hidden
+        bg-[#f7f8fa]
+      "
+    >
 
       <Navbar />
 
-      <div className="mx-auto max-w-[1320px] px-5 py-8">
+
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-[1320px]
+          px-4
+          py-6
+          sm:px-5
+          lg:px-10
+        "
+      >
 
         <Stories />
+
         <Hero />
+
         <CategoryNav />
+
         <LatestArticles />
+
         <TechnologyFooter />
 
-        
+
       </div>
+
 
     </main>
   );
