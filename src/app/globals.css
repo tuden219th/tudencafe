@@ -29,20 +29,24 @@
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+
 * {
   margin: 0;
   padding: 0;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
+
 
 body {
   background: var(--background);
@@ -56,10 +60,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 /* Logo font */
 .logo-font {
   font-family: var(--font-logo), cursive;
 }
+
 
 /* Headings */
 h1,
@@ -72,18 +78,22 @@ h6 {
   font-weight: 700;
 }
 
+
 h1 {
   letter-spacing: -0.04em;
 }
+
 
 h2 {
   letter-spacing: -0.03em;
 }
 
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
 
 img {
   display: block;
@@ -91,30 +101,56 @@ img {
   height: auto;
 }
 
+
 button,
 input,
 textarea {
   font: inherit;
 }
 
+
 button {
   cursor: pointer;
 }
+
 
 ::selection {
   background: var(--primary);
   color: white;
 }
 
+
+/* Container */
 .container {
   width: min(var(--container), 92%);
   margin-inline: auto;
 }
 
+
+/* Default section spacing */
 section {
   padding: 120px 0;
 }
 
+
 p {
   line-height: 1.8;
+}
+
+
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

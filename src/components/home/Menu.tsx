@@ -26,11 +26,11 @@ const menuStops = [
     title: "Tea & Food",
     description: "Những khoảnh khắc nhẹ nhàng",
     items: [
-      "Trà",
-      "Fruit Tea",
-      "Bánh ngọt",
+      "Trà, Sữa, Coldbrew",
+      "Nước hoa quả",
+      "Đồ ăn nhẹ",
     ],
-    price: "",
+    price: "20K+",
   },
 ];
 
