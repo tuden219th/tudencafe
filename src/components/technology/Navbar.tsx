@@ -7,8 +7,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#eceff3] bg-white">
       <div className="mx-auto flex h-[60px] md:h-[68px] max-w-[1320px] items-center justify-between px-4 md:px-5">
+
         {/* Left */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 md:gap-10">
+
           {/* Logo */}
           <Link href="/congnghe" className="shrink-0">
             <div className="leading-none">
@@ -22,8 +24,10 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Search */}
-          <div className="hidden lg:flex h-[44px] w-[360px] items-center rounded-full bg-[#f4f6f9] px-4 transition-colors focus-within:bg-[#eef2f6]">
+
+          {/* Desktop Search */}
+          <div className="hidden md:flex h-[44px] w-[420px] items-center rounded-full bg-[#f4f6f9] px-5 transition-colors focus-within:bg-[#eef2f6]">
+
             <Search
               size={18}
               strokeWidth={2}
@@ -33,13 +37,50 @@ export default function Navbar() {
             <input
               type="text"
               placeholder="Tìm bài viết, sản phẩm..."
-              className="ml-3 w-full bg-transparent text-[14px] text-[#202124] outline-none placeholder:text-[#8c939d]"
+              className="
+                ml-3
+                w-full
+                bg-transparent
+                text-[14px]
+                text-[#202124]
+                outline-none
+                placeholder:text-[#8c939d]
+              "
             />
+
           </div>
+
         </div>
+
 
         {/* Right */}
         <div className="flex items-center gap-3">
+
+
+          {/* Mobile Search */}
+          <button
+            className="
+              flex
+              h-[42px]
+              w-[42px]
+              items-center
+              justify-center
+              rounded-full
+              bg-[#f4f6f9]
+              transition
+              hover:bg-[#e9edf2]
+              md:hidden
+            "
+          >
+            <Search
+              size={20}
+              strokeWidth={2}
+              className="text-[#4b5563]"
+            />
+          </button>
+
+
+          {/* User */}
           <button
             className="
               flex
@@ -60,6 +101,8 @@ export default function Navbar() {
             />
           </button>
 
+
+          {/* Menu */}
           <button
             className="
               flex
@@ -76,10 +119,12 @@ export default function Navbar() {
             <Menu
               size={22}
               strokeWidth={2.2}
-              className="text-[#4b5563}"
+              className="text-[#4b5563]"
             />
           </button>
+
         </div>
+
       </div>
     </header>
   );

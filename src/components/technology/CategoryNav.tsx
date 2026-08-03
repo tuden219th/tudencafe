@@ -1,3 +1,5 @@
+"use client";
+
 export default function CategoryNav() {
   const categories = [
     "Tất cả",
@@ -13,45 +15,43 @@ export default function CategoryNav() {
   ];
 
   return (
-    <section className="mt-8">
+    <section className="mt-6">
 
       <div
         className="
           flex
-          items-center
           gap-3
           overflow-x-auto
-          rounded-xl
-          bg-white
-          border
-          border-[#e8e8e8]
-          px-5
-          py-4
+          pb-2
+          scrollbar-hide
         "
       >
 
-        {categories.map((item, index) => (
-          <button
-            key={item}
-            className={`
-              shrink-0
-              rounded-full
-              px-4
-              py-2
-              text-sm
-              font-medium
-              transition
+        {categories.map((item, index) => {
+          const active = index === 0;
 
-              ${
-                index === 0
-                  ? "bg-[#202124] text-white"
-                  : "bg-[#f1f3f4] text-[#444]"
-              }
-            `}
-          >
-            {item}
-          </button>
-        ))}
+          return (
+            <button
+              key={item}
+              className={`
+                shrink-0
+                rounded-full
+                px-5
+                py-2.5
+                text-sm
+                font-medium
+                transition
+                ${
+                  active
+                    ? "bg-[#202124] text-white"
+                    : "bg-white text-[#444] border border-[#e8e8e8] hover:bg-[#f5f6f7]"
+                }
+              `}
+            >
+              {item}
+            </button>
+          );
+        })}
 
       </div>
 
