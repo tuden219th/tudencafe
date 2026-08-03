@@ -4,8 +4,17 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/admin/", "/kitchen/", "/table/", "/api/"],
+
+      allow: [
+        "/",
+      ],
+
+      disallow: [
+        "/admin/",
+        "/api/",
+        "/kitchen/",
+        "/table/",
+      ],
     },
 
     sitemap:

@@ -35,6 +35,7 @@ export const organizationSchema = {
   ],
 };
 
+
 export const websiteSchema = {
   "@context": "https://schema.org",
 
@@ -51,6 +52,7 @@ export const websiteSchema = {
     name: "Từ Đến Cafe",
   },
 };
+
 
 export const cafeSchema = {
   "@context": "https://schema.org",
@@ -71,21 +73,65 @@ export const cafeSchema = {
 
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+
     opens: "07:00",
+
     closes: "22:00",
   },
 
   address: {
     "@type": "PostalAddress",
+
     streetAddress: "219 Tô Hiệu",
+
     addressLocality: "Cầu Giấy",
+
     addressRegion: "Hà Nội",
+
     postalCode: "100000",
+
     addressCountry: "VN",
   },
 };
 
+
+// Schema riêng cho trang /congnghe
+export const technologySchema = {
+  "@context": "https://schema.org",
+
+  "@type": "CollectionPage",
+
+  name: "Công nghệ | Từ Đến",
+
+  description:
+    "Cập nhật kiến thức công nghệ, AI, thiết bị số và những xu hướng công nghệ mới.",
+
+  url:
+    "https://tudencafe.com/congnghe",
+
+  isPartOf: {
+    "@type": "WebSite",
+
+    name:
+      "Từ Đến Cafe",
+
+    url:
+      "https://tudencafe.com",
+  },
+};
+
+
+// Schema global dùng ở app/layout.tsx
 export const schemas = [
   organizationSchema,
   websiteSchema,

@@ -1,5 +1,3 @@
-"use client";
-
 export default function CategoryNav() {
   const categories = [
     "Tất cả",

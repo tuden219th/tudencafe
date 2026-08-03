@@ -1,5 +1,3 @@
-"use client";
-
 const stories = [
   {
     id: 1,
