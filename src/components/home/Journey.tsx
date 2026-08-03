@@ -32,7 +32,7 @@ export default function Journey() {
       id="journey"
       className="overflow-hidden bg-[#FFFCF8] py-20 md:py-28"
     >
-      <div className="mx-auto max-w-7xl px-5 md:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col items-center px-5 md:px-6">
 
         <div className="mx-auto max-w-2xl text-center">
 
@@ -82,13 +82,13 @@ export default function Journey() {
             relative
             mx-auto
             mt-12
-            max-w-6xl
+            w-full
+            max-w-5xl
 
             md:mt-20
             md:grid
             md:grid-cols-4
-            md:gap-10
-            md:justify-items-center
+            md:gap-12
           "
         >
 
@@ -143,18 +143,19 @@ export default function Journey() {
                 duration: 0.6,
                 delay: index * 0.15,
               }}
-              className="
-                group
-                relative
-                w-full
-                grid
-                grid-cols-[4.5rem_1fr]
-                gap-4
-                py-6
+            className="
+              group
+              relative
+              w-full
 
-                md:block
-                md:p-0
-              "
+              grid
+              grid-cols-[4.5rem_1fr]
+              gap-4
+              py-6
+
+              md:block
+              md:p-0
+            "
             >
 
 
