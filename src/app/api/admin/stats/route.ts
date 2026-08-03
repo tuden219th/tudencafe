@@ -18,10 +18,13 @@ export async function GET() {
       online: 0,
       health: "OK",
     });
-  } catch (e: any) {
+  } catch (e: unknown) {
     return Response.json(
       {
-        error: e.message,
+        error:
+          e instanceof Error
+            ? e.message
+            : "Có lỗi xảy ra",
       },
       { status: 500 }
     );

@@ -9,13 +9,14 @@ type Props = {
 export default function ChatMessage({ message }: Props) {
   const isUser = message.role === "user";
 
-  // Render markdown đơn giản
   const formatMessage = (text: string) => {
     return text.split("\n").map((line, index) => (
-      <p key={index}>
+      <p key={index} className={index > 0 ? "mt-2" : ""}>
         {line.split("**").map((part, i) =>
           i % 2 === 1 ? (
-            <strong key={i}>{part}</strong>
+            <strong key={i} className="font-semibold">
+              {part}
+            </strong>
           ) : (
             part
           )
@@ -24,22 +25,47 @@ export default function ChatMessage({ message }: Props) {
     ));
   };
 
-
   return (
     <div
       className={`
         flex
         w-full
+        items-end
+        gap-2
         ${isUser ? "justify-end" : "justify-start"}
       `}
     >
+      {!isUser && (
+        <div
+          className="
+            mb-1
+            flex
+            h-8
+            w-8
+            shrink-0
+            items-center
+            justify-center
+            rounded-full
+            bg-gradient-to-br
+            from-orange-500
+            to-orange-600
+            text-sm
+            text-white
+          "
+        >
+          ☕
+        </div>
+      )}
 
       <div
         className={`
-          max-w-[85%]
+          max-w-[78%]
+          lg:max-w-[72%]
 
-          px-6
-          py-4
+          break-words
+
+          px-5
+          py-3.5
 
           text-[15px]
           leading-7
@@ -51,39 +77,27 @@ export default function ChatMessage({ message }: Props) {
           fade-in
           slide-in-from-bottom-2
 
-          break-words
-
           ${
             isUser
               ? `
                 rounded-2xl
                 rounded-br-md
-
-                bg-orange-500
-
+                bg-[var(--primary)]
                 text-white
-
-                shadow-md
               `
               : `
                 rounded-2xl
                 rounded-bl-md
-
                 border
-                border-[#EAD8C2]
-
+                border-orange-100
                 bg-white
-
                 text-[#3B2416]
-
-                shadow-sm
               `
           }
         `}
       >
         {formatMessage(message.content)}
       </div>
-
     </div>
   );
 }

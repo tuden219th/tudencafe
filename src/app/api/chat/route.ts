@@ -53,12 +53,15 @@ export async function POST(req: Request) {
     return Response.json({
       reply,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
     return Response.json(
       {
-        error: error?.message || "Có lỗi xảy ra",
+        error:
+          error instanceof Error
+            ? error.message
+            : "Có lỗi xảy ra",
       },
       { status: 500 }
     );

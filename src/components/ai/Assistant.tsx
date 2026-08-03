@@ -10,20 +10,41 @@ import { Message } from "./types";
 export default function Assistant() {
   const [open, setOpen] = useState(false);
 
-  const [messages, setMessages] = useState<Message[]>([]);
-
   const [loading, setLoading] = useState(false);
+
+  // Welcome message hiển thị ngay khi mở AI
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 1,
+      role: "assistant",
+      content: `👋 Xin chào!
+
+Mình là AI Barista của Từ Đến.
+
+Mình có thể giúp bạn:
+
+☕ Tư vấn đồ uống
+📖 Chia sẻ kiến thức cà phê
+📍 Địa chỉ & giờ mở cửa
+💼 Không gian làm việc, wifi
+💬 Giải đáp mọi thắc mắc về Từ Đến
+
+Bạn muốn khám phá điều gì hôm nay?`,
+    },
+  ]);
 
   // Mỗi khách sẽ có 1 Session ID riêng
   const sessionId = useRef(uuid());
 
   async function sendMessage(text: string) {
-    if (!text.trim()) return;
+    const message = text.trim();
+
+    if (!message || loading) return;
 
     const userMessage: Message = {
       id: Date.now(),
       role: "user",
-      content: text,
+      content: message,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -37,7 +58,7 @@ export default function Assistant() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: text,
+          message,
           sessionId: sessionId.current,
         }),
       });
@@ -54,13 +75,14 @@ export default function Assistant() {
       };
 
       setMessages((prev) => [...prev, aiMessage]);
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
           role: "assistant",
-          content: "Không thể kết nối tới AI.",
+          content:
+            "⚠️ Không thể kết nối tới AI. Vui lòng thử lại sau ít phút.",
         },
       ]);
     } finally {

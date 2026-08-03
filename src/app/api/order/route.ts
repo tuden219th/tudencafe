@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
+type OrderItem = {
+  name: string;
+  quantity: number;
+  price: number;
+};
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { tableNumber, items, total } = body;
+    const { tableNumber, items, total } = body as {
+      tableNumber: number | string;
+      items: OrderItem[];
+      total: number;
+    };
 
     const { data: order, error } = await supabase
       .from("orders")
@@ -22,7 +32,7 @@ export async function POST(request: Request) {
       throw error;
     }
 
-    const orderItems = items.map((item: any) => ({
+    const orderItems = items.map((item) => ({
       order_id: order.id,
       product_name: item.name,
       quantity: item.quantity,
@@ -42,16 +52,18 @@ export async function POST(request: Request) {
       success: true,
       orderId: order.id,
     });
-
-  } catch (err: any) {
-
+  } catch (err: unknown) {
     console.error("API ERROR:", err);
 
     return NextResponse.json(
       {
         success: false,
-        message: err?.message,
-        details: err,
+        message:
+          err instanceof Error
+            ? err.message
+            : "Có lỗi xảy ra",
+        details:
+          err instanceof Error ? undefined : err,
       },
       {
         status: 500,
