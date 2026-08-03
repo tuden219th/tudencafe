@@ -78,15 +78,16 @@ export default function Journey() {
           ))}
         </ol>
 
-        <p className="mt-6 flex flex-col text-xl italic text-[var(--primary)]">
-          <span className="text-center">
-            From where you are,
-          </span>
+      <p className="mt-6 flex flex-col items-center text-xl italic text-[var(--primary)]">
+        <span>
+          From where you are,
+        </span>
 
-          <span className="self-end md:pr-10">
-            To where you want to be.
-          </span>
-        </p>
+        <span className="translate-x-4">
+          To where you want to be.
+        </span>
+      </p>
+      
       </div>
     </section>
   );

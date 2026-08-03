@@ -86,7 +86,7 @@ export default function Footer() {
             <br />
             219 Tô Hiệu, Nghĩa Đô, Hà Nội
             <br />
-            (Trước đây thuộc Quận Cầu Giấy)
+            (Trước đây thuộc phường Dịch Vọng, Quận Cầu Giấy)
 
           </p>
 
