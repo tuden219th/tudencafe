@@ -4,8 +4,10 @@ import Story from "@/components/home/Story";
 import Journey from "@/components/home/Journey";
 import CoreValues from "@/components/home/CoreValues";
 import Menu from "@/components/home/Menu";
+import Space from "@/components/home/Space";
 import Footer from "@/components/layout/Footer";
 import Assistant from "@/components/ai/Assistant";
+
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
       <Journey />
       <CoreValues />
       <Menu />
+      <Space />
       <Footer />
       <Assistant />
     </main>
