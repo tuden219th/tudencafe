@@ -15,14 +15,14 @@ export default function CmsAdminGuard({
 
 const router = useRouter();
 
-const [loading,setLoading]=useState(true);
+const [loading,setLoading] = useState(true);
 
 
 
 useEffect(()=>{
 
 
-async function check(){
+async function checkAdmin(){
 
 
 const {
@@ -67,7 +67,7 @@ setLoading(false);
 }
 
 
-check();
+checkAdmin();
 
 
 },[]);
@@ -83,7 +83,6 @@ Loading...
 )
 
 }
-
 
 
 return children;

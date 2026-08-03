@@ -12,15 +12,12 @@ export default function CmsLoginPage() {
 
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
-
   const [error,setError] = useState("");
-
 
 
   async function login(){
 
     setError("");
-
 
     const {
       error
@@ -54,7 +51,6 @@ export default function CmsLoginPage() {
       bg-[#f7f8fa]
     ">
 
-
       <div className="
         w-full
         max-w-md
@@ -74,7 +70,6 @@ export default function CmsLoginPage() {
         </h1>
 
 
-
         <input
           type="email"
           placeholder="Email"
@@ -90,10 +85,9 @@ export default function CmsLoginPage() {
         />
 
 
-
         <input
           type="password"
-          placeholder="Mật khẩu"
+          placeholder="Password"
           value={password}
           onChange={(e)=>setPassword(e.target.value)}
           className="
@@ -106,7 +100,6 @@ export default function CmsLoginPage() {
         />
 
 
-
         {
           error && (
             <p className="mb-4 text-red-500">
@@ -114,7 +107,6 @@ export default function CmsLoginPage() {
             </p>
           )
         }
-
 
 
         <button
@@ -132,7 +124,6 @@ export default function CmsLoginPage() {
 
 
       </div>
-
 
     </main>
 
