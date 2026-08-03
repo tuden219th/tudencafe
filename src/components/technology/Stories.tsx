@@ -35,8 +35,8 @@ const stories = [
 
 export default function Stories() {
   return (
-    <section className="py-8">
-      <h2 className="mb-5 text-[20px] font-bold text-[#202124]">
+    <section className="py-3 md:py-8">
+      <h2 className="mb-3 md:mb-5 text-[20px] font-bold text-[#202124]">
         Từ Đến Fact
       </h2>
 
