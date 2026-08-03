@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const spaceItems = [
   {
@@ -11,7 +11,7 @@ const spaceItems = [
   {
     title: "Làm việc & gặp gỡ",
     description:
-      "Bàn ghế thoải mái, wifi tốc độ cao, điều hòa dễ chịu cho những giờ làm việc và kết nối.",
+      "Bàn ghế thoải mái, wifi tốc độ cao miễn phí, điều hòa dễ chịu cho những giờ làm việc và kết nối.",
   },
   {
     title: "Trải nghiệm trọn vẹn",
@@ -20,17 +20,18 @@ const spaceItems = [
   },
 ];
 
-const reveal = {
+const reveal: Variants = {
   hidden: {
     opacity: 0,
     y: 24,
   },
+
   show: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.7,
-      ease: "easeOut",
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -95,7 +96,6 @@ export default function Space() {
         </motion.div>
 
 
-
         {/* Content */}
         <div
           className="
@@ -126,7 +126,7 @@ export default function Space() {
               "
             >
 
-              {/* Animated orange line */}
+              {/* Animated line */}
               <motion.div
                 initial={{
                   width: 0,
@@ -186,7 +186,6 @@ export default function Space() {
               >
                 {item.description}
               </p>
-
 
             </motion.article>
 
