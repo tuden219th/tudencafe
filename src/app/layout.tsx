@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat, Dancing_Script } from "next/font/google";
 import "./globals.css";
+
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { schemas } from "@/lib/schema";
 
 
@@ -143,9 +145,17 @@ export default function RootLayout({
           />
         ))}
 
-        <CartProvider>
-          {children}
-        </CartProvider>
+
+        <AuthProvider>
+
+          <CartProvider>
+
+            {children}
+
+          </CartProvider>
+
+        </AuthProvider>
+
 
       </body>
 
