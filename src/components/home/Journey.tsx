@@ -56,7 +56,7 @@ export default function Journey() {
           ">
             Một ly cà phê,
             <br className="hidden md:block" />
-            một hành trình nhỏ.
+             một hành trình nhỏ.
           </h2>
 
 

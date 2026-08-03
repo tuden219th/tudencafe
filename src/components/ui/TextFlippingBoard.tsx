@@ -24,7 +24,7 @@ export default function TextFlippingBoard({
     frame.current = 0;
     setDisplay(text);
 
-    const speed = 40; // ms
+    const speed = 40;
 
     const animate = (time: number) => {
       if (time - lastTime.current >= speed) {
@@ -76,19 +76,19 @@ export default function TextFlippingBoard({
   return (
     <div
       className={`
-        rounded-[var(--radius)]
-        border
-        border-[var(--border)]
-        bg-[var(--surface)]
-        shadow-[var(--shadow)]
+        bg-transparent
+        border-0
+        shadow-none
+        rounded-none
 
-        p-6
+        p-0
 
-        font-mono
-        text-sm
+        font-sans
+        text-xl
+        md:text-2xl
         font-medium
-        leading-7
-        tracking-wider
+        leading-relaxed
+        tracking-wide
 
         whitespace-pre-line
 
