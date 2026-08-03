@@ -1,33 +1,23 @@
 import type { Metadata } from "next";
 import { Montserrat, Dancing_Script } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { schemas } from "@/lib/schema";
 
-
 const montserrat = Montserrat({
   subsets: ["vietnamese"],
   variable: "--font-montserrat",
-  weight: [
-    "400",
-    "500",
-    "600",
-    "700",
-  ],
+  weight: ["400", "500", "600", "700"],
 });
-
 
 const dancing = Dancing_Script({
   subsets: ["vietnamese"],
   variable: "--font-logo",
-  weight: [
-    "600",
-    "700",
-  ],
+  weight: ["600", "700"],
 });
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tudencafe.com"),
@@ -66,8 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Từ Đến Coffee | From where you are, To where you want to be",
 
-    description:
-      "Một góc nhỏ cho những hành trình lớn.",
+    description: "Một góc nhỏ cho những hành trình lớn.",
 
     url: "https://tudencafe.com",
 
@@ -92,8 +81,7 @@ export const metadata: Metadata = {
 
     title: "Từ Đến Coffee",
 
-    description:
-      "Một góc nhỏ cho những hành trình lớn.",
+    description: "Một góc nhỏ cho những hành trình lớn.",
 
     images: ["/og-image.jpg"],
   },
@@ -118,23 +106,19 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="vi">
-
       <body
         className={`
           ${montserrat.variable}
           ${dancing.variable}
         `}
       >
-
         {schemas.map((schema, index) => (
           <script
             key={index}
@@ -145,20 +129,12 @@ export default function RootLayout({
           />
         ))}
 
-
         <AuthProvider>
-
-          <CartProvider>
-
-            {children}
-
-          </CartProvider>
-
+          <CartProvider>{children}</CartProvider>
         </AuthProvider>
 
-
+        <Analytics />
       </body>
-
     </html>
   );
 }
