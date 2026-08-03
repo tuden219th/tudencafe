@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const steps = [
   {
     number: "01",
@@ -30,7 +34,6 @@ export default function Journey() {
     >
       <div className="mx-auto max-w-7xl px-5 md:px-6">
 
-        {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
 
           <p className="
@@ -74,27 +77,38 @@ export default function Journey() {
 
 
 
-        {/* Timeline */}
-        <ol className="
-          relative
-          mx-auto
-          mt-12
-          max-w-6xl
-          md:mt-20
-          md:grid
-          md:grid-cols-4
-          md:gap-10
-        ">
+        <ol
+          className="
+            relative
+            mx-auto
+            mt-12
+            max-w-6xl
 
-          {/* Line */}
-          <span
+            md:mt-20
+            md:grid
+            md:grid-cols-4
+            md:gap-10
+            md:justify-items-center
+          "
+        >
+
+          {/* Timeline line */}
+          <motion.span
             aria-hidden="true"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
             className="
               absolute
-              bottom-10
-              left-9
+              left-[2.25rem]
               top-10
+              bottom-10
               w-px
+              origin-top
               bg-[#C96A2B]/25
 
               md:
@@ -108,31 +122,46 @@ export default function Journey() {
           />
 
 
+
           {steps.map((step, index) => (
 
-            <li
+            <motion.li
               key={step.number}
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+              }}
               className="
                 group
                 relative
+                w-full
                 grid
                 grid-cols-[4.5rem_1fr]
                 gap-4
                 py-6
 
-                animate-[fadeUp_0.7s_ease_forwards]
-                opacity-0
-
                 md:block
                 md:p-0
               "
-              style={{
-                animationDelay: `${index * 150}ms`,
-              }}
             >
 
-              {/* Circle */}
-              <span
+
+              <motion.span
+                whileHover={{
+                  scale: 1.12,
+                }}
                 className="
                   relative
                   z-10
@@ -141,6 +170,7 @@ export default function Journey() {
                   w-[4.5rem]
                   items-center
                   justify-center
+
                   rounded-full
                   border
                   border-[#C96A2B]/25
@@ -150,10 +180,9 @@ export default function Journey() {
                   text-xl
                   text-[var(--primary)]
 
-                  transition-all
-                  duration-300
+                  transition-shadow
 
-                  group-hover:scale-110
+                  hover:shadow-[0_0_0_8px_rgba(201,106,43,0.12)]
 
                   md:mx-auto
                   md:h-14
@@ -163,17 +192,18 @@ export default function Journey() {
                 "
               >
                 {step.number}
-              </span>
+              </motion.span>
 
 
 
-              {/* Content */}
-              <div className="
-                pt-1
+              <div
+                className="
+                  pt-1
 
-                md:mt-8
-                md:text-center
-              ">
+                  md:mt-8
+                  md:text-center
+                "
+              >
 
                 <h3 className="
                   font-[var(--font-playfair)]
@@ -201,7 +231,7 @@ export default function Journey() {
               </div>
 
 
-            </li>
+            </motion.li>
 
           ))}
 
@@ -209,18 +239,31 @@ export default function Journey() {
 
 
 
-        {/* Tagline */}
-        <p className="
-          mt-16
-          flex
-          flex-col
-          items-center
-          text-xl
-          italic
-          text-[var(--primary)]
+        <motion.p
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            delay: 0.8,
+          }}
+          className="
+            mt-16
+            flex
+            flex-col
+            items-center
+            text-xl
+            italic
+            text-[var(--primary)]
 
-          md:mt-20
-        ">
+            md:mt-20
+          "
+        >
           <span>
             From where you are,
           </span>
@@ -228,7 +271,8 @@ export default function Journey() {
           <span className="translate-x-4">
             To where you want to be.
           </span>
-        </p>
+
+        </motion.p>
 
 
       </div>
