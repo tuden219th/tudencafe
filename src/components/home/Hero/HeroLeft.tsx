@@ -61,22 +61,7 @@ export default function HeroLeft() {
         những ý tưởng và những khởi đầu mới được mở ra.
       </p>
 
-      <div
-        className="
-          mt-8
-
-          rounded-[var(--radius)]
-
-          border
-          border-[var(--border)]
-
-          bg-[var(--surface-glass)]
-
-          p-5
-
-          backdrop-blur-sm
-        "
-      >
+      <div className="mt-8">
         <TextFlippingBoardDemo />
       </div>
 
