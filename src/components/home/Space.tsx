@@ -4,19 +4,19 @@ import { motion, type Variants } from "framer-motion";
 
 const spaceItems = [
   {
-    title: "Không gian bình yên",
+    title: "Một khoảng dừng bình yên",
     description:
-      "Một nơi để chậm lại, trò chuyện hoặc đơn giản là tận hưởng một khoảng thời gian riêng.",
+      "Không gian yên tĩnh, ánh sáng dễ chịu và hương cà phê nhẹ nhàng cho những phút giây thư giãn, đọc sách hoặc đơn giản là tận hưởng thời gian riêng.",
   },
   {
-    title: "Làm việc & gặp gỡ",
+    title: "Làm việc theo nhịp của bạn",
     description:
-      "Bàn ghế thoải mái, wifi tốc độ cao miễn phí, điều hòa dễ chịu cho những giờ làm việc và kết nối.",
+      "Bàn ghế thoải mái, wifi tốc độ cao miễn phí và điều hòa dễ chịu cho những giờ làm việc, học tập hoặc sáng tạo. Bạn có thể ngồi lâu hơn, tập trung lâu hơn.",
   },
   {
-    title: "Trải nghiệm trọn vẹn",
+    title: "Gặp gỡ & kết nối",
     description:
-      "Ánh sáng vừa đủ, mùi cà phê nhẹ nhàng và những góc nhỏ để bạn thư giãn mỗi ngày.",
+      "Một không gian phù hợp cho những cuộc trò chuyện, gặp mặt bạn bè, đối tác hoặc những ý tưởng mới bắt đầu bên một ly cà phê.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function Space() {
               text-[var(--primary)]
             "
           >
-            SPACE
+            SPACE & EXPERIENCE
           </p>
 
 
@@ -74,7 +74,7 @@ export default function Space() {
               leading-tight
             "
           >
-            Một điểm dừng bình yên
+            Một không gian để ở lại
           </h2>
 
 
@@ -90,7 +90,7 @@ export default function Space() {
             Không chỉ là nơi thưởng thức cà phê.
             <br />
             Từ Đến là không gian để bạn nghỉ ngơi,
-            làm việc và tiếp tục hành trình của mình.
+            làm việc, gặp gỡ và tận hưởng hành trình của riêng mình.
           </p>
 
         </motion.div>
