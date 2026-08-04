@@ -1,33 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
-const articles = [
-  {
-    title: "Google ra mắt công nghệ AI mới cho người dùng",
-    category: "AI",
-    time: "1 giờ trước",
-    image: "https://picsum.photos/500/300?1",
-    description:
-      "Những cải tiến mới giúp AI xử lý nhanh hơn và thông minh hơn.",
-  },
-  {
-    title: "Laptop AI đang trở thành xu hướng mới",
-    category: "Máy tính",
-    time: "3 giờ trước",
-    image: "https://picsum.photos/500/300?2",
-    description:
-      "Các hãng máy tính đang tập trung phát triển dòng laptop tích hợp AI.",
-  },
-  {
-    title: "Điện thoại thế hệ mới có gì đáng chú ý?",
-    category: "Điện thoại",
-    time: "5 giờ trước",
-    image: "https://picsum.photos/500/300?3",
-    description:
-      "Thiết kế, hiệu năng và camera tiếp tục là điểm cạnh tranh chính.",
-  },
-];
+export default async function LatestArticles() {
+  const supabase = await createClient();
 
-export default function LatestArticles() {
+  const { data: articles } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("status", "published")
+    .eq("is_deleted", false)
+    .order("published_at", { ascending: false })
+    .range(1, 10); // Bỏ bài đầu vì Hero đã hiển thị
+
   return (
     <section
       className="
@@ -38,10 +23,8 @@ export default function LatestArticles() {
         lg:grid-cols-12
       "
     >
-
       {/* Article feed */}
       <div className="space-y-5 lg:col-span-8">
-
         <h2
           className="
             text-2xl
@@ -52,11 +35,10 @@ export default function LatestArticles() {
           Bài viết mới nhất
         </h2>
 
-
-        {articles.map((article) => (
-
-          <article
-            key={article.title}
+        {articles?.map((article) => (
+          <Link
+            key={article.id}
+            href={`/congnghe/${article.slug}`}
             className="
               flex
               flex-col
@@ -66,11 +48,12 @@ export default function LatestArticles() {
               border-[#e8e8e8]
               bg-white
               p-4
+              transition
+              hover:shadow-md
               md:flex-row
               md:p-5
             "
           >
-
             <div
               className="
                 relative
@@ -83,20 +66,19 @@ export default function LatestArticles() {
                 md:w-52
               "
             >
-
               <Image
-                src={article.image}
+                src={
+                  article.cover_image ||
+                  "https://picsum.photos/500/300?random=1"
+                }
                 alt={article.title}
                 fill
                 sizes="(max-width:768px) 100vw, 208px"
                 className="object-cover"
               />
-
             </div>
 
-
             <div className="min-w-0">
-
               <span
                 className="
                   text-sm
@@ -104,9 +86,8 @@ export default function LatestArticles() {
                   text-blue-600
                 "
               >
-                {article.category}
+                {article.category || "Công nghệ"}
               </span>
-
 
               <h3
                 className="
@@ -120,7 +101,6 @@ export default function LatestArticles() {
                 {article.title}
               </h3>
 
-
               <p
                 className="
                   mt-3
@@ -129,9 +109,8 @@ export default function LatestArticles() {
                   text-[#666]
                 "
               >
-                {article.description}
+                {article.excerpt}
               </p>
-
 
               <p
                 className="
@@ -140,23 +119,17 @@ export default function LatestArticles() {
                   text-[#888]
                 "
               >
-                {article.time}
+                {article.published_at
+                  ? new Date(article.published_at).toLocaleDateString("vi-VN")
+                  : ""}
               </p>
-
             </div>
-
-          </article>
-
+          </Link>
         ))}
-
       </div>
-
-
 
       {/* Sidebar */}
       <aside className="space-y-5 lg:col-span-4">
-
-
         {/* Topics */}
         <div
           className="
@@ -167,7 +140,6 @@ export default function LatestArticles() {
             p-5
           "
         >
-
           <h3
             className="
               text-lg
@@ -178,7 +150,6 @@ export default function LatestArticles() {
             Chủ đề nổi bật
           </h3>
 
-
           <div
             className="
               mt-4
@@ -187,7 +158,6 @@ export default function LatestArticles() {
               gap-2
             "
           >
-
             {[
               "AI",
               "Apple",
@@ -196,7 +166,6 @@ export default function LatestArticles() {
               "Gaming",
               "Camera",
             ].map((item) => (
-
               <span
                 key={item}
                 className="
@@ -210,14 +179,9 @@ export default function LatestArticles() {
               >
                 {item}
               </span>
-
             ))}
-
           </div>
-
         </div>
-
-
 
         {/* Popular */}
         <div
@@ -229,7 +193,6 @@ export default function LatestArticles() {
             p-5
           "
         >
-
           <h3
             className="
               text-lg
@@ -240,7 +203,6 @@ export default function LatestArticles() {
             Xem nhiều
           </h3>
 
-
           <ol
             className="
               mt-4
@@ -249,26 +211,12 @@ export default function LatestArticles() {
               text-[#444]
             "
           >
-
-            <li>
-              01. ChatGPT thay đổi thế giới AI
-            </li>
-
-            <li>
-              02. Smartphone đáng chú ý năm nay
-            </li>
-
-            <li>
-              03. Xu hướng công nghệ mới
-            </li>
-
+            <li>01. ChatGPT thay đổi thế giới AI</li>
+            <li>02. Smartphone đáng chú ý năm nay</li>
+            <li>03. Xu hướng công nghệ mới</li>
           </ol>
-
         </div>
-
-
       </aside>
-
     </section>
   );
 }

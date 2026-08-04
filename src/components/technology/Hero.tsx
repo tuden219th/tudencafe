@@ -1,45 +1,73 @@
 import Image from "next/image";
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
-const sideArticles = [
-  {
-    title: "Apple chuẩn bị thay đổi lớn trên iPhone thế hệ mới",
-    category: "Apple",
-  },
-  {
-    title: "Laptop AI đang trở thành xu hướng mới năm nay",
-    category: "Laptop",
-  },
-  {
-    title: "Những công nghệ nổi bật đáng chú ý tuần này",
-    category: "Công nghệ",
-  },
-];
+export default async function Hero() {
+  const supabase = await createClient();
 
-export default function Hero() {
+  // Lấy bài nổi bật trước
+  const { data: featuredPosts } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("status", "published")
+    .eq("is_deleted", false)
+    .eq("featured", true)
+    .order("published_at", { ascending: false })
+    .limit(4);
+
+
+  let posts = featuredPosts;
+
+
+  // Nếu chưa có bài featured thì lấy bài mới nhất
+  if (!posts || posts.length === 0) {
+    const { data } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("status", "published")
+      .eq("is_deleted", false)
+      .order("published_at", { ascending: false })
+      .limit(4);
+
+    posts = data;
+  }
+
+
+  if (!posts || posts.length === 0) return null;
+
+
+  const hero = posts[0];
+  const sideArticles = posts.slice(1);
+
+
   return (
     <section className="grid grid-cols-1 gap-5 lg:grid-cols-12">
 
       {/* Main */}
-      <article
+      <Link
+        href={`/congnghe/${hero.slug}`}
         className="
           relative
           overflow-hidden
           rounded-2xl
           lg:col-span-8
           aspect-[16/10]
+          group
         "
       >
 
         <Image
-          src="https://images.unsplash.com/photo-1677442136019-21780ecad995"
-          alt="AI technology"
+          src={
+            hero.cover_image ||
+            "https://picsum.photos/1200/700"
+          }
+          alt={hero.title}
           fill
           sizes="(max-width:1024px) 100vw, 66vw"
-          className="object-cover"
+          className="object-cover transition duration-500 group-hover:scale-105"
         />
 
 
-        {/* Overlay */}
         <div
           className="
             absolute
@@ -73,7 +101,7 @@ export default function Hero() {
               backdrop-blur
             "
           >
-            AI
+            {hero.category}
           </span>
 
 
@@ -88,7 +116,7 @@ export default function Hero() {
               md:text-4xl
             "
           >
-            ChatGPT 6 có gì mới? Những thay đổi đáng chú ý sau bản cập nhật mới
+            {hero.title}
           </h1>
 
 
@@ -103,8 +131,7 @@ export default function Hero() {
               md:block
             "
           >
-            OpenAI tiếp tục cải thiện khả năng suy luận,
-            tốc độ phản hồi và trải nghiệm người dùng.
+            {hero.excerpt}
           </p>
 
 
@@ -128,20 +155,29 @@ export default function Hero() {
 
 
             <div className="text-xs text-white">
+
               <p className="font-medium">
-                Từ Đến
+                {hero.author || "Từ Đến Coffee"}
               </p>
 
+
               <p className="text-white/70">
-                3 phút trước
+
+                {hero.published_at &&
+                  new Date(
+                    hero.published_at
+                  ).toLocaleDateString("vi-VN")
+                }
+
               </p>
+
             </div>
 
           </div>
 
         </div>
 
-      </article>
+      </Link>
 
 
 
@@ -153,16 +189,19 @@ export default function Hero() {
         "
       >
 
-        {sideArticles.map((item, index) => (
+        {sideArticles.map((item) => (
 
-          <article
-            key={index}
+          <Link
+            key={item.id}
+            href={`/congnghe/${item.slug}`}
             className="
               flex
               gap-4
               rounded-xl
               bg-white
               p-3
+              transition
+              hover:shadow-md
             "
           >
 
@@ -178,8 +217,11 @@ export default function Hero() {
             >
 
               <Image
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475"
-                alt="technology"
+                src={
+                  item.cover_image ||
+                  "https://picsum.photos/300/200"
+                }
+                alt={item.title}
                 fill
                 sizes="128px"
                 className="object-cover"
@@ -216,16 +258,25 @@ export default function Hero() {
 
 
               <p className="mt-2 text-xs text-[#777]">
-                2 giờ trước
+
+                {item.published_at &&
+                  new Date(
+                    item.published_at
+                  ).toLocaleDateString("vi-VN")
+                }
+
               </p>
+
 
             </div>
 
-          </article>
+
+          </Link>
 
         ))}
 
       </aside>
+
 
     </section>
   );
