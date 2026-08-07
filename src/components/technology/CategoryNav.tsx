@@ -13,8 +13,7 @@ export default function CategoryNav() {
   ];
 
   return (
-    <section className="mt-6">
-
+    <section className="mt-8">
       <div
         className="
           flex
@@ -24,13 +23,13 @@ export default function CategoryNav() {
           scrollbar-hide
         "
       >
-
         {categories.map((item, index) => {
           const active = index === 0;
 
           return (
             <button
               key={item}
+              type="button"
               className={`
                 shrink-0
                 rounded-full
@@ -42,7 +41,7 @@ export default function CategoryNav() {
                 ${
                   active
                     ? "bg-[#202124] text-white"
-                    : "bg-white text-[#444] border border-[#e8e8e8] hover:bg-[#f5f6f7]"
+                    : "border border-[#e8e8e8] bg-white text-[#444] hover:bg-[#f5f6f7]"
                 }
               `}
             >
@@ -50,9 +49,7 @@ export default function CategoryNav() {
             </button>
           );
         })}
-
       </div>
-
     </section>
   );
 }

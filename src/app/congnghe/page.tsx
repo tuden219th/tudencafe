@@ -7,7 +7,6 @@ import CategoryNav from "@/components/technology/CategoryNav";
 import LatestArticles from "@/components/technology/LatestArticles";
 import TechnologyFooter from "@/components/technology/TechnologyFooter";
 
-
 export const metadata: Metadata = {
   title: "Tin Công nghệ | Từ Đến Coffee",
 
@@ -46,28 +45,14 @@ export const metadata: Metadata = {
     description:
       "Cập nhật tin tức công nghệ, AI và thiết bị số mới nhất.",
 
-    images: [
-      "/og-image.jpg",
-    ],
+    images: ["/og-image.jpg"],
   },
 };
 
-
-
 export default function CongNghePage() {
-
   return (
-    <main
-      className="
-        min-h-screen
-        w-full
-        overflow-x-hidden
-        bg-[#f7f8fa]
-      "
-    >
-
+    <main>
       <Navbar />
-
 
       <div
         className="
@@ -80,23 +65,16 @@ export default function CongNghePage() {
           lg:px-10
         "
       >
-
         <Stories />
-
 
         <Hero />
 
-
         <CategoryNav />
-
 
         <LatestArticles />
 
-
         <TechnologyFooter />
-
       </div>
-
     </main>
   );
 }

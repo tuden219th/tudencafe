@@ -33,27 +33,75 @@ const stories = [
 
 export default function Stories() {
   return (
-    <section className="py-3 md:py-8">
-      <h2 className="mb-3 md:mb-5 text-[20px] font-bold text-[#202124]">
-        Từ Đến Fact
-      </h2>
+    <section className="mb-6">
+      <div className="mb-3">
+        <h2
+          className="
+            text-sm
+            font-bold
+            tracking-tight
+            text-[#202124]
+          "
+        >
+          Từ Đến Fact
+        </h2>
+      </div>
 
-      <div className="flex gap-5 overflow-x-auto scrollbar-hide">
+      <div
+        className="
+          flex
+          gap-5
+          overflow-x-auto
+          pb-1
+          scrollbar-hide
+        "
+      >
         {stories.map((story) => (
           <button
             key={story.id}
-            className="flex min-w-[82px] flex-col items-center"
+            type="button"
+            className="
+              flex
+              min-w-[72px]
+              flex-col
+              items-center
+              transition
+              hover:opacity-80
+            "
           >
             <div
-              className="flex h-[72px] w-[72px] items-center justify-center rounded-full"
+              className="
+                flex
+                h-[64px]
+                w-[64px]
+                items-center
+                justify-center
+                rounded-full
+              "
               style={{
-                background: story.color,
+                backgroundColor: story.color,
               }}
             >
-              <div className="h-[62px] w-[62px] rounded-full border-[3px] border-white bg-white" />
+              <div
+                className="
+                  h-[56px]
+                  w-[56px]
+                  rounded-full
+                  border-[3px]
+                  border-white
+                  bg-[#F5EBDD]
+                "
+              />
             </div>
 
-            <span className="mt-3 text-[13px] font-medium text-[#444]">
+            <span
+              className="
+                mt-2
+                text-[12px]
+                font-medium
+                text-[#444]
+              "
+            >
               {story.title}
             </span>
           </button>

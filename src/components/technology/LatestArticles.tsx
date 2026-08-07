@@ -11,14 +11,13 @@ export default async function LatestArticles() {
     .eq("status", "published")
     .eq("is_deleted", false)
     .order("published_at", { ascending: false })
-    .range(1, 10); // Bỏ bài đầu vì Hero đã hiển thị
+    .range(1, 10);
 
   return (
     <section
       className="
         mt-10
         grid
-        grid-cols-1
         gap-6
         lg:grid-cols-12
       "
@@ -73,7 +72,7 @@ export default async function LatestArticles() {
                 }
                 alt={article.title}
                 fill
-                sizes="(max-width:768px) 100vw, 208px"
+                sizes="(max-width: 768px) 100vw, 208px"
                 className="object-cover"
               />
             </div>
@@ -101,16 +100,18 @@ export default async function LatestArticles() {
                 {article.title}
               </h3>
 
-              <p
-                className="
-                  mt-3
-                  text-sm
-                  leading-6
-                  text-[#666]
-                "
-              >
-                {article.excerpt}
-              </p>
+              {article.excerpt && (
+                <p
+                  className="
+                    mt-3
+                    text-sm
+                    leading-6
+                    text-[#666]
+                  "
+                >
+                  {article.excerpt}
+                </p>
+              )}
 
               <p
                 className="
@@ -120,7 +121,9 @@ export default async function LatestArticles() {
                 "
               >
                 {article.published_at
-                  ? new Date(article.published_at).toLocaleDateString("vi-VN")
+                  ? new Date(
+                      article.published_at
+                    ).toLocaleDateString("vi-VN")
                   : ""}
               </p>
             </div>
