@@ -3,6 +3,17 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  House,
+  Compass,
+  Coffee,
+  BookOpen,
+  Sparkles,
+  Newspaper,
+  Cpu,
+  Users,
+  MapPin,
+} from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -10,14 +21,15 @@ type Props = {
 };
 
 const menu = [
-  { icon: "🏠", title: "Trang chủ", href: "/" },
-  { icon: "🧭", title: "Hành trình", href: "#journey" },
-  { icon: "☕", title: "Menu", href: "#menu" },
-  { icon: "📚", title: "Coffee Knowledge", href: "/coffee" },
-  { icon: "🤖", title: "AI Assistant", href: "#assistant" },
-  { icon: "📰", title: "Blog", href: "/blog" },
-  { icon: "👤", title: "Về chúng tôi", href: "/about" },
-  { icon: "📍", title: "Liên hệ", href: "/contact" },
+  { icon: House, title: "Trang chủ", href: "/" },
+  { icon: Cpu, title: "Công nghệ", href: "/congnghe" },
+  { icon: Compass, title: "Hành trình", href: "#journey" },
+  { icon: Coffee, title: "Menu", href: "#menu" },
+  { icon: BookOpen, title: "Coffee Knowledge", href: "/coffee" },
+  { icon: Sparkles, title: "AI Assistant", href: "#assistant" },
+  { icon: Newspaper, title: "Blog", href: "/blog" },
+  { icon: Users, title: "Về chúng tôi", href: "/about" },
+  { icon: MapPin, title: "Liên hệ", href: "/contact" },
 ];
 
 export default function Drawer({
@@ -207,68 +219,81 @@ export default function Drawer({
             </div>
           </div>
         </div>
-                {/* Menu */}
+
+        {/* Menu */}
 
         <nav className="flex-1 overflow-y-auto px-6 py-8">
           <div className="space-y-2">
-            {menu.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={onClose}
-                style={{
-                  transitionDelay: `${index * 40}ms`,
-                }}
-                className="
-                  group
+            {menu.map((item, index) => {
+              const Icon = item.icon;
 
-                  flex
-                  items-center
-                  justify-between
-
-                  rounded-2xl
-
-                  px-5
-                  py-4
-
-                  text-base
-                  font-medium
-
-                  text-[#3B2416]
-
-                  transition-all
-                  duration-300
-
-                  hover:bg-[#EFE5DA]
-                  hover:text-[var(--primary)]
-                  hover:translate-x-1
-                  hover:shadow-md
-                  hover:scale-[1.02]
-                "
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-xl">
-                    {item.icon}
-                  </span>
-
-                  <span>{item.title}</span>
-                </div>
-
-                <span
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={onClose}
+                  style={{
+                    transitionDelay: `${index * 40}ms`,
+                  }}
                   className="
-                    opacity-0
+                    group
+
+                    flex
+                    items-center
+                    justify-between
+
+                    rounded-2xl
+
+                    px-5
+                    py-4
+
+                    text-base
+                    font-medium
+
+                    text-[#3B2416]
 
                     transition-all
                     duration-300
 
-                    group-hover:translate-x-1
-                    group-hover:opacity-100
+                    hover:bg-[#EFE5DA]
+                    hover:text-[var(--primary)]
+                    hover:translate-x-1
+                    hover:shadow-md
+                    hover:scale-[1.02]
                   "
                 >
-                  →
-                </span>
-              </Link>
-            ))}
+                  <div className="flex items-center gap-4">
+                    <Icon
+                      size={21}
+                      strokeWidth={1.8}
+                      className="
+                        shrink-0
+                        text-[#6B5D52]
+                        transition-colors
+                        duration-300
+                        group-hover:text-[var(--primary)]
+                      "
+                    />
+
+                    <span>{item.title}</span>
+                  </div>
+
+                  <span
+                    className="
+                      opacity-0
+
+                      transition-all
+                      duration-300
+
+                      group-hover:translate-x-1
+                      group-hover:opacity-100
+                    "
+                  >
+                    →
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </nav>
 
@@ -389,15 +414,14 @@ export default function Drawer({
           </div>
 
           <p
-          className="
-            mt-6
-            text-center
-            text-xs
-            tracking-[0.15em]
-            text-[#9B8A79]
-          "
-        >
-
+            className="
+              mt-6
+              text-center
+              text-xs
+              tracking-[0.15em]
+              text-[#9B8A79]
+            "
+          >
             © 2026 Từ Đến Coffee
           </p>
         </div>

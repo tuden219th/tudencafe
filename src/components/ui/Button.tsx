@@ -40,44 +40,41 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const base = `
-  inline-flex
-  items-center
-  justify-center
+    inline-flex
+    items-center
+    justify-center
 
-  font-medium
-  whitespace-nowrap
-  select-none
+    font-semibold
+    whitespace-nowrap
+    select-none
 
-  rounded-full
+    rounded-[2px]
 
-  transition-all
-  duration-300
-  ease-out
+    transition-all
+    duration-300
+    ease-out
 
-  active:scale-[0.98]
+    active:scale-[0.98]
 
-  disabled:pointer-events-none
-  disabled:opacity-50
-`;
+    disabled:pointer-events-none
+    disabled:opacity-50
+  `;
 
   const variants = {
     primary: `
-  bg-gradient-to-r
-  from-[#A95125]
-  via-[#C96A2B]
-  to-[#D98245]
+      bg-[#C96A2B]
+      !text-white
 
-  text-[#F5EBDD]
+      border
+      border-[#C96A2B]
 
-  border
-  border-[#C96A2B]/60
+      tracking-[0.5px]
 
-  shadow-[0_8px_24px_rgba(59,36,22,0.18)]
+      shadow-none
 
-  hover:-translate-y-0.5
-  hover:brightness-105
-  hover:shadow-[0_12px_30px_rgba(59,36,22,0.25)]
-`,
+      hover:bg-[#C96A2B]
+      hover:-translate-y-0.5
+    `,
 
     secondary: `
       bg-[var(--surface)]
@@ -110,9 +107,10 @@ export default function Button({
     `,
 
     md: `
-      h-12
-      px-8
-      text-[15px]
+      h-auto
+      px-[36px]
+      py-[14px]
+      text-[14px]
     `,
 
     lg: `
