@@ -104,22 +104,24 @@ export default function Button({
 
   const sizes = {
     sm: `
-      h-10
-      px-5
+      h-auto
+      px-6
+      py-3
       text-sm
     `,
 
     md: `
       h-auto
-      px-[36px]
-      py-[14px]
+      px-[40px]
+      py-[16px]
       text-[14px]
       leading-none
     `,
 
     lg: `
-      h-14
+      h-auto
       px-10
+      py-4
       text-base
     `,
   };
