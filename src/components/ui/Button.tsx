@@ -7,25 +7,15 @@ type ButtonSize = "sm" | "md" | "lg";
 
 type ButtonProps = {
   children?: ReactNode;
-
   href?: string;
-
   variant?: ButtonVariant;
-
   size?: ButtonSize;
-
   fullWidth?: boolean;
-
   loading?: boolean;
-
   disabled?: boolean;
-
   className?: string;
-
   type?: "button" | "submit" | "reset";
-
   onClick?: () => void;
-
   ariaLabel?: string;
 };
 
@@ -46,19 +36,14 @@ export default function Button({
     inline-flex
     items-center
     justify-center
-
     font-semibold
     whitespace-nowrap
     select-none
-
     rounded-[2px]
-
     transition-all
     duration-300
     ease-out
-
     active:scale-[0.98]
-
     disabled:pointer-events-none
     disabled:opacity-50
   `;
@@ -67,14 +52,10 @@ export default function Button({
     primary: `
       bg-[#C96A2B]
       !text-white
-
       border
       border-[#C96A2B]
-
       tracking-[0.5px]
-
       shadow-none
-
       hover:bg-[#C96A2B]
       hover:-translate-y-0.5
     `,
@@ -82,12 +63,9 @@ export default function Button({
     secondary: `
       bg-[var(--surface)]
       text-[var(--foreground)]
-
       border
       border-[var(--border)]
-
       shadow-sm
-
       hover:border-[var(--primary)]
       hover:text-[var(--primary)]
       hover:-translate-y-0.5
@@ -97,7 +75,6 @@ export default function Button({
     ghost: `
       bg-transparent
       text-[var(--foreground)]
-
       hover:text-[var(--primary)]
     `,
   };
@@ -111,9 +88,9 @@ export default function Button({
     `,
 
     md: `
-      h-auto
-      px-[40px]
-      py-[16px]
+      h-[36px]
+      px-[34px]
+      py-0
       text-[14px]
       leading-none
     `,

@@ -242,12 +242,12 @@ export default function Navbar() {
               );
             })}
 
-            <Button
-              href="#assistant"
-              className="ml-3"
-            >
-              Trò chuyện AI
-            </Button>
+        <Button
+  href="#assistant"
+  className="ml-3 !w-[140px] !h-[50px] rounded-[6.5px]"
+>
+  Trò chuyện AI
+</Button>
           </nav>
         </Container>
       </header>
