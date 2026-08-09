@@ -6,7 +6,7 @@ type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
 
   href?: string;
 
@@ -25,6 +25,8 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
 
   onClick?: () => void;
+
+  ariaLabel?: string;
 };
 
 export default function Button({
@@ -38,6 +40,7 @@ export default function Button({
   className = "",
   type = "button",
   onClick,
+  ariaLabel,
 }: ButtonProps) {
   const base = `
     inline-flex
@@ -128,17 +131,15 @@ export default function Button({
     ${className}
   `;
 
-  const content = (
-    <>
-      {loading ? "Loading..." : children}
-    </>
-  );
+  const content = loading ? "Loading..." : children;
 
   if (href) {
     return (
       <Link
         href={href}
+        aria-label={ariaLabel}
         className={classes}
+        aria-disabled={disabled || loading}
       >
         {content}
       </Link>
@@ -150,6 +151,7 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled || loading}
+      aria-label={ariaLabel}
       className={classes}
     >
       {content}
