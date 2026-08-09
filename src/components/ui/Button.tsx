@@ -114,6 +114,7 @@ export default function Button({
       px-[36px]
       py-[14px]
       text-[14px]
+      leading-none
     `,
 
     lg: `
