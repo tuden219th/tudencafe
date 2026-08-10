@@ -1,5 +1,6 @@
 "use client";
 
+import AppLauncher from "./AppLauncher";
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -90,6 +91,13 @@ export default function Drawer({
               : "opacity-0 invisible"
           }
         `}
+      />
+
+      {/* App Launcher */}
+
+      <AppLauncher
+        open={open}
+        onClose={onClose}
       />
 
       {/* Drawer */}
