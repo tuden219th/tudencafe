@@ -24,10 +24,10 @@ const menu = [
   { icon: House, title: "Trang chủ", href: "/" },
   { icon: Cpu, title: "Công nghệ", href: "/congnghe" },
   { icon: Compass, title: "Hành trình", href: "#journey" },
-  { icon: Coffee, title: "Menu", href: "#menu" },
-  { icon: BookOpen, title: "Coffee Knowledge", href: "/coffee" },
-  { icon: Sparkles, title: "AI Assistant", href: "#assistant" },
-  { icon: Newspaper, title: "Blog", href: "/blog" },
+  { icon: Coffee, title: "Menu chọn món", href: "#menu" },
+  { icon: BookOpen, title: "Kiến thức cà phê", href: "/coffee" },
+  { icon: Sparkles, title: "Trợ lý ảo AI", href: "#assistant" },
+  { icon: Newspaper, title: "Bài viết tản mạn", href: "/blog" },
   { icon: Users, title: "Về chúng tôi", href: "/about" },
   { icon: MapPin, title: "Liên hệ", href: "/contact" },
 ];
@@ -222,7 +222,7 @@ export default function Drawer({
 
         {/* Menu */}
 
-        <nav className="flex-1 overflow-y-auto px-6 py-8">
+        <nav className="flex-1 overflow-y-auto !px-4 !py-4">
           <div className="space-y-2">
             {menu.map((item, index) => {
               const Icon = item.icon;
