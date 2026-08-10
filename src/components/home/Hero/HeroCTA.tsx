@@ -26,7 +26,7 @@ export default function HeroCTA() {
           via-[#C96A2B]
           to-[#D98245]
           !px-5
-          py-5
+          !py-5
           text-[#F5EBDD]
           shadow-[0_8px_24px_rgba(59,36,22,0.18)]
           transition-all
@@ -50,8 +50,8 @@ export default function HeroCTA() {
           border
           border-[var(--foreground)]/30
           bg-[var(--background)]/5
-          !px-7
-          !py-2
+          !px-4.5
+          !py-2.5
 
           text-[15px]
           font-medium
