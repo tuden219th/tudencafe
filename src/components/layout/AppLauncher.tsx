@@ -21,49 +21,41 @@ const apps = [
   {
     icon: Coffee,
     title: "Menu",
-    
     href: "#menu",
   },
   {
     icon: Sparkles,
     title: "Trợ lý AI",
-    
     href: "#assistant",
   },
   {
     icon: Cpu,
     title: "Công nghệ",
-    
     href: "/congnghe",
   },
   {
     icon: Compass,
     title: "Hành trình",
-    
     href: "#journey",
   },
   {
     icon: BookOpen,
     title: "Kiến thức",
-    
     href: "/coffee",
   },
   {
     icon: Newspaper,
     title: "Bài viết",
-    
     href: "/blog",
   },
   {
     icon: Users,
     title: "Về chúng tôi",
-    
     href: "/about",
   },
   {
     icon: MapPin,
     title: "Liên hệ",
-    
     href: "/contact",
   },
 ];
@@ -250,22 +242,6 @@ export default function AppLauncher({
                 >
                   {app.title}
                 </h3>
-
-                {/* Description */}
-
-                <p
-                  className="
-                    mt-2
-                    min-h-[32px]
-
-                    text-xs
-                    leading-5
-
-                    text-[#8B7765]
-                  "
-                >
-                  {app.description}
-                </p>
 
                 {/* Arrow */}
 
