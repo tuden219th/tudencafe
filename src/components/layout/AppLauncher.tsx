@@ -21,49 +21,49 @@ const apps = [
   {
     icon: Coffee,
     title: "Menu",
-    description: "Khám phá menu Từ Đến",
+    
     href: "#menu",
   },
   {
     icon: Sparkles,
     title: "Trợ lý AI",
-    description: "Trò chuyện cùng Từ Đến",
+    
     href: "#assistant",
   },
   {
     icon: Cpu,
     title: "Công nghệ",
-    description: "Khám phá thế giới công nghệ",
+    
     href: "/congnghe",
   },
   {
     icon: Compass,
     title: "Hành trình",
-    description: "Câu chuyện của Từ Đến",
+    
     href: "#journey",
   },
   {
     icon: BookOpen,
     title: "Kiến thức",
-    description: "Thế giới cà phê",
+    
     href: "/coffee",
   },
   {
     icon: Newspaper,
     title: "Bài viết",
-    description: "Những câu chuyện tản mạn",
+    
     href: "/blog",
   },
   {
     icon: Users,
     title: "Về chúng tôi",
-    description: "Tìm hiểu Từ Đến",
+    
     href: "/about",
   },
   {
     icon: MapPin,
     title: "Liên hệ",
-    description: "Ghé thăm Từ Đến",
+    
     href: "/contact",
   },
 ];
@@ -76,11 +76,16 @@ export default function AppLauncher({
     <section
       className={`
         fixed
-        !top-10
-        !bottom-10
-        !left-[390px]
-        !right-10
-        z-[95]
+        top-[555px]
+        bottom-4
+        left-4
+        right-4
+        z-[98]
+
+        md:top-10
+        md:bottom-10
+        md:left-[400px]
+        md:right-10
 
         rounded-[12px]
 
@@ -106,7 +111,8 @@ export default function AppLauncher({
 
         <div
           className={`
-            mb-10
+            relative
+            top-[-108px]
 
             transition-all
             duration-500
@@ -136,7 +142,7 @@ export default function AppLauncher({
             className="
               logo-font
               mt-2
-              translate-x-10
+              translate-x-7
               text-4xl
               text-[var(--primary)]
               lg:text-5xl
@@ -148,9 +154,11 @@ export default function AppLauncher({
           <p
             className="
               mt-3
-              translate-x-10
+              mb-8
+              translate-x-8
+              w-[calc(100vw-80px)]
               max-w-xl
-              whitespace-nowrap
+              
               text-sm
               leading-7
               text-[#6B5D52]
@@ -162,7 +170,7 @@ export default function AppLauncher({
 
         {/* Apps */}
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="relative -top-22 grid w-fit translate-x-4 grid-cols-4 gap-x-4 gap-y-1 sm:grid-cols-3 lg:grid-cols-4">
           {apps.map((app, index) => {
             const Icon = app.icon;
 
@@ -176,24 +184,17 @@ export default function AppLauncher({
                 }}
                 className={`
                   group
-                  translate-x-9
-                  rounded-3xl
-                  border
-                  border-[#E8DDD2]
-
-                  bg-white
-
-                  p-5
-                  lg:p-6
-
-                  shadow-sm
-
+                  
+                  
+                  flex
+                  flex-col
+                  items-center
+                  
                   transition-all
                   duration-500
 
                   hover:-translate-y-1
-                  hover:border-[var(--primary)]
-                  hover:shadow-xl
+              
 
                   ${
                     open
@@ -207,8 +208,8 @@ export default function AppLauncher({
                 <div
                   className="
                     flex
-                    h-14
-                    w-14
+                    h-18
+                    w-18
                     items-center
                     justify-center
 
@@ -227,7 +228,7 @@ export default function AppLauncher({
                   "
                 >
                   <Icon
-                    size={26}
+                    size={44}
                     strokeWidth={1.7}
                   />
                 </div>
@@ -255,7 +256,7 @@ export default function AppLauncher({
                 <p
                   className="
                     mt-2
-                    min-h-[42px]
+                    min-h-[32px]
 
                     text-xs
                     leading-5
@@ -268,21 +269,7 @@ export default function AppLauncher({
 
                 {/* Arrow */}
 
-                <div
-                  className="
-                    mt-4
-                    text-sm
-                    text-[#B7A797]
-
-                    transition-all
-                    duration-300
-
-                    group-hover:translate-x-1
-                    group-hover:text-[var(--primary)]
-                  "
-                >
-                  Mở ứng dụng →
-                </div>
+                
               </Link>
             );
           })}

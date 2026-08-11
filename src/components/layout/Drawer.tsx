@@ -105,14 +105,17 @@ export default function Drawer({
       <aside
         className={`
           fixed
-          left-0
-          top-0
+          left-3
+          right-3
+          top-3
           z-[100]
 
           flex
-          h-screen
-          w-[360px]
+          h-[62vh]
           flex-col
+
+          rounded-lg
+          overflow-hidden
 
           bg-[#F8F5F1]
 
@@ -125,8 +128,11 @@ export default function Drawer({
           ${
             open
               ? "translate-x-0"
-              : "-translate-x-full"
+              : "-translate-x-[120%]"
           }
+
+          lg:h-screen
+          lg:w-[340px]
         `}
       >
         {/* Header */}
@@ -142,8 +148,8 @@ export default function Drawer({
             from-white
             to-[#F8F5F1]
 
-            px-8
-            py-8
+            !px-2
+            !py-2
           "
         >
           <button
@@ -182,7 +188,7 @@ export default function Drawer({
               priority
             />
 
-            <div>
+            <div className="pt-4">
               <h2
                 className="
                   logo-font
@@ -197,7 +203,7 @@ export default function Drawer({
               <p
                 className="
                   mt-2
-
+                  translate-x-[4px]
                   text-[11px]
                   uppercase
 
@@ -210,20 +216,25 @@ export default function Drawer({
               </p>
 
               <p
-                className="
-                  mt-4
+              className="
+                mt-4
+                text-sm
+                italic
+                leading-7
+                text-[#6B5D52]
+              "
+            >
+              <span className="font-semibold text-[var(--primary)]">
+                From
+              </span>{" "}
+              where you are,{" "}
+              <span className="font-semibold text-[var(--primary)]">
+                To
+              </span>{" "}
+              where you want to be.
+              <br />
+            </p>
 
-                  text-sm
-                  italic
-                  leading-7
-
-                  text-[#6B5D52]
-                "
-              >
-                From where you are,
-                <br />
-                To where you want to be.
-              </p>
             </div>
           </div>
         </div>
@@ -312,13 +323,14 @@ export default function Drawer({
             border-t
             border-[#E8DDD2]
 
-            px-8
-            py-8
+            !px-4
+            !py-4
           "
         >
           <div
             className="
-              rounded-2xl
+              mx-2  
+              rounded-[6px]
               bg-white
               p-5
               shadow-sm
@@ -326,6 +338,7 @@ export default function Drawer({
           >
             <p
               className="
+                !px-2
                 text-xs
                 font-semibold
                 uppercase
@@ -338,6 +351,7 @@ export default function Drawer({
 
             <p
               className="
+                !px-2
                 mt-4
                 text-base
                 font-semibold
@@ -350,6 +364,7 @@ export default function Drawer({
             <p
               className="
                 mt-2
+                !px-2
                 text-sm
                 leading-7
                 text-[#6B5D52]
@@ -363,7 +378,7 @@ export default function Drawer({
 
           <div
             className="
-              mt-6
+              !mt-2
               flex
               gap-3
             "
@@ -375,7 +390,7 @@ export default function Drawer({
               className="
                 flex-1
 
-                rounded-xl
+                rounded-[8px]
                 border
                 border-[#DED4C8]
 
@@ -400,7 +415,7 @@ export default function Drawer({
               className="
                 flex-1
 
-                rounded-xl
+                rounded-[8px]
                 border
                 border-[#DED4C8]
 
