@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Drawer from "@/components/layout/Drawer";
+import AppLauncher from "@/components/layout/AppLauncher";
 
 const menu = [
   { name: "Hành trình", href: "#journey" },
@@ -21,6 +22,7 @@ export default function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [appLauncherOpen, setAppLauncherOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -71,47 +73,128 @@ export default function Navbar() {
           {/* Left */}
 
           <div className="flex items-center gap-4">
-            {/* Drawer Button */}
 
-            <button
-              onClick={() => setDrawerOpen(true)}
-              aria-label="Open menu"
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
+            {/* Menu Buttons */}
 
-                rounded-full
+            <div className="flex items-center gap-2">
 
-                border
-                border-[var(--border)]
+              {/* Drawer Button */}
 
-                bg-[var(--surface)]
+              <button
+                onClick={() => {
+                  setDrawerOpen(true);
+                  setAppLauncherOpen(false);
+                }}
+                aria-label="Open menu"
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
 
-                backdrop-blur
+                  rounded-full
 
-                transition-colors
-                duration-300
+                  border
+                  border-[var(--border)]
 
-                hover:border-[var(--primary)]
-              "
-            >
-              <svg
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                  bg-[var(--surface)]
+
+                  backdrop-blur
+
+                  transition-colors
+                  duration-300
+
+                  hover:border-[var(--primary)]
+                "
               >
-                <path d="M3 6h18" />
-                <path d="M3 12h18" />
-                <path d="M3 18h18" />
-              </svg>
-            </button>
+                <svg
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 6h18" />
+                  <path d="M3 12h18" />
+                  <path d="M3 18h18" />
+                </svg>
+              </button>
+
+              {/* AppLauncher Button */}
+
+              <button
+                onClick={() => {
+                  setAppLauncherOpen(true);
+                  setDrawerOpen(false);
+                }}
+                aria-label="Open apps"
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  border
+                  border-[var(--border)]
+
+                  bg-[var(--surface)]
+
+                  backdrop-blur
+
+                  transition-colors
+                  duration-300
+
+                  hover:border-[var(--primary)]
+                "
+              >
+                <svg
+                  width="21"
+                  height="21"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="5"
+                    height="5"
+                    rx="1"
+                  />
+                  <rect
+                    x="15"
+                    y="4"
+                    width="5"
+                    height="5"
+                    rx="1"
+                  />
+                  <rect
+                    x="4"
+                    y="15"
+                    width="5"
+                    height="5"
+                    rx="1"
+                  />
+                  <rect
+                    x="15"
+                    y="15"
+                    width="5"
+                    height="5"
+                    rx="1"
+                  />
+                </svg>
+              </button>
+
+            </div>
 
             {/* Logo */}
 
@@ -242,19 +325,28 @@ export default function Navbar() {
               );
             })}
 
-        <Button
-  href="#assistant"
-  className="ml-3 !w-[140px] !h-[50px] rounded-[6.5px]"
->
-  Trò chuyện AI
-</Button>
+            <Button
+              href="#assistant"
+              className="ml-3 !w-[140px] !h-[50px] rounded-[6.5px]"
+            >
+              Trò chuyện AI
+            </Button>
           </nav>
         </Container>
       </header>
 
+      {/* Drawer */}
+
       <Drawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
+      />
+
+      {/* AppLauncher */}
+
+      <AppLauncher
+        open={appLauncherOpen}
+        onClose={() => setAppLauncherOpen(false)}
       />
     </>
   );

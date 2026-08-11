@@ -65,211 +65,262 @@ export default function AppLauncher({
   onClose,
 }: Props) {
   return (
-    <section
-      className={`
-        fixed
-        top-[555px]
-        bottom-4
-        left-4
-        right-4
-        z-[98]
+    <>
+      {/* Overlay - click bên ngoài để đóng */}
+      <div
+        onClick={onClose}
+        className={`
+          fixed
+          inset-0
+          z-[97]
 
-        md:top-10
-        md:bottom-10
-        md:left-[400px]
-        md:right-10
+          bg-black/10
+          backdrop-blur-[2px]
 
-        rounded-[12px]
+          transition-all
+          duration-500
 
-        overflow-y-auto
+          ${
+            open
+              ? "visible opacity-100"
+              : "invisible opacity-0 pointer-events-none"
+          }
+        `}
+      />
 
-        bg-gradient-to-r from-[#DCCBB9] via-[#EEE5DC] to-[#FAF8F5]
-        backdrop-blur-xl
+      <section
+        className={`
+          fixed
+          top-[80px]
+          bottom-4
+          left-4
+          right-4
+          z-[98]
 
-        transition-all
-        duration-500
-        ease-out
+          md:top-24
+          md:bottom-20
+          md:left-[120px]
+          md:right-20
 
-        ${
-          open
-            ? "visible translate-x-0 opacity-100"
-            : "invisible translate-x-6 opacity-0"
-        }
-      `}
-    >
-      <div className="flex min-h-full w-full max-w-[1100px] flex-col px-8 py-12 lg:px-14 lg:py-16">
+          rounded-[12px]
 
-        {/* Header */}
+          overflow-y-auto
 
-        <div
-          className={`
-            relative
-            top-[-108px]
+          bg-gradient-to-r from-[#DCCBB9] via-[#EEE5DC] to-[#FAF8F5]
+          backdrop-blur-xl
+
+          transition-all
+          duration-500
+          ease-out
+
+          ${
+            open
+              ? "visible translate-x-0 opacity-100"
+              : "invisible translate-x-6 opacity-0 pointer-events-none"
+          }
+        `}
+      >
+        {/* Close Button */}
+
+        <button
+          onClick={onClose}
+          aria-label="Close apps"
+          className="
+            absolute
+            right-5
+            top-5
+            z-[110]
+
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+
+            rounded-full
+
+            text-2xl
+            text-[#6B5D52]
 
             transition-all
-            duration-500
-            delay-100
+            duration-300
 
-            ${
-              open
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
-            }
-          `}
+            hover:bg-[#EFE5DA]
+            hover:text-[var(--primary)]
+            hover:rotate-90
+          "
         >
-          <p
-            className="
-              text-xs
-              translate-x-4
-              font-semibold
-              uppercase
-              tracking-[0.3em]
-              text-[#9B8A79]
-            "
+          ×
+        </button>
+
+        <div className="flex min-h-full w-full max-w-[1100px] flex-col px-8 py-12 lg:px-14 lg:py-16">
+
+          {/* Header */}
+
+          <div
+            className={`
+              relative
+              top-[-108px]
+
+              transition-all
+              duration-500
+              delay-100
+
+              ${
+                open
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0"
+              }
+            `}
           >
-            TỪ ĐẾN
-          </p>
+            <p
+              className="
+                text-xs
+                translate-x-4
+                font-semibold
+                uppercase
+                tracking-[0.3em]
+                text-[#9B8A79]
+              "
+            >
+              TỪ ĐẾN
+            </p>
 
-          <h2
-            className="
-              logo-font
-              mt-2
-              translate-x-7
-              text-4xl
-              text-[var(--primary)]
-              lg:text-5xl
-            "
-          >
-            Apps & Experiences
-          </h2>
+            <h2
+              className="
+                logo-font
+                mt-2
+                translate-x-7
+                text-4xl
+                text-[var(--primary)]
+                lg:text-5xl
+              "
+            >
+              Apps & Experiences
+            </h2>
 
-          <p
-            className="
-              mt-3
-              mb-8
-              translate-x-8
-              w-[calc(100vw-80px)]
-              max-w-xl
-              
-              text-sm
-              leading-7
-              text-[#6B5D52]
-            "
-          >
-            Khám phá những trải nghiệm và không gian khác nhau trong hệ sinh thái Từ Đến.
-          </p>
-        </div>
+            <p
+              className="
+                mt-3
+                mb-8
+                translate-x-8
+                w-[calc(100vw-80px)]
+                max-w-xl
 
-        {/* Apps */}
+                text-sm
+                leading-7
+                text-[#6B5D52]
+              "
+            >
+              Khám phá những trải nghiệm và không gian khác nhau trong hệ sinh thái Từ Đến.
+            </p>
+          </div>
 
-        <div className="relative -top-22 grid w-fit translate-x-4 grid-cols-4 gap-x-4 gap-y-1 sm:grid-cols-3 lg:grid-cols-4">
-          {apps.map((app, index) => {
-            const Icon = app.icon;
+          {/* Apps */}
 
-            return (
-              <Link
-                key={app.title}
-                href={app.href}
-                onClick={onClose}
-                style={{
-                  transitionDelay: `${150 + index * 50}ms`,
-                }}
-                className={`
-                  group
-                  
-                  
-                  flex
-                  flex-col
-                  items-center
-                  
-                  transition-all
-                  duration-500
+          <div className="relative -top-22 grid w-fit translate-x-4 grid-cols-4 gap-x-2 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
+            {apps.map((app, index) => {
+              const Icon = app.icon;
 
-                  hover:-translate-y-1
-              
+              return (
+                <Link
+                  key={app.title}
+                  href={app.href}
+                  onClick={onClose}
+                  style={{
+                    transitionDelay: `${150 + index * 50}ms`,
+                  }}
+                  className={`
+                    group
 
-                  ${
-                    open
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-6 opacity-0"
-                  }
-                `}
-              >
-                {/* Icon */}
-
-                <div
-                  className="
                     flex
-                    h-18
-                    w-18
+                    flex-col
                     items-center
-                    justify-center
-
-                    rounded-2xl
-
-                    bg-[#F8F5F1]
-
-                    text-[#6B5D52]
 
                     transition-all
-                    duration-300
+                    duration-500
 
-                    group-hover:bg-[var(--primary)]
-                    group-hover:text-white
-                    group-hover:scale-105
-                  "
+                    hover:-translate-y-1
+
+                    ${
+                      open
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-6 opacity-0"
+                    }
+                  `}
                 >
-                  <Icon
-                    size={44}
-                    strokeWidth={1.7}
-                  />
-                </div>
+                  {/* Icon */}
 
-                {/* Title */}
+                  <div
+                    className="
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
 
-                <h3
-                  className="
-                    mt-5
-                    text-base
-                    font-semibold
-                    text-[#3B2416]
+                      rounded-2xl
 
-                    transition-colors
-                    duration-300
+                      bg-[#F8F5F1]
 
-                    group-hover:text-[var(--primary)]
-                  "
-                >
-                  {app.title}
-                </h3>
+                      text-[#6B5D52]
 
-                {/* Arrow */}
+                      transition-all
+                      duration-300
 
-                
-              </Link>
-            );
-          })}
-        </div>
+                      group-hover:bg-[var(--primary)]
+                      group-hover:text-white
+                      group-hover:scale-105
+                    "
+                  >
+                    <Icon
+                      size={40}
+                      strokeWidth={1.7}
+                    />
+                  </div>
 
-        {/* Footer */}
+                  {/* Title */}
 
-        <div className="mt-auto pt-14">
-          <div
-            className="
-              border-t
-              border-[#E8DDD2]
-              pt-6
+                  <h3
+                    className="
+                      mt-5
+                      text-base
+                      font-semibold
+                      text-[#3B2416]
 
-              text-center
-              text-xs
-              tracking-[0.15em]
-              text-[#9B8A79]
-            "
-          >
-            FROM WHERE YOU ARE · TO WHERE YOU WANT TO BE
+                      transition-colors
+                      duration-300
+
+                      group-hover:text-[var(--primary)]
+                    "
+                  >
+                    {app.title}
+                  </h3>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Footer */}
+
+          <div className="mt-auto pt-14">
+            <div
+              className="
+                border-t
+                border-[#E8DDD2]
+                pt-6
+
+                text-center
+                text-xs
+                tracking-[0.15em]
+                text-[#9B8A79]
+              "
+            >
+              FROM WHERE YOU ARE · TO WHERE YOU WANT TO BE
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
