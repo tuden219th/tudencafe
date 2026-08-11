@@ -105,7 +105,7 @@ export default function Drawer({
           z-[100]
 
           flex
-          h-[62vh]
+          h-[66vh]
           flex-col
 
           rounded-lg

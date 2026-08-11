@@ -218,7 +218,7 @@ export default function AppLauncher({
 
           {/* Apps */}
 
-          <div className="relative -top-22 grid w-fit translate-x-4 grid-cols-4 gap-x-2 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="relative -top-22 grid w-fit translate-x-4 grid-cols-3 gap-x-2 gap-y-4 min-[430px]:grid-cols-4 lg:grid-cols-5">
             {apps.map((app, index) => {
               const Icon = app.icon;
 
@@ -254,8 +254,8 @@ export default function AppLauncher({
                   <div
                     className="
                       flex
-                      h-16
-                      w-16
+                      h-14
+                      w-14
                       items-center
                       justify-center
 
@@ -274,7 +274,7 @@ export default function AppLauncher({
                     "
                   >
                     <Icon
-                      size={40}
+                      size={37}
                       strokeWidth={1.7}
                     />
                   </div>
@@ -284,7 +284,7 @@ export default function AppLauncher({
                   <h3
                     className="
                       mt-5
-                      text-base
+                      text-xs
                       font-semibold
                       text-[#3B2416]
 
