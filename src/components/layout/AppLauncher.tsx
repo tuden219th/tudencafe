@@ -19,9 +19,9 @@ type Props = {
 
 const apps = [
   {
-    icon: Coffee,
-    title: "Menu",
-    href: "#menu",
+    icon: BookOpen,
+    title: "Learning",
+    href: "https://english.tudencafe.com",
   },
   {
     icon: Sparkles,
