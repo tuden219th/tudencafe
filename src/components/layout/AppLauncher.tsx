@@ -12,6 +12,20 @@ import {
   MapPin,
 } from "lucide-react";
 
+const KoreanIcon = ({ size = 24, strokeWidth = 1.7, ...props }: { size?: number | string; strokeWidth?: number; [key: string]: any }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth={strokeWidth} fill="none" />
+    <text x="50%" y="55%" textAnchor="middle" dominantBaseline="middle" fontSize={Math.max(10, (Number(size) || 24) * 0.55)} fill="currentColor" fontFamily="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">한</text>
+  </svg>
+);
+
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -24,9 +38,9 @@ const apps = [
     href: "https://english.tudencafe.com",
   },
   {
-    icon: Sparkles,
-    title: "Trợ lý AI",
-    href: "#assistant",
+    icon: KoreanIcon,
+    title: "Học tiếng Hàn",
+    href: "https://korean.tudencafe.com",
   },
   {
     icon: Cpu,
