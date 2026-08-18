@@ -10,9 +10,10 @@ import {
   Newspaper,
   Users,
   MapPin,
+  Languages,
 } from "lucide-react";
 
-const KoreanIcon = ({ size = 24, strokeWidth = 1.7, ...props }: { size?: number | string; strokeWidth?: number; [key: string]: any }) => (
+const KoreanIcon = ({ size = 23, strokeWidth = 1.7, ...props }: { size?: number | string; strokeWidth?: number; [key: string]: any }) => (
   <svg
     width={size}
     height={size}
@@ -34,7 +35,7 @@ type Props = {
 const apps = [
   {
     icon: BookOpen,
-    title: "Learning",
+    title: "Học tiếng Anh",
     href: "https://english.tudencafe.com",
   },
   {
@@ -43,9 +44,9 @@ const apps = [
     href: "https://korean.tudencafe.com",
   },
   {
-    icon: Cpu,
-    title: "Công nghệ",
-    href: "/congnghe",
+    icon: Languages,
+    title: "Học tiếng Pháp",
+    href: "https://french.tudencafe.com",
   },
   {
     icon: Compass,

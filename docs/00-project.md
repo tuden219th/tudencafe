@@ -327,6 +327,17 @@ Cải tiến
 
 Toàn bộ tri thức của dự án được lưu trong thư mục `docs`.
 
+## Thứ tự ưu tiên tài liệu
+
+Khi các tài liệu không khớp nhau, áp dụng thứ tự ưu tiên sau:
+
+1. `20-operating-charter.md` — nguyên tắc triển khai, trạng thái và tiêu chí hoàn thành hiện hành.
+2. `19-decision-log.md` — các quyết định đã được chấp nhận và lý do.
+3. Tài liệu theo miền (`08-architecture.md`, `10-database-schema.md`, `11-api-standard.md`, `14-design-system.md`, `18-seo.md`).
+4. `17-roadmap.md` — định hướng và thứ tự ưu tiên, không phải bằng chứng một tính năng đã hoàn tất.
+
+Code không tự động là nguồn chân lý cho nghiệp vụ. Khi code và tài liệu khác nhau, cần xác minh với chủ dự án, sau đó cập nhật tài liệu trước hoặc cùng lúc với thay đổi code.
+
 Các tài liệu chính gồm:
 
 * project.md
