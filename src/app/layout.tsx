@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Từ Đến Coffee - Một góc nhỏ cho những hành trình lớn. Cà phê, không gian và những câu chuyện kết nối tại Hà Nội.",
 
   alternates: {
-    canonical: "/",
+    canonical: "https://tudencafe.com/",
   },
 
   keywords: [
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://tudencafe.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Từ Đến Coffee",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
 
     description: "Một góc nhỏ cho những hành trình lớn.",
 
-    images: ["/og-image.jpg"],
+    images: ["https://tudencafe.com/og-image.jpg"],
   },
 
   robots: {
