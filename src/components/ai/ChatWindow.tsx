@@ -11,6 +11,7 @@ type Props = {
   messages: Message[];
   loading: boolean;
   onSend: (text: string) => void;
+  onReset?: () => void;
 };
 
 export default function ChatWindow({
@@ -19,98 +20,72 @@ export default function ChatWindow({
   messages,
   loading,
   onSend,
+  onReset,
 }: Props) {
   if (!open) return null;
 
   return (
-    <div
-      className="
-        fixed
-        bottom-3
-        right-3
-        z-50
+    <>
+      {/* Backdrop mờ nhẹ trên mobile để tạo chiều sâu */}
+      <div
+        onClick={onClose}
+        className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs sm:hidden"
+        aria-hidden="true"
+      />
 
-        flex
-        h-[76vh]
-        w-[calc(100vw-24px)]
-        max-w-[370px]
-        flex-col
-
-        overflow-hidden
-
-        rounded-3xl
-
-        border
-        border-orange-100/70
-
-        bg-white/95
-        backdrop-blur-xl
-
-        shadow-[0_12px_40px_rgba(0,0,0,0.12)]
-
-        animate-in
-        fade-in
-        slide-in-from-bottom-5
-
-        sm:bottom-6
-        sm:right-6
-        sm:h-[min(720px,calc(100vh-48px))]
-        sm:max-w-[420px]
-      "
-    >
-      {/* Header */}
-      <div className="shrink-0">
-        <ChatHeader onClose={onClose} />
-      </div>
-
-      {/* Messages */}
       <div
         className="
-          flex-1
-          overflow-y-auto
+          fixed
+          z-50
+          flex
+          flex-col
 
-          bg-gradient-to-b
-          from-white
-          to-orange-50/70
+          /* Mobile: Full viewport 100dvh với safe-area hoàn hảo */
+          inset-0
+          h-[100dvh]
+          w-full
+          bg-[#FAF6F0]
 
-          px-4
-          py-4
+          /* Desktop / Tablet: Cửa sổ nổi bo góc cao cấp */
+          sm:inset-auto
+          sm:bottom-6
+          sm:right-6
+          sm:h-[640px]
+          sm:max-h-[calc(100dvh-48px)]
+          sm:w-[410px]
+          sm:max-w-[calc(100vw-48px)]
+          sm:rounded-[28px]
+          sm:border
+          sm:border-[#E8DFD3]
+          sm:shadow-[0_24px_60px_rgba(59,36,22,0.2)]
 
-          scrollbar-thin
+          overflow-hidden
+
+          animate-in
+          fade-in
+          zoom-in-95
+          duration-200
         "
       >
-        <ChatMessages
-          messages={messages}
-          loading={loading}
-          onSuggestion={onSend}
-        />
-      </div>
+        {/* Header với Safe-area top cho iPhone tai thỏ / Dynamic Island */}
+        <div className="shrink-0 pt-safe sm:pt-0">
+          <ChatHeader onClose={onClose} onReset={onReset} />
+        </div>
 
-      {/* Floating Input */}
-      <div
-        className="
-          shrink-0
-          bg-white/90
-          backdrop-blur
-          px-3
-          pb-3
-          pt-2
-        "
-      >
-        <div
-          className="
-            rounded-2xl
-            border
-            border-orange-100
-            bg-white
-            px-3
-            py-2
-            shadow-sm
-          "
-        >
-          <ChatInput onSend={onSend} />
+        {/* Khung tin nhắn cuộn mượt */}
+        <div className="chat-scrollbar flex-1 overflow-y-auto bg-gradient-to-b from-[#FAF6F0] to-[#F5ECE1]/60">
+          <ChatMessages
+            messages={messages}
+            loading={loading}
+            onSuggestion={onSend}
+          />
+        </div>
+
+        {/* Khung soạn thảo tin nhắn duy nhất, tinh tế, có Safe-area bottom cho iPhone */}
+        <div className="shrink-0 border-t border-[#EFE5DA] bg-white/95 px-3 py-2.5 pb-safe backdrop-blur-md sm:px-3.5 sm:py-3 sm:pb-3.5">
+          <ChatInput onSend={onSend} loading={loading} />
         </div>
       </div>
-    </div>
+    </>
   );
 }

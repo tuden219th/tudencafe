@@ -7,34 +7,35 @@ import ChatButton from "./ChatButton";
 import ChatWindow from "./ChatWindow";
 import { Message } from "./types";
 
+const INITIAL_WELCOME_MESSAGE: Message = {
+  id: 1,
+  role: "assistant",
+  content: `👋 **Xin chào bạn!**
+
+Mình là **AI Barista** của quán cà phê Từ Đến. Mình có thể hỗ trợ bạn:
+
+- ☕ **Tư vấn đồ uống** theo khẩu vị và sở thích
+- 🥐 **Các loại bánh ngọt & đồ ăn nhẹ**
+- 📶 **Không gian làm việc, ổ cắm & mật khẩu wifi**
+- 📍 **Địa chỉ quán & khung giờ mở cửa**
+
+Hôm nay bạn muốn khám phá điều gì cùng Từ Đến?`,
+};
+
 export default function Assistant() {
   const [open, setOpen] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   // Welcome message hiển thị ngay khi mở AI
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      role: "assistant",
-      content: `👋 Xin chào!
-
-Mình là AI Barista của Từ Đến.
-
-Mình có thể giúp bạn:
-
-☕ Tư vấn đồ uống
-📖 Chia sẻ kiến thức cà phê
-📍 Địa chỉ & giờ mở cửa
-💼 Không gian làm việc, wifi
-💬 Giải đáp mọi thắc mắc về Từ Đến
-
-Bạn muốn khám phá điều gì hôm nay?`,
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_WELCOME_MESSAGE]);
 
   // Mỗi khách sẽ có 1 Session ID riêng
   const sessionId = useRef(uuid());
+
+  function resetConversation() {
+    sessionId.current = uuid();
+    setMessages([INITIAL_WELCOME_MESSAGE]);
+  }
 
   async function sendMessage(text: string) {
     const message = text.trim();
@@ -48,7 +49,6 @@ Bạn muốn khám phá điều gì hôm nay?`,
     };
 
     setMessages((prev) => [...prev, userMessage]);
-
     setLoading(true);
 
     try {
@@ -82,7 +82,7 @@ Bạn muốn khám phá điều gì hôm nay?`,
           id: Date.now() + 1,
           role: "assistant",
           content:
-            "⚠️ Không thể kết nối tới AI. Vui lòng thử lại sau ít phút.",
+            "⚠️ Không thể kết nối tới AI. Vui lòng kiểm tra lại kết nối mạng hoặc thử lại sau ít phút.",
         },
       ]);
     } finally {
@@ -92,11 +92,12 @@ Bạn muốn khám phá điều gì hôm nay?`,
 
   return (
     <>
-      <ChatButton onClick={() => setOpen(true)} />
+      {!open && <ChatButton onClick={() => setOpen(true)} />}
 
       <ChatWindow
         open={open}
         onClose={() => setOpen(false)}
+        onReset={resetConversation}
         messages={messages}
         loading={loading}
         onSend={sendMessage}

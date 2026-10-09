@@ -1,51 +1,57 @@
-export default function CategoryNav() {
-  const categories = [
-    "Tất cả",
-    "AI",
-    "Điện thoại",
-    "Máy tính",
-    "Apple",
-    "Android",
-    "Gaming",
-    "Camera",
-    "Internet",
-    "Khoa học",
-  ];
+const categories = [
+  "Tất cả",
+  "AI",
+  "Chuyển đổi số",
+  "ERP",
+  "Data",
+  "Phần mềm",
+  "Internet",
+  "Thiết bị",
+  "Gaming",
+  "Góc nhìn",
+];
 
+export default function CategoryNav() {
   return (
-    <section className="mt-8">
-      <div
-        className="
-          flex
-          gap-3
-          overflow-x-auto
-          pb-2
-          scrollbar-hide
-        "
-      >
-        {categories.map((item, index) => {
+    <section className="mt-8 border-y border-[#e8e3dc]">
+      <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide">
+        {categories.map((category, index) => {
           const active = index === 0;
 
           return (
             <button
-              key={item}
+              key={category}
               type="button"
               className={`
+                relative
                 shrink-0
-                rounded-full
-                px-5
-                py-2.5
+                px-4
+                py-4
                 text-sm
                 font-medium
                 transition
+                sm:px-5
                 ${
                   active
-                    ? "bg-[#202124] text-white"
-                    : "border border-[#e8e8e8] bg-white text-[#444] hover:bg-[#f5f6f7]"
+                    ? "text-[#C96A2B]"
+                    : "text-[#444] hover:text-[#C96A2B]"
                 }
               `}
             >
-              {item}
+              {category}
+
+              {active && (
+                <span
+                  className="
+                    absolute
+                    inset-x-4
+                    bottom-0
+                    h-[2px]
+                    bg-[#C96A2B]
+                    sm:inset-x-5
+                  "
+                />
+              )}
             </button>
           );
         })}

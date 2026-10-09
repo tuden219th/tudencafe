@@ -1,128 +1,112 @@
 import Link from "next/link";
-import { Menu, Search, CircleUserRound } from "lucide-react";
+import { Menu, Search, UserRound } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#eceff3] bg-white">
-      <div className="mx-auto flex h-[60px] md:h-[68px] max-w-[1320px] items-center justify-between px-4 md:px-5">
-
-        {/* Left */}
-        <div className="flex items-center gap-6 md:gap-10">
-
-          {/* Logo */}
-          <Link href="/congnghe" className="shrink-0">
-            <div className="leading-none">
-              <div className="text-[24px] font-bold tracking-tight text-[#202124]">
-                Từ Đến
-              </div>
-
-              <div className="mt-[2px] text-[10px] font-medium uppercase tracking-[0.24em] text-[#8d939c]">
-                CÔNG NGHỆ
-              </div>
+    <header className="sticky top-0 z-50 border-b border-[#e5e1db] bg-[#F8F5F1]/95 backdrop-blur">
+      <div className="mx-auto flex h-[64px] max-w-[1320px] items-center justify-between px-4 sm:h-[70px] sm:px-5 lg:px-10">
+        {/* Logo */}
+        <Link
+          href="/congnghe"
+          className="group flex shrink-0 items-center gap-3"
+        >
+          <div className="leading-none">
+            <div className="text-[25px] font-bold tracking-[-0.04em] text-[#1f1f1f] transition group-hover:text-[#C96A2B] sm:text-[28px]">
+              Từ Đến
             </div>
-          </Link>
 
-
-          {/* Desktop Search */}
-          <div className="hidden md:flex h-[44px] w-[420px] items-center rounded-full bg-[#f4f6f9] px-5 transition-colors focus-within:bg-[#eef2f6]">
-
-            <Search
-              size={18}
-              strokeWidth={2}
-              className="text-[#8c939d]"
-            />
-
-            <input
-              type="text"
-              placeholder="Tìm bài viết, sản phẩm..."
-              className="
-                ml-3
-                w-full
-                bg-transparent
-                text-[14px]
-                text-[#202124]
-                outline-none
-                placeholder:text-[#8c939d]
-              "
-            />
-
+            <div className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#777]">
+              CÔNG NGHỆ
+            </div>
           </div>
 
+          <span className="hidden h-7 w-px bg-[#d8d2ca] sm:block" />
+
+          <span className="hidden text-sm font-medium text-[#555] sm:block">
+            Technology
+          </span>
+        </Link>
+
+        {/* Search */}
+        <div className="mx-6 hidden h-9 max-w-[360px] flex-1 items-center border-b border-[#cfc8bf] md:flex">
+          <Search
+            size={17}
+            strokeWidth={1.8}
+            className="shrink-0 text-[#777]"
+          />
+
+          <input
+            type="text"
+            placeholder="Tìm kiếm..."
+            className="
+              ml-3
+              w-full
+              bg-transparent
+              py-2
+              text-sm
+              text-[#222]
+              outline-none
+              placeholder:text-[#999]
+            "
+          />
         </div>
 
-
-        {/* Right */}
-        <div className="flex items-center gap-3">
-
-
-          {/* Mobile Search */}
+        {/* Actions */}
+        <div className="flex items-center">
           <button
+            type="button"
+            aria-label="Tìm kiếm"
             className="
               flex
-              h-[42px]
-              w-[42px]
+              h-9
+              w-9
               items-center
               justify-center
-              rounded-full
-              bg-[#f4f6f9]
+              text-[#444]
               transition
-              hover:bg-[#e9edf2]
+              hover:text-[#C96A2B]
               md:hidden
             "
           >
-            <Search
-              size={20}
-              strokeWidth={2}
-              className="text-[#4b5563]"
-            />
+            <Search size={20} strokeWidth={1.8} />
           </button>
 
-
-          {/* User */}
           <button
+            type="button"
+            aria-label="Tài khoản"
             className="
-              flex
-              h-[42px]
-              w-[42px]
+              hidden
+              h-9
+              w-9
               items-center
               justify-center
-              rounded-full
-              bg-[#f4f6f9]
+              text-[#444]
               transition
-              hover:bg-[#e9edf2]
+              hover:text-[#C96A2B]
+              sm:flex
             "
           >
-            <CircleUserRound
-              size={22}
-              strokeWidth={2}
-              className="text-[#4b5563]"
-            />
+            <UserRound size={20} strokeWidth={1.8} />
           </button>
 
-
-          {/* Menu */}
           <button
+            type="button"
+            aria-label="Menu"
             className="
+              ml-1
               flex
-              h-[42px]
-              w-[42px]
+              h-9
+              w-9
               items-center
               justify-center
-              rounded-full
-              bg-[#f4f6f9]
+              text-[#444]
               transition
-              hover:bg-[#e9edf2]
+              hover:text-[#C96A2B]
             "
           >
-            <Menu
-              size={22}
-              strokeWidth={2.2}
-              className="text-[#4b5563]"
-            />
+            <Menu size={21} strokeWidth={1.8} />
           </button>
-
         </div>
-
       </div>
     </header>
   );

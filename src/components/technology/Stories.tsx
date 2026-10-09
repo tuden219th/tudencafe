@@ -1,109 +1,43 @@
 const stories = [
-  {
-    id: 1,
-    title: "AI",
-    color: "#6C5CE7",
-  },
-  {
-    id: 2,
-    title: "Apple",
-    color: "#2D3436",
-  },
-  {
-    id: 3,
-    title: "Android",
-    color: "#00B894",
-  },
-  {
-    id: 4,
-    title: "Windows",
-    color: "#0984E3",
-  },
-  {
-    id: 5,
-    title: "Review",
-    color: "#E17055",
-  },
-  {
-    id: 6,
-    title: "Xe",
-    color: "#D63031",
-  },
+  "Từ Đến Fact",
+  "AI",
+  "Apple",
+  "Android",
+  "Windows",
+  "Review",
+  "Xe",
 ];
 
 export default function Stories() {
   return (
-    <section className="mb-6">
-      <div className="mb-3">
-        <h2
-          className="
-            text-sm
-            font-bold
-            tracking-tight
-            text-[#202124]
-          "
-        >
-          Từ Đến Fact
-        </h2>
-      </div>
-
-      <div
-        className="
-          flex
-          gap-5
-          overflow-x-auto
-          pb-1
-          scrollbar-hide
-        "
-      >
-        {stories.map((story) => (
+    <section className="border-y border-[#e8e3dc]">
+      <div className="flex items-center overflow-x-auto scrollbar-hide">
+        {stories.map((story, index) => (
           <button
-            key={story.id}
+            key={story}
             type="button"
-            className="
-              flex
-              min-w-[72px]
-              flex-col
-              items-center
+            className={`
+              relative
+              shrink-0
+              px-4
+              py-3
+              text-sm
+              font-medium
+              whitespace-nowrap
               transition
-              hover:opacity-80
-            "
+              sm:px-5
+              ${
+                index === 0
+                  ? "font-semibold text-[#C96A2B]"
+                  : "text-[#444] hover:text-[#C96A2B]"
+              }
+            `}
           >
-            <div
-              className="
-                flex
-                h-[64px]
-                w-[64px]
-                items-center
-                justify-center
-                rounded-full
-              "
-              style={{
-                backgroundColor: story.color,
-              }}
-            >
-              <div
-                className="
-                  h-[56px]
-                  w-[56px]
-                  rounded-full
-                  border-[3px]
-                  border-white
-                  bg-[#F5EBDD]
-                "
-              />
-            </div>
+            {story}
 
-            <span
-              className="
-                mt-2
-                text-[12px]
-                font-medium
-                text-[#444]
-              "
-            >
-              {story.title}
-            </span>
+            {index === 0 && (
+              <span className="absolute inset-x-4 bottom-0 h-[2px] bg-[#C96A2B] sm:inset-x-5" />
+            )}
           </button>
         ))}
       </div>

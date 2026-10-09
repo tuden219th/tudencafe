@@ -1,5 +1,7 @@
 "use client";
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Message } from "./types";
 
 type Props = {
@@ -9,94 +11,76 @@ type Props = {
 export default function ChatMessage({ message }: Props) {
   const isUser = message.role === "user";
 
-  const formatMessage = (text: string) => {
-    return text.split("\n").map((line, index) => (
-      <p key={index} className={index > 0 ? "mt-2" : ""}>
-        {line.split("**").map((part, i) =>
-          i % 2 === 1 ? (
-            <strong key={i} className="font-semibold">
-              {part}
-            </strong>
-          ) : (
-            part
-          )
-        )}
-      </p>
-    ));
-  };
-
   return (
     <div
-      className={`
-        flex
-        w-full
-        items-end
-        gap-2
-        ${isUser ? "justify-end" : "justify-start"}
-      `}
+      className={`flex w-full items-end gap-2.5 ${
+        isUser ? "justify-end" : "justify-start"
+      }`}
     >
+      {/* Avatar AI */}
       {!isUser && (
-        <div
-          className="
-            mb-1
-            flex
-            h-8
-            w-8
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            bg-gradient-to-br
-            from-orange-500
-            to-orange-600
-            text-sm
-            text-white
-          "
-        >
+        <div className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#C96A2B] to-[#994411] text-xs text-white shadow-xs">
           ☕
         </div>
       )}
 
+      {/* Bubble tin nhắn */}
       <div
-        className={`
-          max-w-[78%]
-          lg:max-w-[72%]
-
-          break-words
-
-          px-5
-          py-3.5
-
-          text-[15px]
-          leading-7
-
-          transition-all
-          duration-200
-
-          animate-in
-          fade-in
-          slide-in-from-bottom-2
-
-          ${
-            isUser
-              ? `
-                rounded-2xl
-                rounded-br-md
-                bg-[var(--primary)]
-                text-white
-              `
-              : `
-                rounded-2xl
-                rounded-bl-md
-                border
-                border-orange-100
-                bg-white
-                text-[#3B2416]
-              `
-          }
-        `}
+        className={`max-w-[86%] break-words px-4 py-3 text-[15px] leading-[1.65] shadow-xs sm:max-w-[80%] sm:px-4.5 sm:py-3.5 ${
+          isUser
+            ? "rounded-[20px] rounded-br-xs bg-gradient-to-br from-[#C96A2B] to-[#B6561B] text-white shadow-[#C96A2B]/15"
+            : "rounded-[20px] rounded-bl-xs border border-[#EADCCC] bg-white text-[#3B2416]"
+        }`}
       >
-        {formatMessage(message.content)}
+        {isUser ? (
+          <p className="whitespace-pre-wrap">{message.content}</p>
+        ) : (
+          <div className="space-y-2 text-[15px] leading-relaxed select-text">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => (
+                  <p className="mb-2 last:mb-0 leading-[1.65]">{children}</p>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold text-[#241309]">
+                    {children}
+                  </strong>
+                ),
+                ul: ({ children }) => (
+                  <ul className="mb-2 list-disc pl-4 space-y-1 last:mb-0">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="mb-2 list-decimal pl-4 space-y-1 last:mb-0">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="leading-[1.6]">{children}</li>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="my-2 border-l-3 border-[#C96A2B] pl-3 italic text-[#6E5A49]">
+                    {children}
+                  </blockquote>
+                ),
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-[#C96A2B] underline decoration-[#C96A2B]/50 underline-offset-2 hover:decoration-[#C96A2B]"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {message.content}
+            </ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   );
