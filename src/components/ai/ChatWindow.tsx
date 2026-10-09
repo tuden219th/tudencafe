@@ -29,7 +29,7 @@ export default function ChatWindow({
       {/* Backdrop mờ nhẹ trên mobile */}
       <div
         onClick={onClose}
-        className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs sm:hidden"
+        className="fixed inset-0 z-40 bg-black/30 backdrop-blur-xs sm:hidden"
         aria-hidden="true"
       />
 
@@ -41,36 +41,36 @@ export default function ChatWindow({
           flex-col
           overflow-hidden
 
-          /* Mobile: chiếm trọn viewport 100dvh */
+          /* Mobile: toàn màn hình chuẩn 100dvh */
           inset-0
           h-[100dvh]
           w-full
-          bg-[#FAF6F0]
+          bg-[#FAFAFA]
 
-          /* Desktop / Laptop: cửa sổ nổi góc phải */
+          /* Desktop / Laptop: Cửa sổ nổi Antigravity IDE */
           sm:inset-auto
           sm:bottom-6
           sm:right-6
-          sm:h-[640px]
+          sm:h-[650px]
           sm:max-h-[calc(100dvh-48px)]
-          sm:w-[420px]
-          sm:rounded-[28px]
+          sm:w-[430px]
+          sm:rounded-2xl
           sm:border
-          sm:border-[#E8DFD3]
-          sm:shadow-[0_20px_50px_rgba(59,36,22,0.18)]
+          sm:border-gray-200/90
+          sm:shadow-[0_20px_60px_rgba(0,0,0,0.15)]
 
           animate-in
           fade-in
           duration-200
         "
       >
-        {/* Header */}
+        {/* Header tối giản */}
         <div className="shrink-0 bg-white" style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}>
           <ChatHeader onClose={onClose} onReset={onReset} />
         </div>
 
-        {/* Khung tin nhắn cuộn - cấm tràn ngang overflow-x-hidden */}
-        <div className="chat-scrollbar flex-1 overflow-y-auto overflow-x-hidden bg-[#FAF6F0]">
+        {/* Luồng hội thoại mở, cuộn mượt */}
+        <div className="chat-scrollbar flex-1 overflow-y-auto overflow-x-hidden bg-[#FAFAFA]">
           <ChatMessages
             messages={messages}
             loading={loading}
@@ -78,10 +78,10 @@ export default function ChatWindow({
           />
         </div>
 
-        {/* Khung soạn thảo tin nhắn - có đệm đáy an toàn và nền trắng đặc */}
+        {/* Khung Input Card nổi phía dưới */}
         <div
-          className="shrink-0 border-t border-[#EFE5DA] bg-white px-3.5 pt-3 pb-3.5 sm:px-4 sm:pt-3.5 sm:pb-4"
-          style={{ paddingBottom: "max(14px, env(safe-area-inset-bottom, 14px))" }}
+          className="shrink-0 bg-[#FAFAFA] px-3.5 pt-1 pb-3 sm:px-4 sm:pb-3.5"
+          style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom, 12px))" }}
         >
           <ChatInput onSend={onSend} loading={loading} />
         </div>

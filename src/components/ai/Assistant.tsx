@@ -10,16 +10,15 @@ import { Message } from "./types";
 const INITIAL_WELCOME_MESSAGE: Message = {
   id: 1,
   role: "assistant",
-  content: `👋 **Xin chào bạn!**
+  content: `Chào bạn! Mình là **AI Barista** của quán cà phê Từ Đến.
 
-Mình là **AI Barista** của quán cà phê Từ Đến. Mình có thể hỗ trợ bạn:
+Mình có thể hỗ trợ bạn tìm hiểu nhanh:
+- ☕ **Tư vấn đồ uống**: Espresso, Americano, Latte Art, Trà, Bánh...
+- 🥐 **Menu bánh & ăn nhẹ**: Bánh ngọt, bánh mì, donut hôm nay
+- 📶 **Không gian quán**: Chỗ ngồi yên tĩnh làm việc, ổ cắm & wifi
+- 📍 **Địa chỉ & giờ mở**: 219 Tô Hiệu, mở cửa 7:00 - 22:00
 
-☕ **Tư vấn đồ uống** theo khẩu vị và sở thích
-🥐 **Các loại bánh ngọt & đồ ăn nhẹ**
-📶 **Không gian làm việc, ổ cắm & mật khẩu wifi**
-📍 **Địa chỉ quán & khung giờ mở cửa**
-
-Hôm nay bạn muốn khám phá điều gì cùng Từ Đến?`,
+Bạn muốn khám phá điều gì cùng Từ Đến hôm nay?`,
 };
 
 export default function Assistant() {
