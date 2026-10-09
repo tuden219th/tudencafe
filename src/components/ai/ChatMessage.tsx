@@ -13,13 +13,13 @@ export default function ChatMessage({ message }: Props) {
 
   return (
     <div
-      className={`flex w-full items-end gap-2 min-w-0 ${
+      className={`flex w-full items-start gap-2.5 min-w-0 ${
         isUser ? "justify-end" : "justify-start"
       }`}
     >
       {/* Avatar AI */}
       {!isUser && (
-        <div className="mb-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#C96A2B] to-[#994411] text-xs text-white shadow-xs">
+        <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#D47A3D] to-[#994411] text-xs text-white shadow-xs">
           ☕
         </div>
       )}
@@ -28,8 +28,8 @@ export default function ChatMessage({ message }: Props) {
       <div
         className={`relative break-words text-[15px] leading-[1.65] shadow-xs ${
           isUser
-            ? "max-w-[82%] rounded-[20px] rounded-br-sm bg-gradient-to-br from-[#C96A2B] to-[#B3581E] px-4 py-2.5 text-white"
-            : "max-w-[85%] rounded-[20px] rounded-bl-sm border border-[#EADBCC] bg-white px-4 py-3 text-[#3B2416]"
+            ? "max-w-[80%] rounded-[20px] rounded-tr-[4px] bg-[#D47A3D] px-4.5 py-3 text-white"
+            : "max-w-[85%] rounded-[20px] rounded-tl-[4px] border border-[#EAE1D5] bg-white px-4.5 py-3 text-[#2B180D]"
         }`}
       >
         {isUser ? (
@@ -45,7 +45,7 @@ export default function ChatMessage({ message }: Props) {
                   <p className="mb-2 last:mb-0 leading-[1.65]">{children}</p>
                 ),
                 strong: ({ children }) => (
-                  <strong className="font-semibold text-[#23150D]">
+                  <strong className="font-semibold text-[#1F1108]">
                     {children}
                   </strong>
                 ),
@@ -63,7 +63,7 @@ export default function ChatMessage({ message }: Props) {
                   <li className="leading-[1.6]">{children}</li>
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="my-2 border-l-3 border-[#C96A2B] pl-3 italic text-[#6E5A49]">
+                  <blockquote className="my-2 border-l-3 border-[#D47A3D] pl-3 italic text-[#6E5A49]">
                     {children}
                   </blockquote>
                 ),
@@ -72,7 +72,7 @@ export default function ChatMessage({ message }: Props) {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-[#C96A2B] underline decoration-[#C96A2B]/50 underline-offset-2 hover:decoration-[#C96A2B]"
+                    className="font-medium text-[#D47A3D] underline decoration-[#D47A3D]/50 underline-offset-2 hover:decoration-[#D47A3D]"
                   >
                     {children}
                   </a>

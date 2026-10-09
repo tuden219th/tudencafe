@@ -18,12 +18,12 @@ export default function ChatButton({ onClick }: Props) {
         gap-2.5
         rounded-full
         bg-gradient-to-r
-        from-[#C96A2B]
-        to-[#A64F19]
+        from-[#D47A3D]
+        to-[#B6561B]
         px-4.5
         py-3
         text-white
-        shadow-[0_12px_28px_rgba(201,106,43,0.38)]
+        shadow-[0_12px_28px_rgba(212,122,61,0.35)]
         transition-all
         duration-300
         hover:scale-105
