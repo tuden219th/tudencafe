@@ -7,35 +7,35 @@ type Props = {
 
 export default function ChatHeader({ onClose, onReset }: Props) {
   return (
-    <div className="border-b border-[#EFE7DE] bg-white/95 px-4.5 py-3.5 backdrop-blur-md">
+    <div className="border-b border-[#EFE7DE] bg-white px-4 py-3.5 sm:px-5">
       <div className="flex items-center justify-between gap-3">
         {/* Left: Avatar + Title */}
         <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#C96A2B] to-[#A44E18] text-base text-white shadow-sm shadow-[#C96A2B]/20">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#C96A2B] to-[#994411] text-base text-white shadow-xs">
             ☕
-            <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3">
+            <span className="absolute bottom-0 right-0 flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
             </span>
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <h2 className="text-[15px] font-bold text-[#3B2416]">
                 AI Barista Từ Đến
               </h2>
-              <span className="rounded-full bg-[#FAF0E6] px-2 py-0.5 text-[10px] font-semibold tracking-wide text-[#C96A2B]">
+              <span className="rounded-full bg-[#FAF0E6] px-2 py-0.5 text-[10px] font-semibold text-[#C96A2B]">
                 24/7
               </span>
             </div>
             <p className="text-[12px] text-[#8B7765]">
-              Sẵn sàng hỗ trợ & tư vấn cho bạn
+              Sẵn sàng tư vấn & giải đáp
             </p>
           </div>
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           {onReset && (
             <button
               onClick={onReset}

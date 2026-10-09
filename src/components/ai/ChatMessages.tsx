@@ -27,7 +27,7 @@ export default function ChatMessages({
   const showSuggestions = messages.length <= 1;
 
   return (
-    <div className="flex flex-col gap-3.5 px-3 py-3 sm:px-4 sm:py-4">
+    <div className="flex flex-col gap-3.5 w-full max-w-full overflow-x-hidden p-3.5 pb-8 sm:p-4 sm:pb-8">
       {/* Danh sách tin nhắn */}
       {messages.map((m) => (
         <ChatMessage key={m.id} message={m} />
@@ -46,7 +46,8 @@ export default function ChatMessages({
       {/* Hiệu ứng đang soạn tin */}
       {loading && <TypingIndicator />}
 
-      <div ref={bottomRef} className="h-1" />
+      {/* Điểm neo cuộn có chiều cao để tin nhắn không bị che */}
+      <div ref={bottomRef} className="h-4 shrink-0" />
     </div>
   );
 }

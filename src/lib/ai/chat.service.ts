@@ -1,4 +1,4 @@
-﻿import OpenAI from "openai";
+import OpenAI from "openai";
 import { getAIKnowledge } from "./knowledge.service";
 import {
   getConversationMessages,
@@ -30,6 +30,7 @@ function shouldFallback(error: unknown) {
     errorMessage.includes("rate limit") ||
     errorMessage.includes("quota") ||
     errorMessage.includes("provider") ||
+    errorMessage.includes("empty") ||
     errorMessage.includes("503") ||
     errorMessage.includes("502") ||
     errorMessage.includes("500")

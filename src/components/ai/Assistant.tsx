@@ -14,10 +14,10 @@ const INITIAL_WELCOME_MESSAGE: Message = {
 
 Mình là **AI Barista** của quán cà phê Từ Đến. Mình có thể hỗ trợ bạn:
 
-- ☕ **Tư vấn đồ uống** theo khẩu vị và sở thích
-- 🥐 **Các loại bánh ngọt & đồ ăn nhẹ**
-- 📶 **Không gian làm việc, ổ cắm & mật khẩu wifi**
-- 📍 **Địa chỉ quán & khung giờ mở cửa**
+☕ **Tư vấn đồ uống** theo khẩu vị và sở thích
+🥐 **Các loại bánh ngọt & đồ ăn nhẹ**
+📶 **Không gian làm việc, ổ cắm & mật khẩu wifi**
+📍 **Địa chỉ quán & khung giờ mở cửa**
 
 Hôm nay bạn muốn khám phá điều gì cùng Từ Đến?`,
 };
@@ -65,13 +65,15 @@ export default function Assistant() {
 
       const data = await res.json();
 
+      let reply = data.reply;
+      if (!reply || typeof reply !== "string" || reply.includes("empty response")) {
+        reply = "Dạ, hiện tại đường truyền tới AI đang bị chậm một chút. Bạn có thể hỏi lại giúp mình câu hỏi vừa rồi được không ạ? ☕";
+      }
+
       const aiMessage: Message = {
         id: Date.now() + 1,
         role: "assistant",
-        content:
-          data.reply ??
-          data.error ??
-          "Xin lỗi, hiện tại mình chưa thể trả lời.",
+        content: reply,
       };
 
       setMessages((prev) => [...prev, aiMessage]);
@@ -82,7 +84,7 @@ export default function Assistant() {
           id: Date.now() + 1,
           role: "assistant",
           content:
-            "⚠️ Không thể kết nối tới AI. Vui lòng kiểm tra lại kết nối mạng hoặc thử lại sau ít phút.",
+            "Dạ, hiện tại kết nối mạng đang bị gián đoạn. Bạn thử lại giúp mình sau ít phút nhé! ☕",
         },
       ]);
     } finally {

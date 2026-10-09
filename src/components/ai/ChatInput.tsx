@@ -11,12 +11,12 @@ export default function ChatInput({ onSend, loading = false }: Props) {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea theo lượng chữ (tối thiểu 42px, tối đa 140px ~ 5 dòng)
+  // Auto-resize textarea theo lượng chữ (tối thiểu 40px, tối đa 130px)
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
     el.style.height = "auto";
-    const nextHeight = Math.min(Math.max(el.scrollHeight, 42), 140);
+    const nextHeight = Math.min(Math.max(el.scrollHeight, 40), 130);
     el.style.height = `${nextHeight}px`;
   }, [text]);
 
@@ -27,9 +27,8 @@ export default function ChatInput({ onSend, loading = false }: Props) {
     onSend(message);
     setText("");
 
-    // Reset chiều cao sau khi gửi
     if (textareaRef.current) {
-      textareaRef.current.style.height = "42px";
+      textareaRef.current.style.height = "40px";
     }
   }
 
@@ -41,7 +40,7 @@ export default function ChatInput({ onSend, loading = false }: Props) {
         e.preventDefault();
         send();
       }}
-      className="relative flex w-full items-end gap-2 rounded-[22px] border border-[#E7DDD0] bg-white px-3.5 py-2 shadow-sm transition-all focus-within:border-[#C96A2B] focus-within:ring-2 focus-within:ring-[#C96A2B]/15"
+      className="relative flex w-full items-end gap-2 rounded-[24px] border border-[#E4D7C8] bg-white px-3.5 py-2 shadow-xs transition-all focus-within:border-[#C96A2B] focus-within:ring-2 focus-within:ring-[#C96A2B]/15"
     >
       <textarea
         ref={textareaRef}
@@ -54,17 +53,17 @@ export default function ChatInput({ onSend, loading = false }: Props) {
             send();
           }
         }}
-        placeholder="Hỏi AI Barista (menu, không gian, vị trí...)"
-        className="chat-scrollbar max-h-[140px] min-h-[42px] flex-1 resize-none bg-transparent px-1 py-2 text-[16px] leading-[1.5] text-[#3B2416] placeholder-[#9E8B7D] outline-none"
+        placeholder="Hỏi AI Barista (menu, đồ uống, wifi, không gian...)"
+        className="chat-scrollbar max-h-[130px] min-h-[40px] flex-1 resize-none bg-transparent px-2 py-2 text-[15px] sm:text-[16px] leading-[1.5] text-[#3B2416] placeholder:text-[#A8988B] outline-none"
       />
 
       <button
         type="submit"
         disabled={disabled}
         aria-label="Gửi tin nhắn"
-        className={`mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-200 active:scale-95 ${
+        className={`mb-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-200 active:scale-95 ${
           disabled
-            ? "cursor-not-allowed bg-[#F2EDE6] text-[#B8AA9D]"
+            ? "cursor-not-allowed bg-[#F4EFEA] text-[#BFB0A2]"
             : "bg-[#C96A2B] text-white shadow-md shadow-[#C96A2B]/25 hover:bg-[#B3581E] hover:scale-105"
         }`}
       >
@@ -74,7 +73,7 @@ export default function ChatInput({ onSend, loading = false }: Props) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2.2"
-          className="h-4.5 w-4.5 translate-x-0.5"
+          className="h-4 w-4"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
           <path

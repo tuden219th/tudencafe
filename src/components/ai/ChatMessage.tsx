@@ -13,29 +13,31 @@ export default function ChatMessage({ message }: Props) {
 
   return (
     <div
-      className={`flex w-full items-end gap-2.5 ${
+      className={`flex w-full items-end gap-2 min-w-0 ${
         isUser ? "justify-end" : "justify-start"
       }`}
     >
       {/* Avatar AI */}
       {!isUser && (
-        <div className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#C96A2B] to-[#994411] text-xs text-white shadow-xs">
+        <div className="mb-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#C96A2B] to-[#994411] text-xs text-white shadow-xs">
           ☕
         </div>
       )}
 
       {/* Bubble tin nhắn */}
       <div
-        className={`max-w-[86%] break-words px-4 py-3 text-[15px] leading-[1.65] shadow-xs sm:max-w-[80%] sm:px-4.5 sm:py-3.5 ${
+        className={`relative break-words text-[15px] leading-[1.65] shadow-xs ${
           isUser
-            ? "rounded-[20px] rounded-br-xs bg-gradient-to-br from-[#C96A2B] to-[#B6561B] text-white shadow-[#C96A2B]/15"
-            : "rounded-[20px] rounded-bl-xs border border-[#EADCCC] bg-white text-[#3B2416]"
+            ? "max-w-[82%] rounded-[20px] rounded-br-sm bg-gradient-to-br from-[#C96A2B] to-[#B3581E] px-4 py-2.5 text-white"
+            : "max-w-[85%] rounded-[20px] rounded-bl-sm border border-[#EADBCC] bg-white px-4 py-3 text-[#3B2416]"
         }`}
       >
         {isUser ? (
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          <p className="whitespace-pre-wrap leading-relaxed select-text m-0 p-0 text-white font-normal">
+            {message.content}
+          </p>
         ) : (
-          <div className="space-y-2 text-[15px] leading-relaxed select-text">
+          <div className="space-y-2 text-[15px] leading-relaxed select-text m-0 p-0">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -43,12 +45,12 @@ export default function ChatMessage({ message }: Props) {
                   <p className="mb-2 last:mb-0 leading-[1.65]">{children}</p>
                 ),
                 strong: ({ children }) => (
-                  <strong className="font-semibold text-[#241309]">
+                  <strong className="font-semibold text-[#23150D]">
                     {children}
                   </strong>
                 ),
                 ul: ({ children }) => (
-                  <ul className="mb-2 list-disc pl-4 space-y-1 last:mb-0">
+                  <ul className="mb-2 list-none pl-0 space-y-1.5 last:mb-0">
                     {children}
                   </ul>
                 ),
