@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowUp, Sparkles } from "lucide-react";
 
 type Props = {
   onSend: (text: string) => void;
@@ -8,22 +9,21 @@ type Props = {
 };
 
 const QUICK_PROMPTS = [
-  { label: "☕ Menu", prompt: "Quán Từ Đến có những món cà phê và đồ uống đặc sắc nào?" },
+  { label: "☕ Thực đơn", prompt: "Quán Từ Đến có những món cà phê và đồ uống đặc sắc nào?" },
   { label: "🥐 Bánh ngọt", prompt: "Hôm nay quán có những loại bánh nào ăn kèm cà phê?" },
-  { label: "📶 Wifi & Ổ cắm", prompt: "Quán có không gian yên tĩnh để làm việc, ổ cắm và wifi mạnh không?" },
-  { label: "📍 Địa chỉ & Giờ mở", prompt: "Địa chỉ cụ thể và giờ mở cửa của Từ Đến Coffee thế nào?" },
+  { label: "📶 Wi-Fi & Bàn", prompt: "Quán có không gian yên tĩnh để làm việc, ổ cắm và wifi mạnh không?" },
+  { label: "📍 Địa chỉ", prompt: "Địa chỉ cụ thể và giờ mở cửa của Từ Đến Coffee thế nào?" },
 ];
 
 export default function ChatInput({ onSend, loading = false }: Props) {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea theo lượng chữ (tối thiểu 36px, tối đa 140px)
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
     el.style.height = "auto";
-    const nextHeight = Math.min(Math.max(el.scrollHeight, 36), 140);
+    const nextHeight = Math.min(Math.max(el.scrollHeight, 40), 140);
     el.style.height = `${nextHeight}px`;
   }, [text]);
 
@@ -35,7 +35,7 @@ export default function ChatInput({ onSend, loading = false }: Props) {
     setText("");
 
     if (textareaRef.current) {
-      textareaRef.current.style.height = "36px";
+      textareaRef.current.style.height = "40px";
     }
   }
 
@@ -43,15 +43,51 @@ export default function ChatInput({ onSend, loading = false }: Props) {
 
   return (
     <div className="w-full">
-      {/* Khung Input chuẩn Card 2 tầng Antigravity IDE */}
+      {/* Quick Prompts Strip - Just the right breathing space */}
+      <div style={{ marginBottom: "10px" }} className="relative">
+        <div
+          style={{ gap: "8px", paddingTop: "2px", paddingBottom: "2px" }}
+          className="flex items-center overflow-x-auto scrollbar-none"
+        >
+          <span
+            style={{ marginRight: "4px" }}
+            className="flex items-center gap-1 shrink-0 text-[11px] font-bold uppercase tracking-wider text-[#A0816C]"
+          >
+            <Sparkles className="h-3 w-3 text-amber-500" />
+            Gợi ý:
+          </span>
+          {QUICK_PROMPTS.map((q) => (
+            <button
+              key={q.label}
+              type="button"
+              onClick={() => onSend(q.prompt)}
+              disabled={loading}
+              style={{
+                padding: "5px 12px",
+                borderRadius: "10px",
+                lineHeight: "1.4",
+              }}
+              className="shrink-0 border border-[#E4D2BF] bg-[#FFFDF9] text-[12.5px] font-medium text-[#4D3325] shadow-xs transition-all hover:border-[#C96A2B] hover:bg-[#FFF4E8] hover:text-[#C96A2B] active:scale-95 disabled:opacity-50"
+            >
+              {q.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Input Box - Crisp, balanced padding */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           send();
         }}
-        className="relative flex flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-xs transition-all duration-200 focus-within:border-gray-400 focus-within:shadow-md"
+        style={{
+          padding: "7px 8px 7px 15px",
+          borderRadius: "14px",
+          gap: "10px",
+        }}
+        className="relative flex items-center border-2 border-[#DEC8B0] bg-white shadow-[0_4px_16px_rgba(42,29,21,0.05)] transition-all duration-200 focus-within:border-[#C96A2B] focus-within:ring-4 focus-within:ring-[#C96A2B]/12 focus-within:shadow-[0_6px_20px_rgba(201,106,43,0.12)]"
       >
-        {/* Tầng 1: Vùng gõ chữ thênh thang, không bị chèn ép */}
         <textarea
           ref={textareaRef}
           rows={1}
@@ -63,54 +99,47 @@ export default function ChatInput({ onSend, loading = false }: Props) {
               send();
             }
           }}
-          placeholder="Nhập câu hỏi cho AI Barista..."
-          className="chat-scrollbar max-h-[140px] min-h-[36px] w-full resize-none bg-transparent px-1 py-1 text-[15px] leading-relaxed text-gray-900 placeholder:text-gray-400 outline-none"
+          placeholder="Hỏi về cà phê, menu bánh, không gian..."
+          style={{
+            minHeight: "36px",
+            paddingTop: "6px",
+            paddingBottom: "6px",
+            lineHeight: "1.5",
+          }}
+          className="chat-scrollbar max-h-[140px] w-full resize-none bg-transparent text-[14.5px] text-[#2A1D15] placeholder:text-[#9E8270] outline-none"
         />
 
-        {/* Tầng 2: Hàng công cụ tích hợp (Quick Chips + Nút gửi ↑) */}
-        <div className="mt-2 flex items-center justify-between gap-2 pt-1 border-t border-gray-50">
-          {/* Quick chips cuộn ngang nhẹ */}
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
-            {QUICK_PROMPTS.map((q) => (
-              <button
-                key={q.label}
-                type="button"
-                onClick={() => onSend(q.prompt)}
-                className="shrink-0 rounded-full bg-gray-50 px-2.5 py-1 text-[12px] font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 active:scale-95"
-              >
-                {q.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Nút gửi mũi tên lên ↑ chuẩn Antigravity / Claude */}
-          <button
-            type="submit"
-            disabled={disabled}
-            aria-label="Gửi tin nhắn"
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl transition-all duration-200 active:scale-95 ${
-              disabled
-                ? "cursor-not-allowed bg-gray-100 text-gray-300"
-                : "bg-gray-900 text-white hover:bg-black shadow-xs"
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              className="h-4 w-4"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5M5 12l7-7 7 7" />
-            </svg>
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={disabled}
+          aria-label="Gửi tin nhắn"
+          style={{
+            borderRadius: "10px",
+            width: "36px",
+            height: "36px",
+            flexShrink: 0,
+          }}
+          className={`flex items-center justify-center transition-all duration-200 active:scale-95 ${
+            disabled
+              ? "cursor-not-allowed border border-[#E6D4BF] bg-[#F8EFE4] text-[#A68872]"
+              : "bg-gradient-to-tr from-[#B8581B] via-[#C96A2B] to-[#E5803A] text-white shadow-[0_4px_14px_rgba(201,106,43,0.38)] hover:scale-105"
+          }`}
+        >
+          <ArrowUp className="h-4.5 w-4.5 stroke-[2.5]" />
+        </button>
       </form>
 
-      {/* Dòng ghi chú nhỏ tối giản */}
-      <p className="mt-1.5 text-center text-[11px] text-gray-400">
-        AI Barista có thể có sai sót. Vui lòng kiểm tra lại với nhân viên quán.
+      <p
+        style={{
+          marginTop: "9px",
+          marginBottom: "2px",
+          textAlign: "center",
+          fontSize: "11px",
+          color: "#9A7D69",
+          lineHeight: "1.4",
+        }}
+      >
+        AI Barista có thể nhầm lẫn • Vui lòng kiểm tra lại với nhân viên quán ☕
       </p>
     </div>
   );

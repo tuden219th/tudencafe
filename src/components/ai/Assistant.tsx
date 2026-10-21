@@ -23,6 +23,7 @@ Bạn muốn khám phá điều gì cùng Từ Đến hôm nay?`,
 
 export default function Assistant() {
   const [open, setOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   const [loading, setLoading] = useState(false);
 
   // Welcome message hiển thị ngay khi mở AI
@@ -93,11 +94,23 @@ export default function Assistant() {
 
   return (
     <>
-      {!open && <ChatButton onClick={() => setOpen(true)} />}
+      {!open && (
+        <ChatButton
+          onClick={() => {
+            setOpen(true);
+            setIsMinimized(false);
+          }}
+        />
+      )}
 
       <ChatWindow
         open={open}
-        onClose={() => setOpen(false)}
+        isMinimized={isMinimized}
+        onToggleMinimize={(min) => setIsMinimized(min)}
+        onClose={() => {
+          setOpen(false);
+          setIsMinimized(false);
+        }}
         onReset={resetConversation}
         messages={messages}
         loading={loading}

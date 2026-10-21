@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { motion } from "framer-motion";
+import { Coffee, Copy, Check, Sparkles } from "lucide-react";
 import { Message } from "./types";
 
 type Props = {
@@ -9,82 +12,154 @@ type Props = {
 };
 
 export default function ChatMessage({ message }: Props) {
+  const [copied, setCopied] = useState(false);
   const isUser = message.role === "user";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(message.content);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   if (isUser) {
     return (
-      <div className="flex w-full justify-end min-w-0 my-1">
-        <div className="max-w-[82%] sm:max-w-[78%] rounded-2xl rounded-tr-xs bg-[#262626] px-4 py-2.5 text-white shadow-xs">
-          <p className="whitespace-pre-wrap text-[14.5px] leading-relaxed font-normal select-text m-0 p-0 text-white">
+      <motion.div
+        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="my-2 flex min-w-0 w-full justify-end"
+      >
+        <div
+          style={{ padding: "12px 18px", borderRadius: "14px", borderBottomRightRadius: "3px" }}
+          className="max-w-[84%] sm:max-w-[80%] bg-gradient-to-br from-[#381F12] to-[#221108] text-[#FFF9F3] shadow-[0_4px_16px_rgba(35,20,12,0.18)] border border-[#5A331D]/60"
+        >
+          <p
+            style={{ margin: 0, lineHeight: 1.75 }}
+            className="whitespace-pre-wrap text-[14.5px] font-normal select-text"
+          >
             {message.content}
           </p>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
-  // AI Assistant message: Dạng luồng hội thoại mở như Antigravity IDE / Claude
   return (
-    <div className="flex w-full items-start gap-3 min-w-0 my-2">
-      {/* Icon Barista nhỏ gọn */}
-      <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#2A1D15] text-xs text-white shadow-xs">
-        ☕
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+      className="group relative my-2.5 flex min-w-0 w-full items-start gap-3"
+    >
+      {/* Avatar AI */}
+      <div
+        style={{ borderRadius: "10px" }}
+        className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center bg-gradient-to-br from-[#3D2518] to-[#1F140E] text-white shadow-xs ring-1 ring-[#D8B996]/60"
+      >
+        <Coffee className="h-4 w-4 text-[#F5DEBE]" />
       </div>
 
-      {/* Nội dung tin nhắn AI mở, thoáng đãng */}
-      <div className="flex-1 min-w-0 text-[14.5px] leading-[1.7] text-gray-800">
-        <div className="mb-1 text-[12px] font-semibold tracking-wide text-gray-400">
-          Từ Đến AI
+      <div
+        style={{ padding: "15px 20px", borderRadius: "14px", borderTopLeftRadius: "3px" }}
+        className="relative min-w-0 max-w-[88%] sm:max-w-[84%] border border-[#E8DAC8] bg-[#FFFDF9] shadow-[0_3px_12px_rgba(42,29,21,0.04)]"
+      >
+        {/* Content Box */}
+        <div
+          style={{ lineHeight: 1.8 }}
+          className="text-[14.5px] text-[#2F2119] select-text"
+        >
+          <div className="space-y-3">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => (
+                  <p
+                    style={{ margin: "0 0 12px 0", lineHeight: 1.8 }}
+                    className="last:mb-0 text-[#34241B]"
+                  >
+                    {children}
+                  </p>
+                ),
+                strong: ({ children }) => (
+                  <strong
+                    style={{ padding: "2px 6px" }}
+                    className="font-bold text-[#A8521B] bg-[#C96A2B]/12 rounded"
+                  >
+                    {children}
+                  </strong>
+                ),
+                ul: ({ children }) => (
+                  <ul
+                    style={{ margin: "10px 0", paddingLeft: "24px" }}
+                    className="list-disc space-y-2 text-[#34241B] last:mb-0"
+                  >
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol
+                    style={{ margin: "10px 0", paddingLeft: "24px" }}
+                    className="list-decimal space-y-2 text-[#34241B] last:mb-0"
+                  >
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li style={{ paddingLeft: "4px", lineHeight: 1.75 }}>
+                    {children}
+                  </li>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote
+                    style={{ margin: "12px 0", padding: "8px 14px" }}
+                    className="border-l-3 border-[#C96A2B] bg-[#FAF3EA] rounded-r-xl italic text-[#5C3F2E]"
+                  >
+                    {children}
+                  </blockquote>
+                ),
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[#C96A2B] underline decoration-[#C96A2B]/40 underline-offset-2 hover:decoration-[#C96A2B] hover:text-[#994715]"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {message.content}
+            </ReactMarkdown>
+          </div>
         </div>
 
-        <div className="space-y-2 select-text">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              p: ({ children }) => (
-                <p className="mb-2.5 last:mb-0 leading-[1.7] text-gray-800">
-                  {children}
-                </p>
-              ),
-              strong: ({ children }) => (
-                <strong className="font-semibold text-gray-950">
-                  {children}
-                </strong>
-              ),
-              ul: ({ children }) => (
-                <ul className="mb-2.5 list-disc pl-4 space-y-1.5 text-gray-800 last:mb-0">
-                  {children}
-                </ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="mb-2.5 list-decimal pl-4 space-y-1.5 text-gray-800 last:mb-0">
-                  {children}
-                </ol>
-              ),
-              li: ({ children }) => (
-                <li className="leading-[1.65] pl-0.5">{children}</li>
-              ),
-              blockquote: ({ children }) => (
-                <blockquote className="my-2 border-l-2 border-gray-300 pl-3 italic text-gray-600">
-                  {children}
-                </blockquote>
-              ),
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-[#C96A2B] underline decoration-[#C96A2B]/40 underline-offset-2 hover:decoration-[#C96A2B]"
-                >
-                  {children}
-                </a>
-              ),
-            }}
+        {/* Discreet Copy Action at bottom */}
+        <div
+          style={{ marginTop: "12px", paddingTop: "8px" }}
+          className="flex items-center justify-end border-t border-[#F3E8DB]/60"
+        >
+          <button
+            onClick={handleCopy}
+            title={copied ? "Đã sao chép" : "Sao chép"}
+            aria-label="Sao chép nội dung"
+            style={{ padding: "3px 8px" }}
+            className="flex items-center gap-1 rounded-md text-[11px] font-medium text-[#9A7E6C] transition-all hover:bg-[#F2E5D6] hover:text-[#2A1D15]"
           >
-            {message.content}
-          </ReactMarkdown>
+            {copied ? (
+              <>
+                <Check className="h-3 w-3 text-emerald-600" />
+                <span className="text-emerald-700 font-semibold">Đã chép</span>
+              </>
+            ) : (
+              <>
+                <Copy className="h-3 w-3" />
+                <span>Sao chép</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
