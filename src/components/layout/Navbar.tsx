@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Drawer from "@/components/layout/Drawer";
 import AppLauncher from "@/components/layout/AppLauncher";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 
 const menu = [
   { name: "Hành trình", href: "#journey" },
@@ -58,6 +59,8 @@ export default function Navbar() {
           }
         `}
       >
+        <AnnouncementBar />
+
         <Container
           className={`
             flex
